@@ -9,8 +9,15 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+# Gradle
+.gradle/
+build/
+!gradle-wrapper.jar
+.gradletasknamecache
+
 # Downloaded dependencies
 lib/
+lib2/
 
 # Maven settings
 .m2/
