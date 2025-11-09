@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.docx4j'
+version = '1.0-SNAPSHOT'
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+repositories {
+    maven {
+        url 'https://maven.aliyun.com/repository/central'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.4.9'
+    implementation 'org.slf4j:slf4j-simple:2.0.9'
+}
+
+application {
+    mainClass = 'com.docx4j.test.DocxFormatExtractor'
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}

@@ -7,7 +7,7 @@ import org.docx4j.wml.*;
 import org.docx4j.XmlUtils;
 import org.docx4j.model.structure.SectionWrapper;
 
-import javax.xml.bind.JAXBElement;
+import jakarta.xml.bind.JAXBElement;
 import java.io.File;
 import java.util.List;
 
@@ -104,11 +104,11 @@ public class DocxFormatExtractor {
         System.out.println("\n【2. 页面设置】");
         System.out.println("----------------------------------------");
         try {
-            List<SectionWrapper> sections = mainDocumentPart.getDocumentModel().getSections();
+            // Get the section properties from the body
+            SectPr sectPr = mainDocumentPart.getJaxbElement().getBody().getSectPr();
 
-            for (int i = 0; i < sections.size(); i++) {
-                SectionWrapper section = sections.get(i);
-                SectPr sectPr = section.getSectPr();
+            if (sectPr != null) {
+                int i = 0;
 
                 System.out.println("节 " + (i + 1) + ":");
 
@@ -328,12 +328,12 @@ public class DocxFormatExtractor {
 
         // Bold
         if (rPr.getB() != null) {
-            System.out.println(indent + "  加粗: " + (rPr.getB().isVal() != null ? rPr.getB().isVal() : true));
+            System.out.println(indent + "  加粗: " + rPr.getB().isVal());
         }
 
         // Italic
         if (rPr.getI() != null) {
-            System.out.println(indent + "  斜体: " + (rPr.getI().isVal() != null ? rPr.getI().isVal() : true));
+            System.out.println(indent + "  斜体: " + rPr.getI().isVal());
         }
 
         // Underline

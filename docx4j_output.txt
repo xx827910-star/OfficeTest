@@ -1,0 +1,65 @@
+===============================================
+    DOCX ????????
+    ??: test.docx
+===============================================
+
+[main] WARN org.docx4j.utils.ResourceUtils - Couldn't get resource: docx4j.properties
+[main] WARN org.docx4j.Docx4jProperties - Couldn't find/read docx4j.properties; docx4j.properties not found via classloader.
+[main] INFO org.docx4j.jaxb.Context - java.vendor=Ubuntu
+[main] INFO org.docx4j.jaxb.Context - java.version=21.0.8
+[main] INFO org.docx4j.jaxb.Context - java.vm.name=OpenJDK 64-Bit Server VM
+[main] INFO org.docx4j.jaxb.Context - JAXB Reference Implementation is in use.
+[main] WARN org.docx4j.XmlUtils - Xalan jar missing from classpath; xslt not supported
+[main] INFO org.docx4j.XmlUtils - default SAXParserFactory property : null
+ Please consider using Xerces.
+[main] WARN org.docx4j.XmlUtils - actual SAXParserFactory: com.sun.org.apache.xerces.internal.jaxp.SAXParserFactoryImpl
+[main] INFO org.docx4j.XmlUtils - default DocumentBuilderFactory property: null
+ Please consider using Xerces.
+[main] WARN org.docx4j.XmlUtils - actual DocumentBuilderFactory: com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl
+[main] INFO org.docx4j.openpackaging.contenttype.ContentTypeManager - Detected WordProcessingML package 
+[main] INFO org.docx4j.openpackaging.contenttype.ContentTypeManager - Detected WordProcessingML package 
+[main] INFO org.docx4j.openpackaging.io3.Load3 - Instantiated package of type org.docx4j.openpackaging.packages.WordprocessingMLPackage
+[main] INFO org.docx4j.utils.XPathFactoryUtil - xpath implementation: org.apache.xpath.jaxp.XPathFactoryImpl
+[main] ERROR org.docx4j.openpackaging.contenttype.ContentTypeManager - org/docx4j/org/apache/xpath/XPathException
+java.lang.NoClassDefFoundError: org/docx4j/org/apache/xpath/XPathException
+	at org.docx4j.openpackaging.contenttype.ContentTypeManager.CreateDefaultXmlPartObject(ContentTypeManager.java:572)
+	at org.docx4j.openpackaging.contenttype.ContentTypeManager.newPartForContentType(ContentTypeManager.java:555)
+	at org.docx4j.openpackaging.contenttype.ContentTypeManager.getPart(ContentTypeManager.java:294)
+	at org.docx4j.openpackaging.io3.Load3.getRawPart(Load3.java:471)
+	at org.docx4j.openpackaging.io3.Load3.getPart(Load3.java:372)
+	at org.docx4j.openpackaging.io3.Load3.addPartsFromRelationships(Load3.java:278)
+	at org.docx4j.openpackaging.io3.Load3.getPart(Load3.java:400)
+	at org.docx4j.openpackaging.io3.Load3.addPartsFromRelationships(Load3.java:278)
+	at org.docx4j.openpackaging.io3.Load3.get(Load3.java:196)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:572)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:421)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:298)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:276)
+	at org.docx4j.openpackaging.packages.WordprocessingMLPackage.load(WordprocessingMLPackage.java:170)
+	at com.docx4j.test.DocxFormatExtractor.main(DocxFormatExtractor.java:35)
+Caused by: java.lang.ClassNotFoundException: org.docx4j.org.apache.xpath.XPathException
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	... 15 more
+Exception in thread "main" java.lang.NoClassDefFoundError: org/docx4j/org/apache/xpath/XPathException
+	at org.docx4j.openpackaging.contenttype.ContentTypeManager.CreateDefaultXmlPartObject(ContentTypeManager.java:572)
+	at org.docx4j.openpackaging.contenttype.ContentTypeManager.newPartForContentType(ContentTypeManager.java:555)
+	at org.docx4j.openpackaging.contenttype.ContentTypeManager.getPart(ContentTypeManager.java:294)
+	at org.docx4j.openpackaging.io3.Load3.getRawPart(Load3.java:471)
+	at org.docx4j.openpackaging.io3.Load3.getPart(Load3.java:372)
+	at org.docx4j.openpackaging.io3.Load3.addPartsFromRelationships(Load3.java:278)
+	at org.docx4j.openpackaging.io3.Load3.getPart(Load3.java:400)
+	at org.docx4j.openpackaging.io3.Load3.addPartsFromRelationships(Load3.java:278)
+	at org.docx4j.openpackaging.io3.Load3.get(Load3.java:196)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:572)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:421)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:298)
+	at org.docx4j.openpackaging.packages.OpcPackage.load(OpcPackage.java:276)
+	at org.docx4j.openpackaging.packages.WordprocessingMLPackage.load(WordprocessingMLPackage.java:170)
+	at com.docx4j.test.DocxFormatExtractor.main(DocxFormatExtractor.java:35)
+Caused by: java.lang.ClassNotFoundException: org.docx4j.org.apache.xpath.XPathException
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	... 15 more
