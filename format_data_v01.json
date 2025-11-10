@@ -26,7 +26,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 3,
@@ -34,7 +34,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           }
         ]
       },
@@ -51,9 +51,11 @@
         "font": "宋体",
         "size": "三号(16.0pt)",
         "bold": true,
-        "alignment": "居中"
+        "alignment": "居中",
+        "spacing_before": ""
       },
-      "items_count": 0
+      "items_count": 0,
+      "items": []
     },
     "main": {
       "h1": {
@@ -65,7 +67,7 @@
             "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
-            "alignment": "顶格/默认",
+            "alignment": "未提供",
             "spacing_before": ""
           },
           {
@@ -74,7 +76,7 @@
             "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
-            "alignment": "顶格/默认",
+            "alignment": "未提供",
             "spacing_before": ""
           },
           {
@@ -83,7 +85,7 @@
             "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
-            "alignment": "顶格/默认",
+            "alignment": "未提供",
             "spacing_before": ""
           },
           {
@@ -92,7 +94,7 @@
             "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
-            "alignment": "顶格/默认",
+            "alignment": "未提供",
             "spacing_before": ""
           },
           {
@@ -101,7 +103,7 @@
             "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
-            "alignment": "顶格/默认",
+            "alignment": "未提供",
             "spacing_before": ""
           },
           {
@@ -110,7 +112,7 @@
             "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
-            "alignment": "顶格/默认",
+            "alignment": "未提供",
             "spacing_before": ""
           },
           {
@@ -178,7 +180,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 13,
@@ -186,7 +188,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 14,
@@ -194,7 +196,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 15,
@@ -202,7 +204,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 17,
@@ -210,7 +212,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           }
         ]
       },
@@ -223,7 +225,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 12,
@@ -231,7 +233,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 18,
@@ -239,7 +241,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 19,
@@ -247,7 +249,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 21,
@@ -255,7 +257,7 @@
             "font": "宋体",
             "size": "小四(12.0pt)",
             "bold": false,
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           }
         ]
       },
@@ -269,7 +271,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 62,
@@ -278,7 +280,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 64,
@@ -287,7 +289,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 66,
@@ -296,7 +298,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 68,
@@ -305,7 +307,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 71,
@@ -314,7 +316,7 @@
             "size": "小五(9.0pt)",
             "first_line_indent": "",
             "line_spacing": "",
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           },
           {
             "index": 73,
@@ -323,7 +325,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 75,
@@ -332,7 +334,7 @@
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "1.5倍",
-            "alignment": "居中"
+            "alignment": "两端对齐"
           },
           {
             "index": 77,
@@ -350,7 +352,7 @@
             "size": "小五(9.0pt)",
             "first_line_indent": "",
             "line_spacing": "",
-            "alignment": "顶格/默认"
+            "alignment": "未提供"
           }
         ]
       }
@@ -384,7 +386,7 @@
           "text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "alignment": "居中"
+          "alignment": "两端对齐"
         }
       ]
     },
@@ -410,7 +412,7 @@
           "text": "表2-1列出了计算机视觉领域常用的基准数据集。ImageNet作为最具影响力的数据集，包含超过140万张标注图像，涵盖1000个类别，成为评估图像识别算法性能的标准基准。",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "alignment": "居中"
+          "alignment": "两端对齐"
         },
         {
           "index": 137,
@@ -438,7 +440,7 @@
           "text": "表4-2显示ResNet-50在准确率和训练效率上都表现优异，是CIFAR-10任务的最佳选择。",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "alignment": "居中"
+          "alignment": "两端对齐"
         }
       ]
     },
@@ -448,7 +450,22 @@
       "headers": [
         {
           "index": 0,
-          "text": "基于深度学习的图像识别技术研究与应用"
+          "text": "基于深度学习的图像识别技术研究与应用",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "基于深度学习的图像识别技术研究与应用",
+              "font": "宋体",
+              "font_english": "宋体",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "line_spacing": "1.0倍",
+              "spacing_before": "",
+              "spacing_after": "0磅"
+            }
+          ]
         }
       ],
       "footers": []

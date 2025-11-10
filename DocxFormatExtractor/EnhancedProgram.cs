@@ -23,6 +23,7 @@ namespace DocxFormatExtractor
         private const string DefaultBatchOutputDirectory = "/Users/CodeProjects/OfficeTest/batch_output";
 
         private static DocumentFormatInfo formatInfo = new DocumentFormatInfo();
+        private static Dictionary<string, StyleInfo> styleLookup = new Dictionary<string, StyleInfo>(StringComparer.OrdinalIgnoreCase);
 
         static void Main(string[] args)
         {
@@ -265,6 +266,9 @@ namespace DocxFormatExtractor
             }
 
             formatInfo.Styles = stylesList;
+            styleLookup = stylesList
+                .Where(s => !string.IsNullOrEmpty(s.StyleId))
+                .ToDictionary(s => s.StyleId, s => s, StringComparer.OrdinalIgnoreCase);
         }
 
         static void ExtractParagraphsAndRuns(WordprocessingDocument doc)
@@ -281,93 +285,97 @@ namespace DocxFormatExtractor
             int index = 0;
             foreach (var para in body.Elements<Paragraph>())
             {
-                var paraInfo = new ParagraphInfo
-                {
-                    Index = index++,
-                    Text = para.InnerText
-                };
-
-                // 段落属性
-                if (para.ParagraphProperties != null)
-                {
-                    var props = para.ParagraphProperties;
-                    paraInfo.StyleId = props.ParagraphStyleId?.Val?.Value ?? "";
-                    paraInfo.Alignment = props.Justification?.Val?.Value.ToString() ?? "";
-
-                    if (props.Indentation != null)
-                    {
-                        paraInfo.LeftIndent = props.Indentation.Left?.Value ?? "";
-                        paraInfo.RightIndent = props.Indentation.Right?.Value ?? "";
-                        paraInfo.FirstLineIndent = props.Indentation.FirstLine?.Value ?? "";
-                        paraInfo.HangingIndent = props.Indentation.Hanging?.Value ?? "";
-                    }
-
-                    if (props.SpacingBetweenLines != null)
-                    {
-                        paraInfo.SpacingBefore = props.SpacingBetweenLines.Before?.Value ?? "";
-                        paraInfo.SpacingAfter = props.SpacingBetweenLines.After?.Value ?? "";
-                        paraInfo.LineSpacing = props.SpacingBetweenLines.Line?.Value ?? "";
-                        paraInfo.LineSpacingRule = props.SpacingBetweenLines.LineRule?.Value.ToString() ?? "";
-                    }
-
-                    if (props.NumberingProperties != null)
-                    {
-                        paraInfo.NumberingId = props.NumberingProperties.NumberingId?.Val?.Value.ToString() ?? "";
-                        paraInfo.NumberingLevel = props.NumberingProperties.NumberingLevelReference?.Val?.Value.ToString() ?? "";
-                    }
-
-                    // 边框
-                    if (props.ParagraphBorders != null)
-                    {
-                        paraInfo.HasBorders = true;
-                    }
-
-                    // 底纹
-                    if (props.Shading != null)
-                    {
-                        paraInfo.ShadingFill = props.Shading.Fill?.Value ?? "";
-                        paraInfo.ShadingColor = props.Shading.Color?.Value ?? "";
-                    }
-                }
-
-                // 文本运行
-                var runs = new List<RunInfo>();
-                foreach (var run in para.Elements<Run>())
-                {
-                    var runInfo = new RunInfo
-                    {
-                        Text = run.InnerText
-                    };
-
-                    if (run.RunProperties != null)
-                    {
-                        var rProps = run.RunProperties;
-
-                        if (rProps.RunFonts != null)
-                        {
-                            runInfo.FontNameAscii = rProps.RunFonts.Ascii?.Value ?? "";
-                            runInfo.FontNameEastAsia = rProps.RunFonts.EastAsia?.Value ?? "";
-                            runInfo.FontNameComplexScript = rProps.RunFonts.ComplexScript?.Value ?? "";
-                        }
-
-                        runInfo.FontSize = rProps.FontSize?.Val?.Value ?? "";
-                        runInfo.Bold = rProps.Bold != null;
-                        runInfo.Italic = rProps.Italic != null;
-                        runInfo.Underline = rProps.Underline?.Val?.Value.ToString() ?? "";
-                        runInfo.Strike = rProps.Strike != null;
-                        runInfo.Color = rProps.Color?.Val?.Value ?? "";
-                        runInfo.Highlight = rProps.Highlight?.Val?.Value.ToString() ?? "";
-                        runInfo.VerticalAlignment = rProps.VerticalTextAlignment?.Val?.Value.ToString() ?? "";
-                    }
-
-                    runs.Add(runInfo);
-                }
-                paraInfo.Runs = runs;
-
+                var paraInfo = BuildParagraphInfo(para, ref index);
                 paragraphsList.Add(paraInfo);
             }
 
             formatInfo.Paragraphs = paragraphsList;
+        }
+
+        static ParagraphInfo BuildParagraphInfo(Paragraph para, ref int index)
+        {
+            var paraInfo = new ParagraphInfo
+            {
+                Index = index++,
+                Text = para.InnerText
+            };
+
+            if (para.ParagraphProperties != null)
+            {
+                var props = para.ParagraphProperties;
+                paraInfo.StyleId = props.ParagraphStyleId?.Val?.Value ?? "";
+                paraInfo.Alignment = ConvertJustificationToString(props.Justification);
+
+                if (props.Indentation != null)
+                {
+                    paraInfo.LeftIndent = props.Indentation.Left?.Value ?? "";
+                    paraInfo.RightIndent = props.Indentation.Right?.Value ?? "";
+                    paraInfo.FirstLineIndent = props.Indentation.FirstLine?.Value ?? "";
+                    paraInfo.HangingIndent = props.Indentation.Hanging?.Value ?? "";
+                }
+
+                if (props.SpacingBetweenLines != null)
+                {
+                    paraInfo.SpacingBefore = props.SpacingBetweenLines.Before?.Value ?? "";
+                    paraInfo.SpacingAfter = props.SpacingBetweenLines.After?.Value ?? "";
+                    paraInfo.LineSpacing = props.SpacingBetweenLines.Line?.Value ?? "";
+                    paraInfo.LineSpacingRule = props.SpacingBetweenLines.LineRule?.Value.ToString() ?? "";
+                }
+
+                if (props.NumberingProperties != null)
+                {
+                    paraInfo.NumberingId = props.NumberingProperties.NumberingId?.Val?.Value.ToString() ?? "";
+                    paraInfo.NumberingLevel = props.NumberingProperties.NumberingLevelReference?.Val?.Value.ToString() ?? "";
+                }
+
+                if (props.ParagraphBorders != null)
+                {
+                    paraInfo.HasBorders = true;
+                }
+
+                if (props.Shading != null)
+                {
+                    paraInfo.ShadingFill = props.Shading.Fill?.Value ?? "";
+                    paraInfo.ShadingColor = props.Shading.Color?.Value ?? "";
+                }
+            }
+
+            var runs = new List<RunInfo>();
+            foreach (var run in para.Elements<Run>())
+            {
+                var runInfo = new RunInfo
+                {
+                    Text = run.InnerText
+                };
+
+                if (run.RunProperties != null)
+                {
+                    var rProps = run.RunProperties;
+
+                    if (rProps.RunFonts != null)
+                    {
+                        runInfo.FontNameAscii = rProps.RunFonts.Ascii?.Value ?? "";
+                        runInfo.FontNameEastAsia = rProps.RunFonts.EastAsia?.Value ?? "";
+                        runInfo.FontNameComplexScript = rProps.RunFonts.ComplexScript?.Value ?? "";
+                    }
+
+                    runInfo.FontSize = rProps.FontSize?.Val?.Value ?? "";
+                    runInfo.Bold = rProps.Bold != null;
+                    runInfo.Italic = rProps.Italic != null;
+                    runInfo.Underline = rProps.Underline?.Val?.Value.ToString() ?? "";
+                    runInfo.Strike = rProps.Strike != null;
+                    runInfo.Color = rProps.Color?.Val?.Value ?? "";
+                    runInfo.Highlight = rProps.Highlight?.Val?.Value.ToString() ?? "";
+                    runInfo.VerticalAlignment = rProps.VerticalTextAlignment?.Val?.Value.ToString() ?? "";
+                }
+
+                runs.Add(runInfo);
+            }
+            paraInfo.Runs = runs;
+
+            ApplyParagraphStyleFallbacks(paraInfo);
+
+            return paraInfo;
         }
 
         static void ExtractTables(WordprocessingDocument doc)
@@ -602,6 +610,16 @@ namespace DocxFormatExtractor
                     RelationshipId = doc.MainDocumentPart.GetIdOfPart(headerPart)
                 };
 
+                if (headerPart.Header != null)
+                {
+                    int paragraphIndex = 0;
+                    foreach (var paragraph in headerPart.Header.Elements<Paragraph>())
+                    {
+                        var paragraphInfo = BuildParagraphInfo(paragraph, ref paragraphIndex);
+                        headerInfo.Paragraphs.Add(paragraphInfo);
+                    }
+                }
+
                 headersList.Add(headerInfo);
             }
 
@@ -615,6 +633,16 @@ namespace DocxFormatExtractor
                     Text = footerPart.Footer?.InnerText ?? "",
                     RelationshipId = doc.MainDocumentPart.GetIdOfPart(footerPart)
                 };
+
+                if (footerPart.Footer != null)
+                {
+                    int paragraphIndex = 0;
+                    foreach (var paragraph in footerPart.Footer.Elements<Paragraph>())
+                    {
+                        var paragraphInfo = BuildParagraphInfo(paragraph, ref paragraphIndex);
+                        footerInfo.Paragraphs.Add(paragraphInfo);
+                    }
+                }
 
                 footersList.Add(footerInfo);
             }
@@ -786,12 +814,13 @@ namespace DocxFormatExtractor
         {
             var info = new ParagraphPropertiesInfo
             {
-                Alignment = props.Justification?.Val?.Value.ToString() ?? ""
+                Alignment = ConvertJustificationToString(props.Justification)
             };
 
             if (props.Indentation != null)
             {
                 info.LeftIndent = props.Indentation.Left?.Value ?? "";
+                info.RightIndent = props.Indentation.Right?.Value ?? "";
                 info.FirstLineIndent = props.Indentation.FirstLine?.Value ?? "";
             }
 
@@ -821,6 +850,72 @@ namespace DocxFormatExtractor
             info.Color = props.Color?.Val?.Value ?? "";
 
             return info;
+        }
+
+        static string ConvertJustificationToString(Justification? justification)
+        {
+            if (justification?.Val == null)
+            {
+                return "";
+            }
+
+            var innerText = justification.Val.InnerText;
+            if (!string.IsNullOrWhiteSpace(innerText))
+            {
+                return innerText.Trim();
+            }
+
+            try
+            {
+                return Enum.GetName(typeof(JustificationValues), justification.Val.Value) ?? "";
+            }
+            catch
+            {
+                return "";
+            }
+        }
+
+        static void ApplyParagraphStyleFallbacks(ParagraphInfo paraInfo)
+        {
+            if (styleLookup.Count == 0)
+            {
+                return;
+            }
+
+            var visited = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            string? currentStyleId = string.IsNullOrEmpty(paraInfo.StyleId) ? "Normal" : paraInfo.StyleId;
+
+            while (!string.IsNullOrEmpty(currentStyleId))
+            {
+                if (!visited.Add(currentStyleId))
+                {
+                    break;
+                }
+
+                if (!styleLookup.TryGetValue(currentStyleId, out var style))
+                {
+                    break;
+                }
+
+                if (style.ParagraphProperties != null)
+                {
+                    var props = style.ParagraphProperties;
+                    paraInfo.Alignment = UseFallback(paraInfo.Alignment, props.Alignment);
+                    paraInfo.LeftIndent = UseFallback(paraInfo.LeftIndent, props.LeftIndent);
+                    paraInfo.RightIndent = UseFallback(paraInfo.RightIndent, props.RightIndent);
+                    paraInfo.FirstLineIndent = UseFallback(paraInfo.FirstLineIndent, props.FirstLineIndent);
+                    paraInfo.SpacingBefore = UseFallback(paraInfo.SpacingBefore, props.SpacingBefore);
+                    paraInfo.SpacingAfter = UseFallback(paraInfo.SpacingAfter, props.SpacingAfter);
+                    paraInfo.LineSpacing = UseFallback(paraInfo.LineSpacing, props.LineSpacing);
+                }
+
+                currentStyleId = style.BasedOn;
+            }
+        }
+
+        static string UseFallback(string current, string? fallback)
+        {
+            return string.IsNullOrEmpty(current) ? (fallback ?? "") : current;
         }
 
         static void OutputToText(string filePath)
@@ -1160,6 +1255,7 @@ namespace DocxFormatExtractor
         public int Index { get; set; }
         public string Text { get; set; } = "";
         public string RelationshipId { get; set; } = "";
+        public List<ParagraphInfo> Paragraphs { get; set; } = new List<ParagraphInfo>();
     }
 
     public class HyperlinkInfo

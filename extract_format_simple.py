@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-方案A：粗粒度论文格式检测方案 - 格式数据提取脚本
+粗粒度论文格式检测方案 - 格式数据提取脚本
 
 功能：
 1. 读取 batch_output/ 中的 JSON 文件
@@ -94,17 +94,32 @@ def twips_to_chars(twips: str) -> str:
 # ==================== 对齐方式映射 ====================
 
 ALIGNMENT_MAP = {
-    'JustificationValues { }': '居中',
-    'LeftValues { }': '左对齐',
-    'RightValues { }': '右对齐',
-    'BothValues { }': '两端对齐',
-    '': '顶格/默认'
+    'center': '居中',
+    'justificationvalues { }': '未提供',
+    'left': '左对齐',
+    'leftvalues { }': '左对齐',
+    'start': '左对齐',
+    'right': '右对齐',
+    'rightvalues { }': '右对齐',
+    'end': '右对齐',
+    'both': '两端对齐',
+    'bothvalues { }': '两端对齐',
+    'distribute': '分散对齐',
+    'thaidistribute': '分散对齐',
+    'highkashida': 'HighKashida',
+    'mediumkashida': 'MediumKashida',
+    'lowkashida': 'LowKashida',
+    '': '未提供'
 }
 
 
 def get_alignment(alignment: str) -> str:
     """获取对齐方式的中文描述"""
-    return ALIGNMENT_MAP.get(alignment, alignment)
+    if alignment is None:
+        alignment = ''
+    key = alignment.strip()
+    lower_key = key.lower()
+    return ALIGNMENT_MAP.get(lower_key, key if key else '未提供')
 
 
 # ==================== 样式继承解析 ====================
@@ -170,6 +185,31 @@ def get_effective_font(para: Dict, styles_dict: Dict[str, Dict]) -> Dict[str, An
             result['italic'] = run['Italic']
 
     return result
+
+
+def summarize_paragraph_format(para: Dict, styles_dict: Dict[str, Dict], include_spacing: bool = False) -> Dict[str, Any]:
+    """提炼段落的核心格式属性"""
+    font = get_effective_font(para, styles_dict)
+    summary = {
+        "index": para.get('Index'),
+        "text": para.get('Text', '').strip(),
+        "font": font['chinese'],
+        "font_english": font['english'],
+        "size": font['size'],
+        "bold": font['bold'],
+        "alignment": get_alignment(para.get('Alignment', '')),
+        "first_line_indent": twips_to_chars(para.get('FirstLineIndent', '')),
+    }
+
+    line_spacing = para.get('LineSpacing', '')
+    if line_spacing:
+        summary["line_spacing"] = twips_to_line_spacing(line_spacing)
+
+    if include_spacing:
+        summary["spacing_before"] = twips_to_pt(para.get('SpacingBefore', ''))
+        summary["spacing_after"] = twips_to_pt(para.get('SpacingAfter', ''))
+
+    return summary
 
 
 # ==================== 段落分类 ====================
@@ -492,9 +532,16 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "size": font['size'],
                 "bold": font['bold'],
                 "alignment": get_alignment(title_para.get('Alignment', '')),
+                "spacing_before": twips_to_pt(title_para.get('SpacingBefore', '')),
             },
             "items_count": len(classified['TOC_REF']),
+            "items": []
         }
+
+        for para in classified['TOC_REF']:
+            item = summarize_paragraph_format(para, styles_dict, include_spacing=True)
+            item["numbering_level"] = para.get('NumberingLevel', '')
+            result["sections"]["toc"]["items"].append(item)
 
     # 正文 - 一级标题
     if classified['HEADING_1']:
@@ -642,11 +689,26 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
     headers = data.get('Headers', [])
     footers = data.get('Footers', [])
 
+    def summarize_header_footer(items: List[Dict]) -> List[Dict]:
+        summarized = []
+        for item in items:
+            paragraphs = item.get('Paragraphs', [])
+            paragraph_formats = [
+                summarize_paragraph_format(para, styles_dict, include_spacing=True)
+                for para in paragraphs
+            ]
+            summarized.append({
+                "index": item.get('Index'),
+                "text": item.get('Text', '').strip(),
+                "paragraphs": paragraph_formats
+            })
+        return summarized
+
     result["sections"]["headers_footers"] = {
         "header_count": len(headers),
         "footer_count": len(footers),
-        "headers": [{"index": h.get('Index'), "text": h.get('Text', '').strip()} for h in headers],
-        "footers": [{"index": f.get('Index'), "text": f.get('Text', '').strip()} for f in footers],
+        "headers": summarize_header_footer(headers),
+        "footers": summarize_header_footer(footers),
     }
 
     # 致谢
@@ -660,6 +722,7 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "size": font['size'],
                 "bold": font['bold'],
                 "alignment": get_alignment(title_para.get('Alignment', '')),
+                "spacing_before": twips_to_pt(title_para.get('SpacingBefore', '')),
             },
             "content_count": len(classified['ACKNOWLEDGEMENT_CONTENT']),
         }
@@ -675,6 +738,7 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "size": font['size'],
                 "bold": font['bold'],
                 "alignment": get_alignment(title_para.get('Alignment', '')),
+                "spacing_before": twips_to_pt(title_para.get('SpacingBefore', '')),
             },
             "content_count": len(classified['APPENDIX_CONTENT']),
         }
