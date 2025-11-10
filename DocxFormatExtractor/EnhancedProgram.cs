@@ -16,49 +16,125 @@ namespace DocxFormatExtractor
     /// </summary>
     class EnhancedProgram
     {
+        private const string DefaultDocPath = "/Users/CodeProjects/OfficeTest/test.docx";
+        private const string DefaultOutputDirectory = "/Users/CodeProjects/OfficeTest";
+        private const string DefaultOutputPrefix = "format_output_enhanced";
+        private const string DefaultBatchInputDirectory = "/Users/CodeProjects/OfficeTest/pre_test_docx";
+        private const string DefaultBatchOutputDirectory = "/Users/CodeProjects/OfficeTest/batch_output";
+
         private static DocumentFormatInfo formatInfo = new DocumentFormatInfo();
 
         static void Main(string[] args)
         {
-            string docPath = "/Users/CodeProjects/OfficeTest/test.docx";
-            string outputFormat = "both"; // "txt", "json", "both"
-
-            if (!File.Exists(docPath))
+            if (args.Length > 0 && IsBatchArgument(args[0]))
             {
-                Console.WriteLine($"文件不存在: {docPath}");
+                string inputDir = args.Length > 1 ? args[1] : DefaultBatchInputDirectory;
+                string outputDir = args.Length > 2 ? args[2] : DefaultBatchOutputDirectory;
+                BatchDocxProcessor.Run(inputDir, outputDir);
                 return;
             }
 
-            Console.WriteLine("开始提取文档格式信息...");
-            Console.WriteLine("使用 Open XML SDK 3.x");
-            Console.WriteLine();
-
             try
             {
-                using (WordprocessingDocument doc = WordprocessingDocument.Open(docPath, false))
+                var result = ProcessDocument(
+                    DefaultDocPath,
+                    DefaultOutputDirectory,
+                    "both",
+                    DefaultOutputPrefix);
+
+                Console.WriteLine("单文件提取完成！");
+                if (!string.IsNullOrEmpty(result.TextOutputPath))
                 {
-                    // 提取所有信息
-                    ExtractAllInformation(doc);
+                    Console.WriteLine($"TXT 输出: {result.TextOutputPath}");
                 }
 
-                // 输出结果
-                if (outputFormat == "txt" || outputFormat == "both")
+                if (!string.IsNullOrEmpty(result.JsonOutputPath))
                 {
-                    OutputToText("/Users/CodeProjects/OfficeTest/format_output_enhanced.txt");
+                    Console.WriteLine($"JSON 输出: {result.JsonOutputPath}");
                 }
-
-                if (outputFormat == "json" || outputFormat == "both")
-                {
-                    OutputToJson("/Users/CodeProjects/OfficeTest/format_output_enhanced.json");
-                }
-
-                Console.WriteLine("提取完成！");
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"错误: {ex.Message}");
                 Console.WriteLine($"堆栈: {ex.StackTrace}");
             }
+        }
+
+        public static ExtractionResult ProcessDocument(
+            string docPath,
+            string outputDirectory,
+            string outputFormat = "both",
+            string? outputFilePrefix = null)
+        {
+            if (string.IsNullOrWhiteSpace(docPath))
+            {
+                throw new ArgumentException("docPath 不能为空", nameof(docPath));
+            }
+
+            if (!File.Exists(docPath))
+            {
+                throw new FileNotFoundException($"文件不存在: {docPath}", docPath);
+            }
+
+            Directory.CreateDirectory(outputDirectory);
+
+            formatInfo = new DocumentFormatInfo();
+
+            Console.WriteLine("开始提取文档格式信息...");
+            Console.WriteLine($"目标文件: {docPath}");
+            Console.WriteLine("使用 Open XML SDK 3.x");
+            Console.WriteLine();
+
+            using (WordprocessingDocument doc = WordprocessingDocument.Open(docPath, false))
+            {
+                ExtractAllInformation(doc);
+            }
+
+            string normalizedFormat = NormalizeOutputFormat(outputFormat);
+            string baseName = outputFilePrefix ?? Path.GetFileNameWithoutExtension(docPath);
+            string? textPath = null;
+            string? jsonPath = null;
+
+            if (normalizedFormat == "txt" || normalizedFormat == "both")
+            {
+                textPath = Path.Combine(outputDirectory, $"{baseName}.txt");
+                OutputToText(textPath);
+            }
+
+            if (normalizedFormat == "json" || normalizedFormat == "both")
+            {
+                jsonPath = Path.Combine(outputDirectory, $"{baseName}.json");
+                OutputToJson(jsonPath);
+            }
+
+            return new ExtractionResult(docPath, textPath, jsonPath);
+        }
+
+        private static bool IsBatchArgument(string argument)
+        {
+            if (string.IsNullOrWhiteSpace(argument))
+            {
+                return false;
+            }
+
+            var normalized = argument.TrimStart('-').ToLowerInvariant();
+            return normalized == "batch" || normalized == "b";
+        }
+
+        private static string NormalizeOutputFormat(string? outputFormat)
+        {
+            if (string.IsNullOrWhiteSpace(outputFormat))
+            {
+                return "both";
+            }
+
+            string normalized = outputFormat.Trim().ToLowerInvariant();
+            return normalized switch
+            {
+                "txt" => "txt",
+                "json" => "json",
+                _ => "both"
+            };
         }
 
         static void ExtractAllInformation(WordprocessingDocument doc)
@@ -901,6 +977,8 @@ namespace DocxFormatExtractor
             Console.WriteLine($"JSON报告已保存到: {filePath}");
         }
     }
+
+    public record ExtractionResult(string DocumentPath, string? TextOutputPath, string? JsonOutputPath);
 
     #region 数据模型类
 
