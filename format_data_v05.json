@@ -1,0 +1,1115 @@
+{
+  "page_setup": {
+    "margin_top": "2.0 cm",
+    "margin_bottom": "2.0 cm",
+    "margin_left": "2.5 cm",
+    "margin_right": "2.0 cm",
+    "page_width": "21.6 cm",
+    "page_height": "27.9 cm"
+  },
+  "sections": {
+    "abstract_cn": {
+      "title": {
+        "text": "摘  要",
+        "font": "宋体",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": ""
+      },
+      "content": {
+        "count": 2,
+        "items": [
+          {
+            "index": 2,
+            "text": "随着深度学习技术的快速发展，图像识别领域取得了突破性进展。本文系统研究了卷积神经网络（CNN）在图像识别中的应用，重点分析了ResNet、VGG、Inception等经典网络架构的特点和性能。研究表明...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 3,
+            "text": "本文首先介绍了深度学习和图像识别的理论基础，然后详细分析了主流CNN架构的设计原理和技术创新点。通过在CIFAR-10和ImageNet数据集上的实验对比，验证了不同网络架构的性能差异。实验结果表明，...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          }
+        ]
+      },
+      "keywords": {
+        "text": "关键词：深度学习；图像识别；卷积神经网络；ResNet；计算机视觉",
+        "separator": "；",
+        "keyword_count": 5,
+        "label_bold": true
+      }
+    },
+    "abstract_en": {
+      "title": {
+        "text": "Abstract",
+        "font": "Times New Roman",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": "12磅"
+      },
+      "content": {
+        "count": 2,
+        "items": [
+          {
+            "index": 9,
+            "text": "With the rapid development of deep learning technology, image recognition has achieved breakthrough ...",
+            "font": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 10,
+            "text": "This paper first introduces the theoretical foundation of deep learning and image recognition, then ...",
+            "font": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          }
+        ]
+      },
+      "keywords": {
+        "text": "Key words: Deep Learning; Image Recognition; Convolutional Neural Networks; ResNet; Computer Vision",
+        "separator": ";",
+        "keyword_count": 5,
+        "label_bold": true
+      }
+    },
+    "toc": {
+      "title": {
+        "text": "目  录",
+        "font": "宋体",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": ""
+      },
+      "items_count": 49,
+      "items": [
+        {
+          "index": 16,
+          "text": "第1章 绪论..............................PAGEREF _Chapter_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 17,
+          "text": "1.1 研究背景与意义.........................PAGEREF _Heading_1_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 18,
+          "text": "1.1.1 理论意义....................PAGEREF _Heading_1_1_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 19,
+          "text": "1.1.2 应用价值....................PAGEREF _Heading_1_1_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 20,
+          "text": "1.2 国内外研究现状.........................PAGEREF _Heading_1_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 21,
+          "text": "1.3 研究内容与方法.........................PAGEREF _Heading_1_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 22,
+          "text": "1.4 论文组织结构.........................PAGEREF _Heading_1_4 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 23,
+          "text": "第2章 深度学习与图像识别基础..............................PAGEREF _Chapter_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 24,
+          "text": "2.1 深度学习基础.........................PAGEREF _Heading_2_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 25,
+          "text": "2.1.1 神经网络基本结构....................PAGEREF _Heading_2_1_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 26,
+          "text": "2.1.2 反向传播算法....................PAGEREF _Heading_2_1_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 27,
+          "text": "2.2 卷积神经网络原理.........................PAGEREF _Heading_2_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 28,
+          "text": "2.2.1 卷积层....................PAGEREF _Heading_2_2_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 29,
+          "text": "2.2.2 池化层....................PAGEREF _Heading_2_2_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 30,
+          "text": "2.3 图像识别任务.........................PAGEREF _Heading_2_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 31,
+          "text": "第3章 主流CNN架构分析..............................PAGEREF _Chapter_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 32,
+          "text": "3.1 VGG网络.........................PAGEREF _Heading_3_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 33,
+          "text": "3.1.1 网络结构设计....................PAGEREF _Heading_3_1_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 34,
+          "text": "3.1.2 优缺点分析....................PAGEREF _Heading_3_1_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 35,
+          "text": "3.2 GoogLeNet与Inception模块.........................PAGEREF _Heading_3_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 36,
+          "text": "3.2.1 Inception模块设计....................PAGEREF _Heading_3_2_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 37,
+          "text": "3.2.2 辅助分类器....................PAGEREF _Heading_3_2_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 38,
+          "text": "3.3 ResNet残差网络.........................PAGEREF _Heading_3_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 39,
+          "text": "3.3.1 残差学习原理....................PAGEREF _Heading_3_3_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 40,
+          "text": "3.3.2 瓶颈结构....................PAGEREF _Heading_3_3_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 41,
+          "text": "3.4 架构对比与分析.........................PAGEREF _Heading_3_4 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 42,
+          "text": "第4章 实验设计与结果分析..............................PAGEREF _Chapter_4 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 43,
+          "text": "4.1 实验环境与数据集.........................PAGEREF _Heading_4_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 44,
+          "text": "4.1.1 数据预处理....................PAGEREF _Heading_4_1_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 45,
+          "text": "4.1.2 训练参数设置....................PAGEREF _Heading_4_1_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 46,
+          "text": "4.2 实验结果.........................PAGEREF _Heading_4_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 47,
+          "text": "4.3 消融实验.........................PAGEREF _Heading_4_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 48,
+          "text": "4.4 结果分析与讨论.........................PAGEREF _Heading_4_4 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 49,
+          "text": "第5章 应用案例研究..............................PAGEREF _Chapter_5 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 50,
+          "text": "5.1 医疗影像诊断.........................PAGEREF _Heading_5_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 51,
+          "text": "5.1.1 肺炎检测系统....................PAGEREF _Heading_5_1_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 52,
+          "text": "5.1.2 皮肤癌分类....................PAGEREF _Heading_5_1_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 53,
+          "text": "5.2 自动驾驶场景理解.........................PAGEREF _Heading_5_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 54,
+          "text": "5.2.1 交通标志识别....................PAGEREF _Heading_5_2_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 55,
+          "text": "5.2.2 行人检测....................PAGEREF _Heading_5_2_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 56,
+          "text": "5.3 其他应用领域.........................PAGEREF _Heading_5_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 57,
+          "text": "第6章 总结与展望..............................PAGEREF _Chapter_6 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 58,
+          "text": "6.1 研究工作总结.........................PAGEREF _Heading_6_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 59,
+          "text": "6.2 存在的不足.........................PAGEREF _Heading_6_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 60,
+          "text": "6.3 未来研究方向.........................PAGEREF _Heading_6_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 61,
+          "text": "6.3.1 轻量化网络设计....................PAGEREF _Heading_6_3_1 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 62,
+          "text": "6.3.2 自监督学习....................PAGEREF _Heading_6_3_2 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 63,
+          "text": "6.3.3 跨域迁移学习....................PAGEREF _Heading_6_3_3 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        },
+        {
+          "index": 64,
+          "text": "6.3.4 可解释性研究....................PAGEREF _Heading_6_3_4 \\h",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "numbering_level": ""
+        }
+      ]
+    },
+    "main": {
+      "h1": {
+        "count": 6,
+        "items": [
+          {
+            "index": 66,
+            "text": "第1章 绪论",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "居中",
+            "spacing_before": "12磅"
+          },
+          {
+            "index": 90,
+            "text": "第2章 深度学习与图像识别基础",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "居中",
+            "spacing_before": "12磅"
+          },
+          {
+            "index": 116,
+            "text": "第3章 主流CNN架构分析",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "居中",
+            "spacing_before": "12磅"
+          },
+          {
+            "index": 154,
+            "text": "第4章 实验设计与结果分析",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "居中",
+            "spacing_before": "12磅"
+          },
+          {
+            "index": 183,
+            "text": "第5章 应用案例研究",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "居中",
+            "spacing_before": "12磅"
+          },
+          {
+            "index": 199,
+            "text": "第6章 总结与展望",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "居中",
+            "spacing_before": "12磅"
+          }
+        ]
+      },
+      "h2": {
+        "count": 21,
+        "items": [
+          {
+            "index": 68,
+            "text": "1.1 研究背景与意义",
+            "font": "宋体",
+            "size": "四号(14.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 74,
+            "text": "1.2 国内外研究现状",
+            "font": "宋体",
+            "size": "四号(14.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 81,
+            "text": "1.3 研究内容与方法",
+            "font": "宋体",
+            "size": "四号(14.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 88,
+            "text": "1.4 论文组织结构",
+            "font": "宋体",
+            "size": "四号(14.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 92,
+            "text": "2.1 深度学习基础",
+            "font": "宋体",
+            "size": "四号(14.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          }
+        ]
+      },
+      "h3": {
+        "count": 22,
+        "items": [
+          {
+            "index": 70,
+            "text": "1.1.1 理论意义",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 72,
+            "text": "1.1.2 应用价值",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 94,
+            "text": "2.1.1 神经网络基本结构",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 96,
+            "text": "2.1.2 反向传播算法",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          },
+          {
+            "index": 100,
+            "text": "2.2.1 卷积层",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          }
+        ]
+      },
+      "body": {
+        "count": 68,
+        "items": [
+          {
+            "index": 67,
+            "text": "图像识别是计算机视觉领域的核心任务之一，旨在让计算机能够像人类一样理解和识别图像内容。近年来，深度学习特别是卷积神经网络的兴起，使得图像识别技术取得了革命性突破。本章将介绍研究背景、研究现状、研究内容...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 69,
+            "text": "传统图像识别方法依赖于人工设计的特征提取算法，如SIFT、HOG等，这些方法在复杂场景下效果有限。2012年，Krizhevsky等人提出的AlexNet在ImageNet竞赛中取得突破性成果，Top...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 71,
+            "text": "深度学习为图像识别提供了端到端的学习框架，无需人工设计特征，能够自动学习从低级边缘到高级语义的层次化特征表示。这种数据驱动的方法为理解视觉感知机制提供了新的视角。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 73,
+            "text": "图像识别技术在多个领域具有重要应用价值。在医疗领域，可用于疾病诊断和病灶检测；在自动驾驶中，用于道路场景理解和障碍物识别；在安防监控中，实现人脸识别和行为分析。据统计，全球计算机视觉市场规模预计202...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 75,
+            "text": "本节将从网络架构演进、训练技巧优化和应用拓展三个方面综述图像识别领域的研究现状。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 78,
+            "text": "来源：2014-2023",
+            "font": "宋体",
+            "size": "小五(9.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "",
+            "alignment": "未提供"
+          },
+          {
+            "index": 80,
+            "text": "从表1-1可以看出，深度学习网络架构经历了从简单到复杂、从追求深度到注重效率的发展历程。ResNet通过残差连接解决了深层网络的退化问题，成为里程碑式的工作。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 82,
+            "text": "本文的主要研究内容包括：（1）深度学习图像识别的理论基础；（2）主流CNN架构分析；（3）实验对比与性能评估；（4）应用案例研究。研究方法采用文献调研、理论分析和实验验证相结合的方式。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 86,
+            "text": "来源：自制",
+            "font": "宋体",
+            "size": "小五(9.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "",
+            "alignment": "未提供"
+          },
+          {
+            "index": 89,
+            "text": "本文共分为六章。第1章为绪论；第2章介绍深度学习和图像识别的基础理论；第3章详细分析主流CNN架构；第4章进行实验设计与结果分析；第5章探讨应用案例；第6章总结全文并展望未来。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          }
+        ]
+      }
+    },
+    "figures": {
+      "count": 4,
+      "items": [
+        {
+          "index": 85,
+          "text": "图1-1 本文研究技术路线图",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 124,
+          "text": "图3-1 VGG-16网络架构图",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 170,
+          "text": "图4-1 不同网络在CIFAR-10上的训练曲线",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 173,
+          "text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "alignment": "两端对齐"
+        }
+      ]
+    },
+    "tables": {
+      "count": 7,
+      "items": [
+        {
+          "index": 77,
+          "text": "表1-1 主要深度学习图像识别网络对比",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 112,
+          "text": "表2-1 常用图像识别数据集对比",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 115,
+          "text": "表2-1列出了计算机视觉领域常用的基准数据集。ImageNet作为最具影响力的数据集，包含超过140万张标注图像，涵盖1000个类别，成为评估图像识别算法性能的标准基准。",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "alignment": "两端对齐"
+        },
+        {
+          "index": 148,
+          "text": "表3-1 ResNet不同深度变体性能对比",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 159,
+          "text": "表4-1 实验环境配置",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 175,
+          "text": "表4-2 CIFAR-10数据集实验结果对比",
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "alignment": "居中"
+        },
+        {
+          "index": 178,
+          "text": "表4-2显示ResNet-50在准确率和训练效率上都表现优异，是CIFAR-10任务的最佳选择。",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "alignment": "两端对齐"
+        }
+      ]
+    },
+    "headers_footers": {
+      "header_count": 1,
+      "footer_count": 1,
+      "headers": [
+        {
+          "index": 0,
+          "text": "基于深度学习的图像识别技术研究与应用",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "基于深度学习的图像识别技术研究与应用",
+              "font": "宋体",
+              "font_english": "宋体",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "line_spacing": "1.0倍",
+              "spacing_before": "",
+              "spacing_after": "0磅"
+            }
+          ]
+        }
+      ],
+      "footers": [
+        {
+          "index": 0,
+          "text": "PAGE",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE",
+              "font": "宋体",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "line_spacing": "1.0倍",
+              "spacing_before": "",
+              "spacing_after": "0磅"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
