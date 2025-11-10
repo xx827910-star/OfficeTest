@@ -1,0 +1,171 @@
+=====================================================================================================
+Word 文档完整格式信息提取报告
+提取工具: Open XML SDK 3.x 增强版
+生成时间: 10/11/2025 下午2:51:06
+=====================================================================================================
+
+【1. 文档属性】
+----------------------------------------------------------------------------------------------------
+标题: 
+主题: 
+创建者: python-docx
+最后修改者: 
+创建时间: 24/12/2013 上午7:15:00
+修改时间: 24/12/2013 上午7:15:00
+版本: 1
+应用程序: Microsoft Macintosh Word
+公司: 
+页数: 1
+字数: 0
+字符数: 0
+段落数: 0
+
+【2. 样式】 总数: 164
+----------------------------------------------------------------------------------------------------
+样式: Normal (ID: Normal)
+  类型: StyleValues { }, 基于: 
+  字号: 24, 粗体: False, 颜色: 
+样式: header (ID: Header)
+  类型: StyleValues { }, 基于: Normal
+样式: Header Char (ID: HeaderChar)
+  类型: StyleValues { }, 基于: DefaultParagraphFont
+样式: footer (ID: Footer)
+  类型: StyleValues { }, 基于: Normal
+样式: Footer Char (ID: FooterChar)
+  类型: StyleValues { }, 基于: DefaultParagraphFont
+样式: heading 1 (ID: Heading1)
+  类型: StyleValues { }, 基于: Normal
+  字号: 28, 粗体: True, 颜色: 365F91
+样式: heading 2 (ID: Heading2)
+  类型: StyleValues { }, 基于: Normal
+  字号: 26, 粗体: True, 颜色: 4F81BD
+样式: heading 3 (ID: Heading3)
+  类型: StyleValues { }, 基于: Normal
+样式: heading 4 (ID: Heading4)
+  类型: StyleValues { }, 基于: Normal
+样式: heading 5 (ID: Heading5)
+  类型: StyleValues { }, 基于: Normal
+样式: heading 6 (ID: Heading6)
+  类型: StyleValues { }, 基于: Normal
+样式: heading 7 (ID: Heading7)
+  类型: StyleValues { }, 基于: Normal
+样式: heading 8 (ID: Heading8)
+  类型: StyleValues { }, 基于: Normal
+  字号: 20, 粗体: False, 颜色: 4F81BD
+样式: heading 9 (ID: Heading9)
+  类型: StyleValues { }, 基于: Normal
+  字号: 20, 粗体: False, 颜色: 404040
+样式: Default Paragraph Font (ID: DefaultParagraphFont)
+  类型: StyleValues { }, 基于: 
+样式: Normal Table (ID: TableNormal)
+  类型: StyleValues { }, 基于: 
+样式: No List (ID: NoList)
+  类型: StyleValues { }, 基于: 
+样式: No Spacing (ID: NoSpacing)
+  类型: StyleValues { }, 基于: 
+样式: Heading 1 Char (ID: Heading1Char)
+  类型: StyleValues { }, 基于: DefaultParagraphFont
+  字号: 28, 粗体: True, 颜色: 365F91
+样式: Heading 2 Char (ID: Heading2Char)
+  类型: StyleValues { }, 基于: DefaultParagraphFont
+  字号: 26, 粗体: True, 颜色: 4F81BD
+... (共 164 个样式)
+
+【3. 段落】 总数: 237
+----------------------------------------------------------------------------------------------------
+前10个段落预览:
+段落 #0: 摘  要...
+  样式: , 对齐: JustificationValues { }
+段落 #1: ...
+  样式: , 对齐: 
+段落 #2: 随着深度学习技术的快速发展，图像识别领域取得了突破性进展。本文系统研究了卷积神经网络（CNN）在图像...
+  样式: , 对齐: JustificationValues { }
+段落 #3: 本文首先介绍了深度学习和图像识别的理论基础，然后详细分析了主流CNN架构的设计原理和技术创新点。通过...
+  样式: , 对齐: JustificationValues { }
+段落 #4: ...
+  样式: , 对齐: 
+段落 #5: 关键词：深度学习；图像识别；卷积神经网络；ResNet；计算机视觉...
+  样式: , 对齐: 
+段落 #6: ...
+  样式: , 对齐: 
+段落 #7: Abstract...
+  样式: , 对齐: JustificationValues { }
+段落 #8: ...
+  样式: , 对齐: 
+段落 #9: With the rapid development of deep learning techno...
+  样式: , 对齐: JustificationValues { }
+
+【4. 表格】 总数: 5
+----------------------------------------------------------------------------------------------------
+表格 #0: 8行
+  样式: , 对齐: 
+表格 #1: 6行
+  样式: , 对齐: 
+表格 #2: 6行
+  样式: , 对齐: 
+表格 #3: 8行
+  样式: , 对齐: 
+表格 #4: 5行
+  样式: , 对齐: 
+
+【5. 图片】 总数: 2
+----------------------------------------------------------------------------------------------------
+图片 #0:
+  类型: image/png
+  大小: 2377 字节
+  名称: Picture 1
+  尺寸: 4572000 x 2286000
+图片 #1:
+  类型: image/png
+  大小: 2633 字节
+  名称: Picture 2
+  尺寸: 4572000 x 1524000
+
+【6. 节】 总数: 1
+----------------------------------------------------------------------------------------------------
+节 #0:
+  页面: 12240 x 15840, 方向: Portrait
+  边距: 上1134 下1134 左1417 右1134
+
+【7. 超链接】 总数: 68
+  第1章 绪论 -> 
+  1.1 研究背景与意义 -> 
+  1.1.1 理论意义 -> 
+  1.1.2 应用价值 -> 
+  1.2 国内外研究现状 -> 
+  1.3 研究内容与方法 -> 
+  1.4 论文组织结构 -> 
+  第2章 深度学习与图像识别基础 -> 
+  2.1 深度学习基础 -> 
+  2.1.1 神经网络基本结构 -> 
+
+【8. 书签】 总数: 68
+  _Chapter_1 (ID: 1)
+  _Citation_1 (ID: 2)
+  _Citation_2 (ID: 3)
+  _Heading_1_1 (ID: 4)
+  _Heading_1_1_1 (ID: 5)
+  _Heading_1_1_2 (ID: 6)
+  _Citation_3 (ID: 7)
+  _Heading_1_2 (ID: 8)
+  _Citation_4 (ID: 9)
+  _Heading_1_3 (ID: 10)
+
+【9. 页眉】 总数: 4
+  页眉 #0: 基于深度学习的图像识别技术研究与应用
+  页眉 #1: 参考文献
+  页眉 #2: 致  谢
+  页眉 #3: 附  录
+
+【10. 页脚】 总数: 3
+  页脚 #0: PAGE \* roman
+  页脚 #1: PAGE \* roman
+  页脚 #2: PAGE
+
+【11. 批注】 总数: 0
+
+【12. 主题】 Office Theme
+
+=====================================================================================================
+报告结束
+=====================================================================================================

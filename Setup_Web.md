@@ -233,7 +233,7 @@ All projects are up-to-date for restore.
 
 #### 3.1 核心代码结构
 
-你在分支中看到的`Program.cs`可能是我本地调试的版本,你需要修改成你所在的环境才能运行
+你在分支中看到的`EnhancedProgram.cs`可能是我本地调试的版本,你需要修改成你所在的环境才能运行
 
 ---
 
