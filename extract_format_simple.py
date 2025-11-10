@@ -171,18 +171,27 @@ def get_effective_font(para: Dict, styles_dict: Dict[str, Dict]) -> Dict[str, An
     # 从 Run 获取（优先级最高）
     runs = para.get('Runs', [])
     if runs:
-        run = runs[0]  # 取第一个 Run
-        if run.get('FontNameEastAsia'):
-            result['chinese'] = run['FontNameEastAsia']
-        if run.get('FontNameAscii'):
-            result['english'] = run['FontNameAscii']
-        if run.get('FontSize'):
-            result['size_half_point'] = run['FontSize']
-            result['size'] = half_point_to_pt_and_chinese(run['FontSize'])
-        if run.get('Bold') is not None:
-            result['bold'] = run['Bold']
-        if run.get('Italic') is not None:
-            result['italic'] = run['Italic']
+        # 目录段落中的第一个 Run 通常是字段标记，没有字号信息；
+        # 这里找出第一个真正包含字体或字号设置的 Run。
+        run_with_size = next((r for r in runs if r.get('FontSize')), None)
+        run_with_font = next(
+            (r for r in runs if r.get('FontNameEastAsia') or r.get('FontNameAscii')),
+            None
+        )
+        run = run_with_size or run_with_font
+
+        if run:
+            if run.get('FontNameEastAsia'):
+                result['chinese'] = run['FontNameEastAsia']
+            if run.get('FontNameAscii'):
+                result['english'] = run['FontNameAscii']
+            if run.get('FontSize'):
+                result['size_half_point'] = run['FontSize']
+                result['size'] = half_point_to_pt_and_chinese(run['FontSize'])
+            if run.get('Bold') is not None:
+                result['bold'] = run['Bold']
+            if run.get('Italic') is not None:
+                result['italic'] = run['Italic']
 
     return result
 
