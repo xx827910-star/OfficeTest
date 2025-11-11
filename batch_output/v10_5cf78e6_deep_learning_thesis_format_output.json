@@ -13717,7 +13717,7 @@
         "Size": "",
         "Color": ""
       },
-      "HasInsideVerticalBorders": true,
+      "HasInsideVerticalBorders": false,
       "HasInsideHorizontalBorders": true,
       "HasVerticalOuterBorders": false,
       "Rows": [
@@ -14192,7 +14192,7 @@
         "Size": "",
         "Color": ""
       },
-      "HasInsideVerticalBorders": true,
+      "HasInsideVerticalBorders": false,
       "HasInsideHorizontalBorders": true,
       "HasVerticalOuterBorders": false,
       "Rows": [
@@ -14559,7 +14559,7 @@
         "Size": "",
         "Color": ""
       },
-      "HasInsideVerticalBorders": true,
+      "HasInsideVerticalBorders": false,
       "HasInsideHorizontalBorders": true,
       "HasVerticalOuterBorders": false,
       "Rows": [
@@ -14926,7 +14926,7 @@
         "Size": "",
         "Color": ""
       },
-      "HasInsideVerticalBorders": true,
+      "HasInsideVerticalBorders": false,
       "HasInsideHorizontalBorders": true,
       "HasVerticalOuterBorders": false,
       "Rows": [
@@ -15145,7 +15145,7 @@
         "Size": "",
         "Color": ""
       },
-      "HasInsideVerticalBorders": true,
+      "HasInsideVerticalBorders": false,
       "HasInsideHorizontalBorders": true,
       "HasVerticalOuterBorders": false,
       "Rows": [

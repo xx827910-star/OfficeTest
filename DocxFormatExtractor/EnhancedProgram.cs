@@ -513,9 +513,9 @@ namespace DocxFormatExtractor
                         tableInfo.RightBorder = BuildBorderInfo(borders.RightBorder);
                         tableInfo.InsideHorizontalBorder = BuildBorderInfo(borders.InsideHorizontalBorder);
                         tableInfo.InsideVerticalBorder = BuildBorderInfo(borders.InsideVerticalBorder);
-                        tableInfo.HasInsideHorizontalBorders = borders.InsideHorizontalBorder != null;
-                        tableInfo.HasInsideVerticalBorders = borders.InsideVerticalBorder != null;
-                        tableInfo.HasVerticalOuterBorders = borders.LeftBorder != null || borders.RightBorder != null;
+                        tableInfo.HasInsideHorizontalBorders = HasEffectiveBorder(borders.InsideHorizontalBorder);
+                        tableInfo.HasInsideVerticalBorders = HasEffectiveBorder(borders.InsideVerticalBorder);
+                        tableInfo.HasVerticalOuterBorders = HasEffectiveBorder(borders.LeftBorder) || HasEffectiveBorder(borders.RightBorder);
                     }
                 }
 
@@ -1083,6 +1083,32 @@ namespace DocxFormatExtractor
             info.Size = border.Size?.Value.ToString() ?? "";
             info.Color = border.Color?.Value ?? "";
             return info;
+        }
+
+        static bool HasEffectiveBorder(BorderType? border)
+        {
+            if (border == null)
+            {
+                return false;
+            }
+
+            // 检查边框的Val属性不是Nil（表示无边框）
+            var borderVal = border.Val?.Value.ToString() ?? "";
+            if (borderVal.Equals("Nil", StringComparison.OrdinalIgnoreCase) ||
+                borderVal.Equals("None", StringComparison.OrdinalIgnoreCase) ||
+                string.IsNullOrEmpty(borderVal))
+            {
+                return false;
+            }
+
+            // 检查边框是否有尺寸（Size不为空）
+            var borderSize = border.Size?.Value.ToString() ?? "";
+            if (string.IsNullOrEmpty(borderSize))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         static bool IsOn(OnOffType? onOff)
