@@ -443,10 +443,10 @@ namespace DocxFormatExtractor
                     }
 
                     runInfo.FontSize = rProps.FontSize?.Val?.Value ?? "";
-                    runInfo.Bold = rProps.Bold != null;
-                    runInfo.Italic = rProps.Italic != null;
+                    runInfo.Bold = IsOn(rProps.Bold);
+                    runInfo.Italic = IsOn(rProps.Italic);
                     runInfo.Underline = rProps.Underline?.Val?.Value.ToString() ?? "";
-                    runInfo.Strike = rProps.Strike != null;
+                    runInfo.Strike = IsOn(rProps.Strike);
                     runInfo.Color = rProps.Color?.Val?.Value ?? "";
                     runInfo.Highlight = rProps.Highlight?.Val?.Value.ToString() ?? "";
                     runInfo.VerticalAlignment = rProps.VerticalTextAlignment?.Val?.Value.ToString() ?? "";
@@ -967,8 +967,8 @@ namespace DocxFormatExtractor
             }
 
             info.FontSize = props.FontSize?.Val?.Value ?? "";
-            info.Bold = props.Bold != null;
-            info.Italic = props.Italic != null;
+            info.Bold = IsOn(props.Bold);
+            info.Italic = IsOn(props.Italic);
             info.Color = props.Color?.Val?.Value ?? "";
 
             return info;
@@ -1016,8 +1016,8 @@ namespace DocxFormatExtractor
             }
 
             info.FontSize = props.FontSize?.Val?.Value ?? "";
-            info.Bold = props.Bold != null;
-            info.Italic = props.Italic != null;
+            info.Bold = IsOn(props.Bold);
+            info.Italic = IsOn(props.Italic);
             info.Color = props.Color?.Val?.Value ?? "";
 
             return info;
@@ -1068,6 +1068,21 @@ namespace DocxFormatExtractor
             info.Size = border.Size?.Value.ToString() ?? "";
             info.Color = border.Color?.Value ?? "";
             return info;
+        }
+
+        static bool IsOn(OnOffType? onOff)
+        {
+            if (onOff == null)
+            {
+                return false;
+            }
+
+            if (onOff.Val == null)
+            {
+                return true;
+            }
+
+            return onOff.Val.Value;
         }
 
         static string ConvertJustificationToString(Justification? justification)
