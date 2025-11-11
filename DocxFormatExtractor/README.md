@@ -39,7 +39,7 @@ dotnet build
 ```bash
 # 运行程序（默认输出TXT和JSON两种格式）
 dotnet run
-
+dotnet run -- batch
 # 输出文件
 # - format_output_enhanced.txt  (5.6KB, 人类可读)
 # - format_output_enhanced.json (431KB, 完整数据)

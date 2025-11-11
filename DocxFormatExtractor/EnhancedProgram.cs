@@ -421,6 +421,21 @@ namespace DocxFormatExtractor
                     paraInfo.ShadingFill = props.Shading.Fill?.Value ?? "";
                     paraInfo.ShadingColor = props.Shading.Color?.Value ?? "";
                 }
+
+                // 提取制表位 (TabStops)
+                if (props.Tabs != null)
+                {
+                    var tabs = props.Tabs.Elements<TabStop>();
+                    foreach (var tab in tabs)
+                    {
+                        paraInfo.TabStops.Add(new TabStopInfo
+                        {
+                            Position = tab.Position?.Value.ToString() ?? "",
+                            Alignment = tab.Val?.Value.ToString() ?? "",
+                            Leader = tab.Leader?.Value.ToString() ?? ""
+                        });
+                    }
+                }
             }
 
             var runs = new List<RunInfo>();
@@ -1410,6 +1425,14 @@ namespace DocxFormatExtractor
         public string ShadingFill { get; set; } = "";
         public string ShadingColor { get; set; } = "";
         public List<RunInfo> Runs { get; set; } = new List<RunInfo>();
+        public List<TabStopInfo> TabStops { get; set; } = new List<TabStopInfo>();
+    }
+
+    public class TabStopInfo
+    {
+        public string Position { get; set; } = "";
+        public string Alignment { get; set; } = "";
+        public string Leader { get; set; } = "";
     }
 
     public class RunInfo

@@ -92,12 +92,25 @@ def twips_to_pt_precise(twips: str, decimals: int = 1) -> str:
 
 
 def twips_to_chars(twips: str) -> str:
-    """首行缩进 twips → 字符"""
+    """首行缩进 twips → 字符（小四12pt，1字符=240 twips）"""
     if not twips or twips == "":
         return ""
     try:
         chars = int(twips) / 240
         return f"{chars:.0f}字符"
+    except (ValueError, TypeError):
+        return ""
+
+
+def twips_to_chars_for_toc(twips: str, font_size_pt: float = 10.5) -> str:
+    """TOC条目左缩进 twips → 字符（五号10.5pt，1字符=210 twips）"""
+    if not twips or twips == "":
+        return ""
+    try:
+        twips_int = int(twips)
+        twips_per_char = font_size_pt * 20  # 1pt = 20 twips
+        chars = twips_int / twips_per_char
+        return f"{chars:.1f}字符"
     except (ValueError, TypeError):
         return ""
 
@@ -251,8 +264,15 @@ def get_effective_font(para: Dict, styles_dict: Dict[str, Dict]) -> Dict[str, An
     return result
 
 
-def summarize_paragraph_format(para: Dict, styles_dict: Dict[str, Dict], include_spacing: bool = False) -> Dict[str, Any]:
-    """提炼段落的核心格式属性"""
+def summarize_paragraph_format(para: Dict, styles_dict: Dict[str, Dict], include_spacing: bool = False, is_toc: bool = False) -> Dict[str, Any]:
+    """提炼段落的核心格式属性
+
+    Args:
+        para: 段落数据
+        styles_dict: 样式字典
+        include_spacing: 是否包含段前段后间距
+        is_toc: 是否为TOC条目（会提取LeftIndent和TabStops）
+    """
     font = get_effective_font(para, styles_dict)
     summary = {
         "index": para.get('Index'),
@@ -273,6 +293,45 @@ def summarize_paragraph_format(para: Dict, styles_dict: Dict[str, Dict], include
     if include_spacing:
         summary["spacing_before"] = twips_to_pt(para.get('SpacingBefore', ''))
         summary["spacing_after"] = twips_to_pt(para.get('SpacingAfter', ''))
+
+    # TOC特殊处理：提取左缩进和制表位
+    if is_toc:
+        left_indent = para.get('LeftIndent', '')
+        if left_indent:
+            summary["left_indent"] = twips_to_chars_for_toc(left_indent)
+            summary["left_indent_pt"] = twips_to_pt_precise(left_indent)
+            summary["left_indent_twips"] = left_indent
+
+            # 判断TOC层级
+            try:
+                indent_value = int(left_indent)
+                if indent_value == 0 or indent_value == '':
+                    summary["toc_level"] = 1
+                elif indent_value == 210:
+                    summary["toc_level"] = 2
+                elif indent_value == 420:
+                    summary["toc_level"] = 3
+                else:
+                    summary["toc_level"] = None  # 未知层级
+            except (ValueError, TypeError):
+                summary["toc_level"] = None
+        else:
+            summary["left_indent"] = ""
+            summary["toc_level"] = 1  # 默认为一级（无缩进）
+
+        # 提取制表位信息
+        tab_stops = para.get('TabStops', [])
+        if tab_stops:
+            summary["tab_stops"] = []
+            for tab in tab_stops:
+                tab_info = {
+                    "position": twips_to_cm(tab.get('Position', '')),
+                    "position_pt": twips_to_pt_precise(tab.get('Position', '')),
+                    "position_twips": tab.get('Position', ''),
+                    "alignment": tab.get('Alignment', ''),
+                    "leader": tab.get('Leader', ''),
+                }
+                summary["tab_stops"].append(tab_info)
 
     return summary
 
@@ -656,7 +715,7 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
         }
 
         for para in classified['TOC_REF']:
-            item = summarize_paragraph_format(para, styles_dict, include_spacing=True)
+            item = summarize_paragraph_format(para, styles_dict, include_spacing=True, is_toc=True)
             item["numbering_level"] = para.get('NumberingLevel', '')
             result["sections"]["toc"]["items"].append(item)
 
