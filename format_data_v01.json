@@ -7,7 +7,40 @@
     "page_width": "21.6 cm",
     "page_height": "27.9 cm"
   },
+  "defaults": {
+    "paragraph": {
+      "alignment": "未提供",
+      "line_spacing": "",
+      "spacing_before": "",
+      "spacing_after": "",
+      "first_line_indent": "",
+      "first_line_indent_pt": ""
+    },
+    "run": {
+      "font_chinese": "",
+      "font_english": "",
+      "size": "",
+      "bold": false,
+      "italic": false,
+      "color": ""
+    }
+  },
   "sections": {
+    "section_settings": [
+      {
+        "index": 0,
+        "title_page": false,
+        "page_number_format": "",
+        "page_number_start": "",
+        "header_references": [
+          {
+            "Type": "HeaderFooterValues { }",
+            "RelationshipId": "rId9"
+          }
+        ],
+        "footer_references": []
+      }
+    ],
     "abstract_cn": {
       "title": {
         "text": "摘  要",
@@ -42,7 +75,9 @@
         "text": "关键词：深度学习；图像识别；卷积神经网络；ResNet；计算机视觉",
         "separator": "；",
         "keyword_count": 5,
-        "label_bold": true
+        "label_bold": true,
+        "first_line_indent": "2字符",
+        "first_line_indent_pt": "24.0pt"
       }
     },
     "toc": {
@@ -262,7 +297,7 @@
         ]
       },
       "body": {
-        "count": 66,
+        "count": 58,
         "items": [
           {
             "index": 60,
@@ -310,15 +345,6 @@
             "alignment": "两端对齐"
           },
           {
-            "index": 71,
-            "text": "来源：2014-2023",
-            "font": "宋体",
-            "size": "小五(9.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "",
-            "alignment": "未提供"
-          },
-          {
             "index": 73,
             "text": "从表1-1可以看出，深度学习网络架构经历了从简单到复杂、从追求深度到注重效率的发展历程。ResNet通过残差连接解决了深层网络的退化问题，成为里程碑式的工作。",
             "font": "宋体",
@@ -346,13 +372,22 @@
             "alignment": "居中"
           },
           {
-            "index": 79,
-            "text": "来源：自制",
+            "index": 82,
+            "text": "本文共分为六章。第1章为绪论；第2章介绍深度学习和图像识别的基础理论；第3章详细分析主流CNN架构；第4章进行实验设计与结果分析；第5章探讨应用案例；第6章总结全文并展望未来。",
             "font": "宋体",
-            "size": "小五(9.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "",
-            "alignment": "未提供"
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 84,
+            "text": "本章介绍深度学习的基本概念、神经网络原理以及图像识别的任务定义，为后续研究奠定理论基础。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
           }
         ]
       }
@@ -364,29 +399,101 @@
           "index": 78,
           "text": "图1-1 本文研究技术路线图",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 79,
+            "text": "来源：自制",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 115,
           "text": "图3-1 VGG-16网络架构图",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 116,
+            "text": "来源：Simonyan et al., 2014",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 159,
           "text": "图4-1 不同网络在CIFAR-10上的训练曲线",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 160,
+            "text": "来源：实验结果",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 162,
           "text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
           "font": "宋体",
+          "font_english": "Times New Roman",
           "size": "小四(12.0pt)",
-          "alignment": "两端对齐"
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": true
         }
       ]
     },
@@ -397,50 +504,295 @@
           "index": 70,
           "text": "表1-1 主要深度学习图像识别网络对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 71,
+            "text": "来源：2014-2023",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 103,
           "text": "表2-1 常用图像识别数据集对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 104,
+            "text": "来源：公开数据",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 106,
           "text": "表2-1列出了计算机视觉领域常用的基准数据集。ImageNet作为最具影响力的数据集，包含超过140万张标注图像，涵盖1000个类别，成为评估图像识别算法性能的标准基准。",
           "font": "宋体",
+          "font_english": "Times New Roman",
           "size": "小四(12.0pt)",
-          "alignment": "两端对齐"
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false
         },
         {
           "index": 137,
           "text": "表3-1 ResNet不同深度变体性能对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 138,
+            "text": "来源：He et al., 2015",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 148,
           "text": "表4-1 实验环境配置",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 149,
+            "text": "来源：本文实验",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 164,
           "text": "表4-2 CIFAR-10数据集实验结果对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 165,
+            "text": "来源：本文实验",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "spacing_before": "",
+            "spacing_after": ""
+          }
         },
         {
           "index": 167,
           "text": "表4-2显示ResNet-50在准确率和训练效率上都表现优异，是CIFAR-10任务的最佳选择。",
           "font": "宋体",
+          "font_english": "Times New Roman",
           "size": "小四(12.0pt)",
-          "alignment": "两端对齐"
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "",
+          "spacing_after": "",
+          "blank_before": true,
+          "blank_after": false
+        }
+      ],
+      "structure": [
+        {
+          "index": 0,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.75pt"
+          },
+          "inside_vertical": {
+            "style": "",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 1,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.75pt"
+          },
+          "inside_vertical": {
+            "style": "",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 2,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.75pt"
+          },
+          "inside_vertical": {
+            "style": "",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 3,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.75pt"
+          },
+          "inside_vertical": {
+            "style": "",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 4,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "2.25pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.75pt"
+          },
+          "inside_vertical": {
+            "style": "",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
         }
       ]
     },
@@ -461,6 +813,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.0倍",
               "spacing_before": "",
               "spacing_after": "0磅"

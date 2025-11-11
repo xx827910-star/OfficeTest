@@ -3921,6 +3921,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "第1章 绪论",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -3969,6 +3983,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "1.1 研究背景与意义",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4019,6 +4047,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "1.1.1 理论意义",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4067,6 +4109,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "1.1.2 应用价值",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4117,6 +4173,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "1.2 国内外研究现状",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4165,6 +4235,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "1.3 研究内容与方法",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4215,6 +4299,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "1.4 论文组织结构",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4263,6 +4361,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "第2章 深度学习与图像识别基础",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4313,6 +4425,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "2.1 深度学习基础",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4361,6 +4487,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "2.1.1 神经网络基本结构",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4411,6 +4551,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "2.1.2 反向传播算法",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4459,6 +4613,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "2.2 卷积神经网络原理",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4509,6 +4677,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "2.2.1 卷积层",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4557,6 +4739,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "2.2.2 池化层",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4607,6 +4803,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "2.3 图像识别任务",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4655,6 +4865,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "第3章 主流CNN架构分析",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4705,6 +4929,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "3.1 VGG网络",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4753,6 +4991,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "3.1.1 网络结构设计",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4803,6 +5055,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "3.1.2 优缺点分析",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4851,6 +5117,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "3.2 GoogLeNet与Inception模块",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4901,6 +5181,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "3.2.1 Inception模块设计",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -4949,6 +5243,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "3.2.2 辅助分类器",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -4999,6 +5307,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "3.3 ResNet残差网络",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5047,6 +5369,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "3.3.1 残差学习原理",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5097,6 +5433,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "3.3.2 瓶颈结构",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5145,6 +5495,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "3.4 架构对比与分析",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5195,6 +5559,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "第4章 实验设计与结果分析",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5243,6 +5621,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "4.1 实验环境与数据集",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5293,6 +5685,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "4.1.1 数据预处理",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5341,6 +5747,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "4.1.2 训练参数设置",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5391,6 +5811,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "4.2 实验结果",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5439,6 +5873,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "4.3 消融实验",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5489,6 +5937,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "4.4 结果分析与讨论",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5537,6 +5999,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "第5章 应用案例研究",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5587,6 +6063,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "5.1 医疗影像诊断",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5635,6 +6125,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "5.1.1 肺炎检测系统",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5685,6 +6189,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "5.1.2 皮肤癌分类",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5733,6 +6251,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "5.2 自动驾驶场景理解",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5783,6 +6315,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "5.2.1 交通标志识别",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5831,6 +6377,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "5.2.2 行人检测",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5881,6 +6441,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "5.3 其他应用领域",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -5929,6 +6503,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "第6章 总结与展望",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -5979,6 +6567,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "6.1 研究工作总结",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -6027,6 +6629,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "6.2 存在的不足",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -6077,6 +6693,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "6.3 未来研究方向",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -6125,6 +6755,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "6.3.1 轻量化网络设计",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -6175,6 +6819,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "6.3.2 自监督学习",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -6224,6 +6882,20 @@
       "ShadingColor": "",
       "Runs": [
         {
+          "Text": "6.3.3 跨域迁移学习",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
           "Text": "",
           "FontNameAscii": "",
           "FontNameEastAsia": "",
@@ -6272,6 +6944,20 @@
       "ShadingFill": "",
       "ShadingColor": "",
       "Runs": [
+        {
+          "Text": "6.3.4 可解释性研究",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "000000",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
         {
           "Text": "",
           "FontNameAscii": "",
@@ -12471,6 +13157,39 @@
       "WidthType": "TableWidthUnitValues { }",
       "Alignment": "",
       "HasBorders": true,
+      "TopBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "BottomBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "InsideHorizontalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "4",
+        "Color": "000000"
+      },
+      "InsideVerticalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "",
+        "Color": ""
+      },
+      "LeftBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "RightBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "HasInsideVerticalBorders": true,
+      "HasInsideHorizontalBorders": true,
+      "HasVerticalOuterBorders": false,
       "Rows": [
         {
           "Height": "",
@@ -12913,6 +13632,39 @@
       "WidthType": "TableWidthUnitValues { }",
       "Alignment": "",
       "HasBorders": true,
+      "TopBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "BottomBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "InsideHorizontalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "4",
+        "Color": "000000"
+      },
+      "InsideVerticalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "",
+        "Color": ""
+      },
+      "LeftBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "RightBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "HasInsideVerticalBorders": true,
+      "HasInsideHorizontalBorders": true,
+      "HasVerticalOuterBorders": false,
       "Rows": [
         {
           "Height": "",
@@ -13247,6 +13999,39 @@
       "WidthType": "TableWidthUnitValues { }",
       "Alignment": "",
       "HasBorders": true,
+      "TopBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "BottomBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "InsideHorizontalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "4",
+        "Color": "000000"
+      },
+      "InsideVerticalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "",
+        "Color": ""
+      },
+      "LeftBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "RightBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "HasInsideVerticalBorders": true,
+      "HasInsideHorizontalBorders": true,
+      "HasVerticalOuterBorders": false,
       "Rows": [
         {
           "Height": "",
@@ -13581,6 +14366,39 @@
       "WidthType": "TableWidthUnitValues { }",
       "Alignment": "",
       "HasBorders": true,
+      "TopBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "BottomBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "InsideHorizontalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "4",
+        "Color": "000000"
+      },
+      "InsideVerticalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "",
+        "Color": ""
+      },
+      "LeftBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "RightBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "HasInsideVerticalBorders": true,
+      "HasInsideHorizontalBorders": true,
+      "HasVerticalOuterBorders": false,
       "Rows": [
         {
           "Height": "",
@@ -13767,6 +14585,39 @@
       "WidthType": "TableWidthUnitValues { }",
       "Alignment": "",
       "HasBorders": true,
+      "TopBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "BottomBorder": {
+        "Style": "BorderValues { }",
+        "Size": "12",
+        "Color": "000000"
+      },
+      "InsideHorizontalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "4",
+        "Color": "000000"
+      },
+      "InsideVerticalBorder": {
+        "Style": "BorderValues { }",
+        "Size": "",
+        "Color": ""
+      },
+      "LeftBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "RightBorder": {
+        "Style": "",
+        "Size": "",
+        "Color": ""
+      },
+      "HasInsideVerticalBorders": true,
+      "HasInsideHorizontalBorders": true,
+      "HasVerticalOuterBorders": false,
       "Rows": [
         {
           "Height": "",
@@ -14016,7 +14867,22 @@
       "MarginGutter": "283",
       "ColumnCount": "1",
       "ColumnSpacing": "720",
-      "SectionType": ""
+      "SectionType": "",
+      "HeaderReferences": [
+        {
+          "Type": "HeaderFooterValues { }",
+          "RelationshipId": "rId12"
+        }
+      ],
+      "FooterReferences": [
+        {
+          "Type": "HeaderFooterValues { }",
+          "RelationshipId": "rId11"
+        }
+      ],
+      "PageNumberFormat": "NumberFormatValues { }",
+      "PageNumberStart": "1",
+      "TitlePage": false
     }
   ],
   "Images": [
@@ -14958,5 +15824,23 @@
     }
   ],
   "Comments": [],
+  "DefaultParagraphFormat": {
+    "Alignment": "",
+    "LeftIndent": "",
+    "RightIndent": "",
+    "FirstLineIndent": "",
+    "SpacingBefore": "0",
+    "SpacingAfter": "0",
+    "LineSpacing": "360"
+  },
+  "DefaultRunFormat": {
+    "FontNameAscii": "Times New Roman",
+    "FontNameEastAsia": "宋体",
+    "FontSize": "24",
+    "Bold": false,
+    "Italic": false,
+    "Color": ""
+  },
+  "Formulas": [],
   "ThemeName": "Office Theme"
 }

@@ -80,6 +80,17 @@ def twips_to_pt(twips: str) -> str:
         return ""
 
 
+def twips_to_pt_precise(twips: str, decimals: int = 1) -> str:
+    """Twips → pt（可选精度）"""
+    if not twips or twips == "":
+        return ""
+    try:
+        pt = int(twips) / 20
+        return f"{pt:.{decimals}f}pt"
+    except (ValueError, TypeError):
+        return ""
+
+
 def twips_to_chars(twips: str) -> str:
     """首行缩进 twips → 字符"""
     if not twips or twips == "":
@@ -89,6 +100,50 @@ def twips_to_chars(twips: str) -> str:
         return f"{chars:.0f}字符"
     except (ValueError, TypeError):
         return ""
+
+
+def border_size_to_pt(size_value: str) -> str:
+    """表格边框尺寸（1/8pt单位）→ pt"""
+    if not size_value:
+        return ""
+    try:
+        pt = int(size_value) / 8
+        return f"{pt:.2f}pt"
+    except (ValueError, TypeError):
+        return ""
+
+
+def is_blank_paragraph(para: Optional[Dict]) -> bool:
+    if not para:
+        return False
+    return para.get('Text', '').strip() == ''
+
+
+def format_paragraph_defaults(info: Dict[str, Any]) -> Dict[str, Any]:
+    if not info:
+        return {}
+    return {
+        "alignment": get_alignment(info.get('Alignment', '')),
+        "line_spacing": twips_to_line_spacing(info.get('LineSpacing', '')),
+        "spacing_before": twips_to_pt(info.get('SpacingBefore', '')),
+        "spacing_after": twips_to_pt(info.get('SpacingAfter', '')),
+        "first_line_indent": twips_to_chars(info.get('FirstLineIndent', '')),
+        "first_line_indent_pt": twips_to_pt_precise(info.get('FirstLineIndent', '')),
+    }
+
+
+def format_run_defaults(info: Dict[str, Any]) -> Dict[str, Any]:
+    if not info:
+        return {}
+    size = info.get('FontSize', '')
+    return {
+        "font_chinese": info.get('FontNameEastAsia', ''),
+        "font_english": info.get('FontNameAscii', ''),
+        "size": half_point_to_pt_and_chinese(size),
+        "bold": info.get('Bold', False),
+        "italic": info.get('Italic', False),
+        "color": info.get('Color', ''),
+    }
 
 
 # ==================== 对齐方式映射 ====================
@@ -208,6 +263,7 @@ def summarize_paragraph_format(para: Dict, styles_dict: Dict[str, Dict], include
         "bold": font['bold'],
         "alignment": get_alignment(para.get('Alignment', '')),
         "first_line_indent": twips_to_chars(para.get('FirstLineIndent', '')),
+        "first_line_indent_pt": twips_to_pt_precise(para.get('FirstLineIndent', '')),
     }
 
     line_spacing = para.get('LineSpacing', '')
@@ -325,6 +381,11 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
 
     # 提取段落
     paragraphs = data.get('Paragraphs', [])
+    paragraph_lookup = {
+        para.get('Index'): para
+        for para in paragraphs
+        if para.get('Index') is not None
+    }
 
     # 分类段落
     classified = {
@@ -355,9 +416,34 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
     in_abstract_en = False
     in_acknowledgement = False
     in_appendix = False
+    last_figure_index: Optional[int] = None
+    last_table_index: Optional[int] = None
+    figure_sources: Dict[int, Dict] = {}
+    table_sources: Dict[int, Dict] = {}
 
     for para in paragraphs:
         para_type = classify_paragraph(para)
+        text = para.get('Text', '').strip()
+
+        # 图表标题需要单独处理状态
+        if para_type == 'FIGURE_CAPTION':
+            classified['FIGURE_CAPTION'].append(para)
+            last_figure_index = para.get('Index')
+            last_table_index = None
+            continue
+        if para_type == 'TABLE_CAPTION':
+            classified['TABLE_CAPTION'].append(para)
+            last_table_index = para.get('Index')
+            last_figure_index = None
+            continue
+
+        is_source_line = text.startswith('来源：') or text.startswith('来源:') or text.lower().startswith('source:')
+        if is_source_line:
+            if last_figure_index is not None:
+                figure_sources[last_figure_index] = para
+            elif last_table_index is not None:
+                table_sources[last_table_index] = para
+            continue
 
         # 状态机：处理多段内容
         if para_type == 'ABSTRACT_CN_TITLE':
@@ -407,8 +493,26 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
     # 构建输出结构
     result = {
         "page_setup": page_setup,
+        "defaults": {
+            "paragraph": format_paragraph_defaults(data.get('DefaultParagraphFormat', {})),
+            "run": format_run_defaults(data.get('DefaultRunFormat', {})),
+        },
         "sections": {}
     }
+
+    section_settings = []
+    for section_info in sections:
+        section_settings.append({
+            "index": section_info.get('Index'),
+            "title_page": section_info.get('TitlePage'),
+            "page_number_format": section_info.get('PageNumberFormat', ''),
+            "page_number_start": section_info.get('PageNumberStart', ''),
+            "header_references": section_info.get('HeaderReferences', []),
+            "footer_references": section_info.get('FooterReferences', []),
+        })
+
+    if section_settings:
+        result["sections"]["section_settings"] = section_settings
 
     # 中文摘要
     if classified['ABSTRACT_CN_TITLE']:
@@ -469,6 +573,8 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "separator": separator,
                 "keyword_count": len([k for k in keywords if k.strip()]),
                 "label_bold": font['bold'],
+                "first_line_indent": twips_to_chars(kw_para.get('FirstLineIndent', '')),
+                "first_line_indent_pt": twips_to_pt_precise(kw_para.get('FirstLineIndent', '')),
             }
 
     # 英文摘要
@@ -528,6 +634,8 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "separator": separator,
                 "keyword_count": len([k for k in keywords if k.strip()]),
                 "label_bold": font['bold'],
+                "first_line_indent": twips_to_chars(kw_para.get('FirstLineIndent', '')),
+                "first_line_indent_pt": twips_to_pt_precise(kw_para.get('FirstLineIndent', '')),
             }
 
     # 目录
@@ -642,14 +750,22 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
         }
 
         for para in classified['FIGURE_CAPTION']:
-            font = get_effective_font(para, styles_dict)
-            result["sections"]["figures"]["items"].append({
-                "index": para['Index'],
-                "text": para['Text'].strip(),
-                "font": font['chinese'],
-                "size": font['size'],
-                "alignment": get_alignment(para.get('Alignment', '')),
-            })
+            figure_summary = summarize_paragraph_format(para, styles_dict, include_spacing=True)
+            caption_index = para.get('Index')
+            if isinstance(caption_index, int):
+                prev_para = paragraph_lookup.get(caption_index - 1)
+                next_para = paragraph_lookup.get(caption_index + 1)
+                figure_summary["blank_before"] = is_blank_paragraph(prev_para)
+                figure_summary["blank_after"] = is_blank_paragraph(next_para)
+            else:
+                figure_summary["blank_before"] = False
+                figure_summary["blank_after"] = False
+
+            source_para = figure_sources.get(caption_index) if isinstance(caption_index, int) else None
+            if source_para:
+                figure_summary["source"] = summarize_paragraph_format(source_para, styles_dict, include_spacing=True)
+
+            result["sections"]["figures"]["items"].append(figure_summary)
 
     # 表标题
     if classified['TABLE_CAPTION']:
@@ -659,14 +775,82 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
         }
 
         for para in classified['TABLE_CAPTION']:
-            font = get_effective_font(para, styles_dict)
-            result["sections"]["tables"]["items"].append({
-                "index": para['Index'],
-                "text": para['Text'].strip(),
-                "font": font['chinese'],
-                "size": font['size'],
-                "alignment": get_alignment(para.get('Alignment', '')),
+            table_summary = summarize_paragraph_format(para, styles_dict, include_spacing=True)
+            caption_index = para.get('Index')
+            if isinstance(caption_index, int):
+                prev_para = paragraph_lookup.get(caption_index - 1)
+                next_para = paragraph_lookup.get(caption_index + 1)
+                table_summary["blank_before"] = is_blank_paragraph(prev_para)
+                table_summary["blank_after"] = is_blank_paragraph(next_para)
+            else:
+                table_summary["blank_before"] = False
+                table_summary["blank_after"] = False
+
+            source_para = table_sources.get(caption_index) if isinstance(caption_index, int) else None
+            if source_para:
+                table_summary["source"] = summarize_paragraph_format(source_para, styles_dict, include_spacing=True)
+
+            result["sections"]["tables"]["items"].append(table_summary)
+
+        # 表格结构信息
+        table_structures = []
+        for table in data.get('Tables', []):
+            top_border = table.get('TopBorder') or {}
+            bottom_border = table.get('BottomBorder') or {}
+            inside_h = table.get('InsideHorizontalBorder') or {}
+            inside_v = table.get('InsideVerticalBorder') or {}
+            table_structures.append({
+                "index": table.get('Index'),
+                "style_id": table.get('StyleId', ''),
+                "alignment": get_alignment(table.get('Alignment', '')),
+                "top_border": {
+                    "style": top_border.get('Style', ''),
+                    "size": border_size_to_pt(top_border.get('Size', '')),
+                },
+                "bottom_border": {
+                    "style": bottom_border.get('Style', ''),
+                    "size": border_size_to_pt(bottom_border.get('Size', '')),
+                },
+                "inside_horizontal": {
+                    "style": inside_h.get('Style', ''),
+                    "size": border_size_to_pt(inside_h.get('Size', '')),
+                },
+                "inside_vertical": {
+                    "style": inside_v.get('Style', ''),
+                    "size": border_size_to_pt(inside_v.get('Size', '')),
+                },
+                "has_inside_vertical": table.get('HasInsideVerticalBorders'),
+                "has_vertical_outer": table.get('HasVerticalOuterBorders'),
+                "has_inside_horizontal": table.get('HasInsideHorizontalBorders'),
             })
+
+        if table_structures:
+            result["sections"]["tables"]["structure"] = table_structures
+
+    # 公式信息
+    formulas = data.get('Formulas', [])
+    if formulas:
+        items = []
+        for formula in formulas:
+            para = paragraph_lookup.get(formula.get('ParagraphIndex'))
+            text_preview = ''
+            if para:
+                text_preview = para.get('Text', '').strip()
+            items.append({
+                "paragraph_index": formula.get('ParagraphIndex'),
+                "alignment": get_alignment(formula.get('Alignment', '')),
+                "numbering_text": formula.get('NumberingText', ''),
+                "numbering_font": formula.get('NumberingFont', ''),
+                "numbering_font_size": half_point_to_pt_and_chinese(formula.get('NumberingFontSize', '')),
+                "equation_font": formula.get('EquationFont', ''),
+                "equation_font_size": half_point_to_pt_and_chinese(formula.get('EquationFontSize', '')),
+                "paragraph_preview": text_preview[:80] + '...' if len(text_preview) > 80 else text_preview,
+            })
+
+        result["sections"]["formulas"] = {
+            "count": len(formulas),
+            "items": items
+        }
 
     # 参考文献
     if classified['REFERENCE_TITLE']:
@@ -686,12 +870,18 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
 
         for para in classified['REFERENCE_ITEM'][:5]:  # 只取前5个
             font = get_effective_font(para, styles_dict)
+            text = para['Text'].strip()
+            bracket_match = re.match(r'^\[(\d+)\]', text)
             result["sections"]["references"]["items"].append({
                 "index": para['Index'],
-                "text": para['Text'].strip()[:150] + "..." if len(para['Text'].strip()) > 150 else para['Text'].strip(),
+                "text": text[:150] + "..." if len(text) > 150 else text,
                 "font": font['chinese'],
                 "size": font['size'],
                 "hanging_indent": twips_to_chars(para.get('HangingIndent', '')),
+                "hanging_indent_pt": twips_to_pt_precise(para.get('HangingIndent', '')),
+                "starts_with_bracket": bool(bracket_match),
+                "sequence_number": int(bracket_match.group(1)) if bracket_match else None,
+                "ends_with_period": text.endswith('。') or text.endswith('．') or text.endswith('.'),
             })
 
     # 页眉页脚
@@ -734,6 +924,10 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "spacing_before": twips_to_pt(title_para.get('SpacingBefore', '')),
             },
             "content_count": len(classified['ACKNOWLEDGEMENT_CONTENT']),
+            "content_samples": [
+                summarize_paragraph_format(para, styles_dict, include_spacing=True)
+                for para in classified['ACKNOWLEDGEMENT_CONTENT'][:3]
+            ]
         }
 
     # 附录
@@ -750,6 +944,10 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "spacing_before": twips_to_pt(title_para.get('SpacingBefore', '')),
             },
             "content_count": len(classified['APPENDIX_CONTENT']),
+            "content_samples": [
+                summarize_paragraph_format(para, styles_dict, include_spacing=True)
+                for para in classified['APPENDIX_CONTENT'][:3]
+            ]
         }
 
     return result

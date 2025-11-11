@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Text.RegularExpressions;
 
 namespace DocxFormatExtractor
 {
@@ -140,34 +141,37 @@ namespace DocxFormatExtractor
 
         static void ExtractAllInformation(WordprocessingDocument doc)
         {
-            Console.WriteLine("1/10 提取文档属性...");
+            Console.WriteLine("1/11 提取文档属性...");
             ExtractDocumentProperties(doc);
 
-            Console.WriteLine("2/10 提取样式信息...");
+            Console.WriteLine("2/11 提取样式信息...");
             ExtractStyles(doc);
 
-            Console.WriteLine("3/10 提取段落和文本...");
+            Console.WriteLine("3/11 提取段落和文本...");
             ExtractParagraphsAndRuns(doc);
 
-            Console.WriteLine("4/10 提取表格...");
+            Console.WriteLine("4/11 提取公式...");
+            ExtractFormulas(doc);
+
+            Console.WriteLine("5/11 提取表格...");
             ExtractTables(doc);
 
-            Console.WriteLine("5/10 提取节信息...");
+            Console.WriteLine("6/11 提取节信息...");
             ExtractSections(doc);
 
-            Console.WriteLine("6/10 提取图片...");
+            Console.WriteLine("7/11 提取图片...");
             ExtractImages(doc);
 
-            Console.WriteLine("7/10 提取页眉页脚...");
+            Console.WriteLine("8/11 提取页眉页脚...");
             ExtractHeadersFooters(doc);
 
-            Console.WriteLine("8/10 提取超链接和书签...");
+            Console.WriteLine("9/11 提取超链接和书签...");
             ExtractHyperlinksAndBookmarks(doc);
 
-            Console.WriteLine("9/10 提取字体和编号...");
+            Console.WriteLine("10/11 提取字体和编号...");
             ExtractFontsAndNumbering(doc);
 
-            Console.WriteLine("10/10 提取主题和批注...");
+            Console.WriteLine("11/11 提取主题和批注...");
             ExtractThemesAndComments(doc);
         }
 
@@ -234,6 +238,16 @@ namespace DocxFormatExtractor
                 return;
             }
 
+            // 先提取文档默认格式（DocDefaults）
+            if (stylesPart.Styles.DocDefaults != null)
+            {
+                var docDefaults = stylesPart.Styles.DocDefaults;
+                var defaultParagraphProps = docDefaults?.ParagraphPropertiesDefault?.GetFirstChild<ParagraphProperties>();
+                var defaultRunProps = docDefaults?.RunPropertiesDefault?.GetFirstChild<RunProperties>();
+                formatInfo.DefaultParagraphFormat = ExtractParagraphProps(defaultParagraphProps);
+                formatInfo.DefaultRunFormat = ExtractRunProps(defaultRunProps);
+            }
+
             var styles = stylesPart.Styles.Elements<Style>().ToList();
 
             foreach (var style in styles)
@@ -269,6 +283,14 @@ namespace DocxFormatExtractor
             styleLookup = stylesList
                 .Where(s => !string.IsNullOrEmpty(s.StyleId))
                 .ToDictionary(s => s.StyleId, s => s, StringComparer.OrdinalIgnoreCase);
+
+            // 用 Normal 样式弥补默认值缺失
+            var normalStyle = stylesList.FirstOrDefault(s => string.Equals(s.StyleId, "Normal", StringComparison.OrdinalIgnoreCase));
+            if (normalStyle != null)
+            {
+                formatInfo.DefaultParagraphFormat = MergeParagraphDefaults(formatInfo.DefaultParagraphFormat, normalStyle.ParagraphProperties);
+                formatInfo.DefaultRunFormat = MergeRunDefaults(formatInfo.DefaultRunFormat, normalStyle.RunProperties);
+            }
         }
 
         static void ExtractParagraphsAndRuns(WordprocessingDocument doc)
@@ -290,6 +312,67 @@ namespace DocxFormatExtractor
             }
 
             formatInfo.Paragraphs = paragraphsList;
+        }
+
+        static void ExtractFormulas(WordprocessingDocument doc)
+        {
+            var formulas = new List<FormulaInfo>();
+            var body = doc.MainDocumentPart?.Document?.Body;
+
+            if (body == null)
+            {
+                formatInfo.Formulas = formulas;
+                return;
+            }
+
+            int paragraphIndex = 0;
+            foreach (var para in body.Elements<Paragraph>())
+            {
+                bool hasMath = para.Descendants<DocumentFormat.OpenXml.Math.OfficeMath>().Any();
+                if (!hasMath)
+                {
+                    paragraphIndex++;
+                    continue;
+                }
+
+                var formulaInfo = new FormulaInfo
+                {
+                    ParagraphIndex = paragraphIndex,
+                    Alignment = ConvertJustificationToString(para.ParagraphProperties?.Justification)
+                };
+
+                var numberingRun = para.Descendants<Run>()
+                    .Select(r => new { Run = r, Text = (r.InnerText ?? string.Empty).Trim() })
+                    .LastOrDefault(r => Regex.IsMatch(r.Text, @"^\([^)]+\)$"));
+
+                if (numberingRun != null)
+                {
+                    formulaInfo.NumberingText = numberingRun.Text;
+                    if (numberingRun.Run.RunProperties?.RunFonts != null)
+                    {
+                        var fonts = numberingRun.Run.RunProperties.RunFonts;
+                        formulaInfo.NumberingFont = fonts.Ascii?.Value ?? fonts.EastAsia?.Value ?? "";
+                    }
+                    formulaInfo.NumberingFontSize = numberingRun.Run.RunProperties?.FontSize?.Val?.Value ?? "";
+                }
+
+                var officeMath = para.Descendants<DocumentFormat.OpenXml.Math.OfficeMath>().FirstOrDefault();
+                if (officeMath != null)
+                {
+                    var mathRun = officeMath.Descendants<Run>().FirstOrDefault(r => !string.IsNullOrWhiteSpace(r.InnerText));
+                    if (mathRun != null && mathRun.RunProperties?.RunFonts != null)
+                    {
+                        var fonts = mathRun.RunProperties.RunFonts;
+                        formulaInfo.EquationFont = fonts.Ascii?.Value ?? fonts.EastAsia?.Value ?? "";
+                        formulaInfo.EquationFontSize = mathRun.RunProperties.FontSize?.Val?.Value ?? "";
+                    }
+                }
+
+                formulas.Add(formulaInfo);
+                paragraphIndex++;
+            }
+
+            formatInfo.Formulas = formulas;
         }
 
         static ParagraphInfo BuildParagraphInfo(Paragraph para, ref int index)
@@ -341,7 +424,7 @@ namespace DocxFormatExtractor
             }
 
             var runs = new List<RunInfo>();
-            foreach (var run in para.Elements<Run>())
+            foreach (var run in para.Descendants<Run>())
             {
                 var runInfo = new RunInfo
                 {
@@ -405,6 +488,20 @@ namespace DocxFormatExtractor
                     tableInfo.WidthType = tableProps.TableWidth?.Type?.Value.ToString() ?? "";
                     tableInfo.Alignment = tableProps.TableJustification?.Val?.Value.ToString() ?? "";
                     tableInfo.HasBorders = tableProps.TableBorders != null;
+
+                    if (tableProps.TableBorders != null)
+                    {
+                        var borders = tableProps.TableBorders;
+                        tableInfo.TopBorder = BuildBorderInfo(borders.TopBorder);
+                        tableInfo.BottomBorder = BuildBorderInfo(borders.BottomBorder);
+                        tableInfo.LeftBorder = BuildBorderInfo(borders.LeftBorder);
+                        tableInfo.RightBorder = BuildBorderInfo(borders.RightBorder);
+                        tableInfo.InsideHorizontalBorder = BuildBorderInfo(borders.InsideHorizontalBorder);
+                        tableInfo.InsideVerticalBorder = BuildBorderInfo(borders.InsideVerticalBorder);
+                        tableInfo.HasInsideHorizontalBorders = borders.InsideHorizontalBorder != null;
+                        tableInfo.HasInsideVerticalBorders = borders.InsideVerticalBorder != null;
+                        tableInfo.HasVerticalOuterBorders = borders.LeftBorder != null || borders.RightBorder != null;
+                    }
                 }
 
                 // 提取行和单元格
@@ -521,6 +618,31 @@ namespace DocxFormatExtractor
                 {
                     sectionInfo.SectionType = sectionType.Val?.Value.ToString() ?? "";
                 }
+
+                sectionInfo.HeaderReferences = section.Elements<HeaderReference>()
+                    .Select(h => new SectionHeaderFooterReference
+                    {
+                        Type = h.Type?.Value.ToString() ?? "default",
+                        RelationshipId = h.Id?.Value ?? ""
+                    })
+                    .ToList();
+
+                sectionInfo.FooterReferences = section.Elements<FooterReference>()
+                    .Select(f => new SectionHeaderFooterReference
+                    {
+                        Type = f.Type?.Value.ToString() ?? "default",
+                        RelationshipId = f.Id?.Value ?? ""
+                    })
+                    .ToList();
+
+                var pageNumberType = section.GetFirstChild<PageNumberType>();
+                if (pageNumberType != null)
+                {
+                    sectionInfo.PageNumberFormat = pageNumberType.Format?.Value.ToString() ?? "";
+                    sectionInfo.PageNumberStart = pageNumberType.Start?.Value.ToString() ?? "";
+                }
+
+                sectionInfo.TitlePage = section.GetFirstChild<TitlePage>() != null;
 
                 sectionsList.Add(sectionInfo);
             }
@@ -852,6 +974,102 @@ namespace DocxFormatExtractor
             return info;
         }
 
+        static ParagraphPropertiesInfo ExtractParagraphProps(ParagraphProperties? props)
+        {
+            var info = new ParagraphPropertiesInfo();
+            if (props == null)
+            {
+                return info;
+            }
+
+            info.Alignment = ConvertJustificationToString(props.Justification);
+
+            if (props.Indentation != null)
+            {
+                info.LeftIndent = props.Indentation.Left?.Value ?? "";
+                info.RightIndent = props.Indentation.Right?.Value ?? "";
+                info.FirstLineIndent = props.Indentation.FirstLine?.Value ?? "";
+            }
+
+            if (props.SpacingBetweenLines != null)
+            {
+                info.SpacingBefore = props.SpacingBetweenLines.Before?.Value ?? "";
+                info.SpacingAfter = props.SpacingBetweenLines.After?.Value ?? "";
+                info.LineSpacing = props.SpacingBetweenLines.Line?.Value ?? "";
+            }
+
+            return info;
+        }
+
+        static RunPropertiesInfo ExtractRunProps(RunProperties? props)
+        {
+            if (props == null)
+            {
+                return new RunPropertiesInfo();
+            }
+
+            var info = new RunPropertiesInfo();
+            if (props.RunFonts != null)
+            {
+                info.FontNameAscii = props.RunFonts.Ascii?.Value ?? "";
+                info.FontNameEastAsia = props.RunFonts.EastAsia?.Value ?? "";
+            }
+
+            info.FontSize = props.FontSize?.Val?.Value ?? "";
+            info.Bold = props.Bold != null;
+            info.Italic = props.Italic != null;
+            info.Color = props.Color?.Val?.Value ?? "";
+
+            return info;
+        }
+
+        static ParagraphPropertiesInfo MergeParagraphDefaults(ParagraphPropertiesInfo target, ParagraphPropertiesInfo? source)
+        {
+            if (source == null)
+            {
+                return target;
+            }
+
+            if (string.IsNullOrEmpty(target.Alignment)) target.Alignment = source.Alignment;
+            if (string.IsNullOrEmpty(target.LeftIndent)) target.LeftIndent = source.LeftIndent;
+            if (string.IsNullOrEmpty(target.RightIndent)) target.RightIndent = source.RightIndent;
+            if (string.IsNullOrEmpty(target.FirstLineIndent)) target.FirstLineIndent = source.FirstLineIndent;
+            if (string.IsNullOrEmpty(target.SpacingBefore)) target.SpacingBefore = source.SpacingBefore;
+            if (string.IsNullOrEmpty(target.SpacingAfter)) target.SpacingAfter = source.SpacingAfter;
+            if (string.IsNullOrEmpty(target.LineSpacing)) target.LineSpacing = source.LineSpacing;
+            return target;
+        }
+
+        static RunPropertiesInfo MergeRunDefaults(RunPropertiesInfo target, RunPropertiesInfo? source)
+        {
+            if (source == null)
+            {
+                return target;
+            }
+
+            if (string.IsNullOrEmpty(target.FontNameAscii)) target.FontNameAscii = source.FontNameAscii;
+            if (string.IsNullOrEmpty(target.FontNameEastAsia)) target.FontNameEastAsia = source.FontNameEastAsia;
+            if (string.IsNullOrEmpty(target.FontSize)) target.FontSize = source.FontSize;
+            if (!target.Bold && source.Bold) target.Bold = true;
+            if (!target.Italic && source.Italic) target.Italic = true;
+            if (string.IsNullOrEmpty(target.Color)) target.Color = source.Color;
+            return target;
+        }
+
+        static BorderInfo BuildBorderInfo(BorderType? border)
+        {
+            var info = new BorderInfo();
+            if (border == null)
+            {
+                return info;
+            }
+
+            info.Style = border.Val?.Value.ToString() ?? "";
+            info.Size = border.Size?.Value.ToString() ?? "";
+            info.Color = border.Color?.Value ?? "";
+            return info;
+        }
+
         static string ConvertJustificationToString(Justification? justification)
         {
             if (justification?.Val == null)
@@ -1092,6 +1310,9 @@ namespace DocxFormatExtractor
         public List<FontInfo> Fonts { get; set; } = new List<FontInfo>();
         public List<NumberingInfo> Numbering { get; set; } = new List<NumberingInfo>();
         public List<CommentInfo> Comments { get; set; } = new List<CommentInfo>();
+        public ParagraphPropertiesInfo DefaultParagraphFormat { get; set; } = new ParagraphPropertiesInfo();
+        public RunPropertiesInfo DefaultRunFormat { get; set; } = new RunPropertiesInfo();
+        public List<FormulaInfo> Formulas { get; set; } = new List<FormulaInfo>();
         public string ThemeName { get; set; } = "";
     }
 
@@ -1200,6 +1421,15 @@ namespace DocxFormatExtractor
         public string WidthType { get; set; } = "";
         public string Alignment { get; set; } = "";
         public bool HasBorders { get; set; }
+        public BorderInfo TopBorder { get; set; } = new BorderInfo();
+        public BorderInfo BottomBorder { get; set; } = new BorderInfo();
+        public BorderInfo InsideHorizontalBorder { get; set; } = new BorderInfo();
+        public BorderInfo InsideVerticalBorder { get; set; } = new BorderInfo();
+        public BorderInfo LeftBorder { get; set; } = new BorderInfo();
+        public BorderInfo RightBorder { get; set; } = new BorderInfo();
+        public bool HasInsideVerticalBorders { get; set; }
+        public bool HasInsideHorizontalBorders { get; set; }
+        public bool HasVerticalOuterBorders { get; set; }
         public List<TableRowInfo> Rows { get; set; } = new List<TableRowInfo>();
     }
 
@@ -1220,6 +1450,13 @@ namespace DocxFormatExtractor
         public string HorizontalMerge { get; set; } = "";
     }
 
+    public class BorderInfo
+    {
+        public string Style { get; set; } = "";
+        public string Size { get; set; } = "";
+        public string Color { get; set; } = "";
+    }
+
     public class SectionInfo
     {
         public int Index { get; set; }
@@ -1236,6 +1473,17 @@ namespace DocxFormatExtractor
         public string ColumnCount { get; set; } = "";
         public string ColumnSpacing { get; set; } = "";
         public string SectionType { get; set; } = "";
+        public List<SectionHeaderFooterReference> HeaderReferences { get; set; } = new List<SectionHeaderFooterReference>();
+        public List<SectionHeaderFooterReference> FooterReferences { get; set; } = new List<SectionHeaderFooterReference>();
+        public string PageNumberFormat { get; set; } = "";
+        public string PageNumberStart { get; set; } = "";
+        public bool TitlePage { get; set; }
+    }
+
+    public class SectionHeaderFooterReference
+    {
+        public string Type { get; set; } = "";
+        public string RelationshipId { get; set; } = "";
     }
 
     public class ImageInfo
@@ -1303,6 +1551,17 @@ namespace DocxFormatExtractor
         public string Author { get; set; } = "";
         public string Date { get; set; } = "";
         public string Text { get; set; } = "";
+    }
+
+    public class FormulaInfo
+    {
+        public int ParagraphIndex { get; set; }
+        public string Alignment { get; set; } = "";
+        public string NumberingText { get; set; } = "";
+        public string NumberingFont { get; set; } = "";
+        public string NumberingFontSize { get; set; } = "";
+        public string EquationFont { get; set; } = "";
+        public string EquationFontSize { get; set; } = "";
     }
 
     #endregion

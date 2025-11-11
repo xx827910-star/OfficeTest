@@ -7,7 +7,40 @@
     "page_width": "21.6 cm",
     "page_height": "27.9 cm"
   },
+  "defaults": {
+    "paragraph": {
+      "alignment": "未提供",
+      "line_spacing": "1.5倍",
+      "spacing_before": "0磅",
+      "spacing_after": "0磅",
+      "first_line_indent": "",
+      "first_line_indent_pt": ""
+    },
+    "run": {
+      "font_chinese": "宋体",
+      "font_english": "Times New Roman",
+      "size": "小四(12.0pt)",
+      "bold": false,
+      "italic": false,
+      "color": ""
+    }
+  },
   "sections": {
+    "section_settings": [
+      {
+        "index": 0,
+        "title_page": false,
+        "page_number_format": "NumberFormatValues { }",
+        "page_number_start": "",
+        "header_references": [
+          {
+            "Type": "HeaderFooterValues { }",
+            "RelationshipId": "rId17"
+          }
+        ],
+        "footer_references": []
+      }
+    ],
     "abstract_cn": {
       "title": {
         "text": "摘  要",
@@ -42,7 +75,9 @@
         "text": "关键词：深度学习；图像识别；卷积神经网络；ResNet；计算机视觉",
         "separator": "；",
         "keyword_count": 5,
-        "label_bold": true
+        "label_bold": true,
+        "first_line_indent": "2字符",
+        "first_line_indent_pt": "24.0pt"
       }
     },
     "abstract_en": {
@@ -79,7 +114,9 @@
         "text": "Key words: Deep Learning; Image Recognition; Convolutional Neural Networks; ResNet; Computer Vision",
         "separator": ";",
         "keyword_count": 5,
-        "label_bold": true
+        "label_bold": true,
+        "first_line_indent": "2字符",
+        "first_line_indent_pt": "24.0pt"
       }
     },
     "toc": {
@@ -102,6 +139,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -116,6 +154,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -130,6 +169,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -144,6 +184,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -158,6 +199,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -172,6 +214,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -186,6 +229,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -200,6 +244,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -214,6 +259,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -228,6 +274,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -242,6 +289,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -256,6 +304,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -270,6 +319,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -284,6 +334,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -298,6 +349,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -312,6 +364,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -326,6 +379,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -340,6 +394,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -354,6 +409,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -368,6 +424,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -382,6 +439,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -396,6 +454,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -410,6 +469,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -424,6 +484,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -438,6 +499,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -452,6 +514,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -466,6 +529,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -480,6 +544,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -494,6 +559,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -508,6 +574,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -522,6 +589,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -536,6 +604,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -550,6 +619,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -564,6 +634,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -578,6 +649,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -592,6 +664,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -606,6 +679,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -620,6 +694,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -634,6 +709,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -648,6 +724,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -662,6 +739,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -676,6 +754,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -690,6 +769,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -704,6 +784,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -718,6 +799,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -732,6 +814,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -746,6 +829,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -760,6 +844,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -774,6 +859,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -788,6 +874,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -802,6 +889,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -816,6 +904,7 @@
           "bold": false,
           "alignment": "未提供",
           "first_line_indent": "",
+          "first_line_indent_pt": "",
           "line_spacing": "1.5倍",
           "spacing_before": "0磅",
           "spacing_after": "0磅",
@@ -974,7 +1063,7 @@
         ]
       },
       "body": {
-        "count": 66,
+        "count": 58,
         "items": [
           {
             "index": 70,
@@ -1022,15 +1111,6 @@
             "alignment": "两端对齐"
           },
           {
-            "index": 81,
-            "text": "来源：2014-2023",
-            "font": "宋体",
-            "size": "小五(9.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "1.5倍",
-            "alignment": "未提供"
-          },
-          {
             "index": 83,
             "text": "从表1-1可以看出，深度学习网络架构经历了从简单到复杂、从追求深度到注重效率的发展历程。ResNet通过残差连接解决了深层网络的退化问题，成为里程碑式的工作。 广西日报关于“AI时代未来新闻人如何培养...",
             "font": "宋体",
@@ -1049,17 +1129,26 @@
             "alignment": "两端对齐"
           },
           {
-            "index": 89,
-            "text": "来源：自制",
-            "font": "宋体",
-            "size": "小五(9.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "1.5倍",
-            "alignment": "未提供"
-          },
-          {
             "index": 92,
             "text": "本文共分为六章。第1章为绪论；第2章介绍深度学习和图像识别的基础理论；第3章详细分析主流CNN架构；第4章进行实验设计与结果分析；第5章探讨应用案例；第6章总结全文并展望未来。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 94,
+            "text": "本章介绍深度学习的基本概念、神经网络原理以及图像识别的任务定义，为后续研究奠定理论基础。",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.5倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 96,
+            "text": "深度学习是机器学习的一个分支，通过构建多层神经网络来学习数据的层次化表示。其核心思想是让模型自动学习从原始输入到目标输出的映射关系。",
             "font": "宋体",
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
@@ -1076,29 +1165,107 @@
           "index": 88,
           "text": "图1-1 本文研究技术路线图",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 89,
+            "text": "来源：自制",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 126,
           "text": "图3-1 VGG-16网络架构图",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 127,
+            "text": "来源：Simonyan et al., 2014",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 171,
           "text": "图4-1 不同网络在CIFAR-10上的训练曲线",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 172,
+            "text": "来源：实验结果",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 174,
           "text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
           "font": "宋体",
+          "font_english": "Times New Roman",
           "size": "小四(12.0pt)",
-          "alignment": "两端对齐"
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": true
         }
       ]
     },
@@ -1109,50 +1276,305 @@
           "index": 80,
           "text": "表1-1 主要深度学习图像识别网络对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 81,
+            "text": "来源：2014-2023",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 114,
           "text": "表2-1 常用图像识别数据集对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 115,
+            "text": "来源：公开数据",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 117,
           "text": "表2-1列出了计算机视觉领域常用的基准数据集。ImageNet作为最具影响力的数据集，包含超过140万张标注图像，涵盖1000个类别，成为评估图像识别算法性能的标准基准。",
           "font": "宋体",
+          "font_english": "Times New Roman",
           "size": "小四(12.0pt)",
-          "alignment": "两端对齐"
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false
         },
         {
           "index": 149,
           "text": "表3-1 ResNet不同深度变体性能对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 150,
+            "text": "来源：He et al., 2015",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 160,
           "text": "表4-1 实验环境配置",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 161,
+            "text": "来源：本文实验",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 176,
           "text": "表4-2 CIFAR-10数据集实验结果对比",
           "font": "宋体",
+          "font_english": "宋体",
           "size": "五号(10.5pt)",
-          "alignment": "居中"
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false,
+          "source": {
+            "index": 177,
+            "text": "来源：本文实验",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "未提供",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "1.5倍",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
         },
         {
           "index": 179,
           "text": "表4-2显示ResNet-50在准确率和训练效率上都表现优异，是CIFAR-10任务的最佳选择。",
           "font": "宋体",
+          "font_english": "Times New Roman",
           "size": "小四(12.0pt)",
-          "alignment": "两端对齐"
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false
+        }
+      ],
+      "structure": [
+        {
+          "index": 0,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": true,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 1,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": true,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 2,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": true,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 3,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": true,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 4,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": true,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
         }
       ]
     },
@@ -1171,35 +1593,55 @@
           "text": "[1] 刘沛恺. 智能制造让工厂拥有\"大脑\"[N]. 经济日报, 2025⁠-⁠11⁠-⁠08(004).",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "hanging_indent": ""
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 1,
+          "ends_with_period": true
         },
         {
           "index": 220,
           "text": "[2] 张璇, 魏一骏. \"六小龙乌镇对话\", 他们如何思考AI和未来[N]. 新华每日电讯, 2025⁠-⁠11⁠-⁠08(002).",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "hanging_indent": ""
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 2,
+          "ends_with_period": true
         },
         {
           "index": 221,
           "text": "[3] 于祥明. 在数字经济, AI等六大领域打造一批应用场景[N]. 上海证券报, 2025⁠-⁠11⁠-⁠08(001).",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "hanging_indent": ""
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 3,
+          "ends_with_period": true
         },
         {
           "index": 222,
           "text": "[4] 黄玲娜, 姜敏思, 张婷婷. AI时代, 未来新闻人如何培养[N]. 广西日报, 2025⁠-⁠11⁠-⁠08(006).",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "hanging_indent": ""
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 4,
+          "ends_with_period": true
         },
         {
           "index": 223,
           "text": "[5] 曹元龙. 让贸易和人工智能惠及所有人[N]. 光明日报, 2025⁠-⁠11⁠-⁠08(006).",
           "font": "宋体",
           "size": "小四(12.0pt)",
-          "hanging_indent": ""
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 5,
+          "ends_with_period": true
         }
       ]
     },
@@ -1220,6 +1662,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1239,6 +1682,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1258,6 +1702,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1277,6 +1722,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1298,6 +1744,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1317,6 +1764,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1336,6 +1784,7 @@
               "bold": false,
               "alignment": "居中",
               "first_line_indent": "",
+              "first_line_indent_pt": "",
               "line_spacing": "1.5倍",
               "spacing_before": "0磅",
               "spacing_after": "0磅"
@@ -1353,7 +1802,51 @@
         "alignment": "居中",
         "spacing_before": "12磅"
       },
-      "content_count": 3
+      "content_count": 3,
+      "content_samples": [
+        {
+          "index": 229,
+          "text": "本研究得到学院人工智能实验班同学们的大力支持，大家在实验环境搭建、数据标注与模型调试方面投入了大量时间，使团队能够快速完成多轮对比试验。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        },
+        {
+          "index": 230,
+          "text": "特别感谢指导教师在研究思路、论文写作与规范审阅方面提供的持续反馈，同时也感谢企业合作伙伴分享真实的工业视觉场景需求，为本文应用案例提供了灵感。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        },
+        {
+          "index": 231,
+          "text": "我们还感谢学院科研管理部门提供的开放GPU算力资源，并感谢同行评审专家提出的宝贵意见，这些建议帮助我们完善了实验设计与结论表达。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        }
+      ]
     },
     "appendix": {
       "title": {
@@ -1364,7 +1857,51 @@
         "alignment": "居中",
         "spacing_before": "12磅"
       },
-      "content_count": 3
+      "content_count": 3,
+      "content_samples": [
+        {
+          "index": 234,
+          "text": "附录A展示了实验脚本的关键参数设置，包括学习率调度、优化器超参数以及图像增强策略，可为后续复现提供参考。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        },
+        {
+          "index": 235,
+          "text": "附录B给出了额外的性能对比曲线，其中包含不同模型在推理延迟、显存占用方面的定量指标，帮助读者全面评估部署成本。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        },
+        {
+          "index": 236,
+          "text": "附录C补充了数据集划分及预处理流程的伪代码，便于读者根据自身设备条件调整批大小与显存需求。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": true,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        }
+      ]
     }
   }
 }
