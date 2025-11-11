@@ -336,6 +336,153 @@ def summarize_paragraph_format(para: Dict, styles_dict: Dict[str, Dict], include
     return summary
 
 
+def normalize_tab_stops(tab_stops: Optional[List[Dict[str, Any]]]) -> List[Dict[str, Any]]:
+    """提取对齐判断需要的制表位核心字段"""
+    normalized: List[Dict[str, Any]] = []
+    if not tab_stops:
+        return normalized
+    for tab in tab_stops:
+        normalized.append({
+            "position": tab.get("position", ""),
+            "alignment": tab.get("alignment", ""),
+            "leader": tab.get("leader", "")
+        })
+    return normalized
+
+
+def tab_stops_signature(tab_stops: Optional[List[Dict[str, Any]]]) -> tuple:
+    """将制表位转换为可哈希的签名"""
+    signature: List[tuple] = []
+    if tab_stops:
+        for tab in tab_stops:
+            signature.append((
+                tab.get("position_twips") or tab.get("position_pt") or tab.get("position", ""),
+                tab.get("alignment", ""),
+                tab.get("leader", "")
+            ))
+    return tuple(signature)
+
+
+def aggregate_toc_items(items: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+    """将目录条目按格式 profile 聚合"""
+    profiles: List[Dict[str, Any]] = []
+    anomalies: List[Dict[str, Any]] = []
+    if not items:
+        return {"profiles": profiles, "anomalies": anomalies}
+
+    profile_map: Dict[tuple, Dict[str, Any]] = {}
+
+    for item in items:
+        signature = (
+            item.get('toc_level'),
+            item.get('font', ''),
+            item.get('size', ''),
+            item.get('bold', False),
+            item.get('alignment', ''),
+            item.get('left_indent', ''),
+            tab_stops_signature(item.get('tab_stops'))
+        )
+
+        if signature not in profile_map:
+            profile_id = f"toc_profile_{len(profile_map) + 1}"
+            profile_map[signature] = {
+                "profile_id": profile_id,
+                "toc_level": item.get('toc_level'),
+                "font": item.get('font', ''),
+                "size": item.get('size', ''),
+                "bold": item.get('bold', False),
+                "alignment": item.get('alignment', ''),
+                "left_indent": item.get('left_indent', ''),
+                "tab_stops": normalize_tab_stops(item.get('tab_stops')),
+                "count": 0,
+                "indexes": [],
+                "sample_text": item.get('text', '')[:100]
+            }
+
+        profile_entry = profile_map[signature]
+        profile_entry["count"] += 1
+        profile_entry["indexes"].append(item.get('index'))
+        if not profile_entry["sample_text"]:
+            profile_entry["sample_text"] = item.get('text', '')[:100]
+
+    profiles = list(profile_map.values())
+    profiles.sort(key=lambda p: p["indexes"][0] if p["indexes"] else float('inf'))
+
+    primary_profile = max(profiles, key=lambda p: p["count"]) if profiles else None
+
+    if primary_profile:
+        for profile in profiles:
+            if profile is primary_profile:
+                continue
+            differences = {}
+            for field in ["toc_level", "font", "size", "bold", "alignment", "left_indent"]:
+                if profile.get(field) != primary_profile.get(field):
+                    differences[field] = profile.get(field)
+            if profile.get("tab_stops") != primary_profile.get("tab_stops"):
+                differences["tab_stops"] = profile.get("tab_stops")
+            anomalies.append({
+                "profile_id": profile["profile_id"],
+                "indexes": profile.get("indexes", []),
+                "differences": differences
+            })
+
+    return {"profiles": profiles, "anomalies": anomalies}
+
+
+def aggregate_format_profiles(
+    items: List[Dict[str, Any]],
+    key_fields: List[str],
+    profile_prefix: str
+) -> Dict[str, List[Dict[str, Any]]]:
+    """通用格式 profile 聚合，用于正文标题/正文段落"""
+    profiles: List[Dict[str, Any]] = []
+    deviations: List[Dict[str, Any]] = []
+    if not items:
+        return {"profiles": profiles, "deviations": deviations}
+
+    profile_map: Dict[tuple, Dict[str, Any]] = {}
+
+    for item in items:
+        signature = tuple(item.get(field, '') for field in key_fields)
+        if signature not in profile_map:
+            profile_id = f"{profile_prefix}_{len(profile_map) + 1}"
+            profile_map[signature] = {
+                "profile_id": profile_id,
+                "count": 0,
+                "indexes": [],
+                "sample_text": item.get('text', '')[:100] if item.get('text') else ""
+            }
+            for field in key_fields:
+                profile_map[signature][field] = item.get(field, '')
+
+        profile_entry = profile_map[signature]
+        profile_entry["count"] += 1
+        profile_entry["indexes"].append(item.get('index'))
+        if not profile_entry["sample_text"]:
+            profile_entry["sample_text"] = item.get('text', '')[:100]
+
+    profiles = list(profile_map.values())
+    profiles.sort(key=lambda p: p["indexes"][0] if p["indexes"] else float('inf'))
+
+    primary_profile = max(profiles, key=lambda p: p["count"]) if profiles else None
+
+    if primary_profile:
+        for profile in profiles:
+            if profile is primary_profile:
+                continue
+            differences = {}
+            for field in key_fields:
+                if profile.get(field) != primary_profile.get(field):
+                    differences[field] = profile.get(field)
+            deviations.append({
+                "profile_id": profile["profile_id"],
+                "indexes": profile.get("indexes", []),
+                "differences": differences
+            })
+
+    return {"profiles": profiles, "deviations": deviations}
+
+
 # ==================== 段落分类 ====================
 
 def classify_paragraph(para: Dict) -> str:
@@ -711,25 +858,27 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "spacing_before": twips_to_pt(title_para.get('SpacingBefore', '')),
             },
             "items_count": len(classified['TOC_REF']),
-            "items": []
+            "profiles": [],
+            "anomalies": []
         }
 
+        toc_items = []
         for para in classified['TOC_REF']:
             item = summarize_paragraph_format(para, styles_dict, include_spacing=True, is_toc=True)
             item["numbering_level"] = para.get('NumberingLevel', '')
-            result["sections"]["toc"]["items"].append(item)
+            toc_items.append(item)
+
+        toc_summary = aggregate_toc_items(toc_items)
+        result["sections"]["toc"]["profiles"] = toc_summary["profiles"]
+        result["sections"]["toc"]["anomalies"] = toc_summary["anomalies"]
 
     # 正文 - 一级标题
     if classified['HEADING_1']:
         result["sections"]["main"] = {}
-        result["sections"]["main"]["h1"] = {
-            "count": len(classified['HEADING_1']),
-            "items": []
-        }
-
+        h1_items = []
         for para in classified['HEADING_1']:
             font = get_effective_font(para, styles_dict)
-            result["sections"]["main"]["h1"]["items"].append({
+            h1_items.append({
                 "index": para['Index'],
                 "text": para['Text'].strip(),
                 "font": font['chinese'],
@@ -739,18 +888,25 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "spacing_before": twips_to_pt(para.get('SpacingBefore', '')),
             })
 
+        h1_summary = aggregate_format_profiles(
+            h1_items,
+            ["font", "size", "bold", "alignment", "spacing_before"],
+            "h1_profile"
+        )
+        result["sections"]["main"]["h1"] = {
+            "count": len(classified['HEADING_1']),
+            "profiles": h1_summary["profiles"],
+            "deviations": h1_summary["deviations"]
+        }
+
     # 正文 - 二级标题
     if classified['HEADING_2']:
         if "main" not in result["sections"]:
             result["sections"]["main"] = {}
-        result["sections"]["main"]["h2"] = {
-            "count": len(classified['HEADING_2']),
-            "items": []
-        }
-
-        for para in classified['HEADING_2'][:5]:  # 只取前5个
+        h2_items = []
+        for para in classified['HEADING_2']:
             font = get_effective_font(para, styles_dict)
-            result["sections"]["main"]["h2"]["items"].append({
+            h2_items.append({
                 "index": para['Index'],
                 "text": para['Text'].strip(),
                 "font": font['chinese'],
@@ -758,19 +914,25 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "bold": font['bold'],
                 "alignment": get_alignment(para.get('Alignment', '')),
             })
+        h2_summary = aggregate_format_profiles(
+            h2_items,
+            ["font", "size", "bold", "alignment"],
+            "h2_profile"
+        )
+        result["sections"]["main"]["h2"] = {
+            "count": len(classified['HEADING_2']),
+            "profiles": h2_summary["profiles"],
+            "deviations": h2_summary["deviations"]
+        }
 
     # 正文 - 三级标题
     if classified['HEADING_3']:
         if "main" not in result["sections"]:
             result["sections"]["main"] = {}
-        result["sections"]["main"]["h3"] = {
-            "count": len(classified['HEADING_3']),
-            "items": []
-        }
-
-        for para in classified['HEADING_3'][:5]:  # 只取前5个
+        h3_items = []
+        for para in classified['HEADING_3']:
             font = get_effective_font(para, styles_dict)
-            result["sections"]["main"]["h3"]["items"].append({
+            h3_items.append({
                 "index": para['Index'],
                 "text": para['Text'].strip(),
                 "font": font['chinese'],
@@ -778,20 +940,26 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "bold": font['bold'],
                 "alignment": get_alignment(para.get('Alignment', '')),
             })
+        h3_summary = aggregate_format_profiles(
+            h3_items,
+            ["font", "size", "bold", "alignment"],
+            "h3_profile"
+        )
+        result["sections"]["main"]["h3"] = {
+            "count": len(classified['HEADING_3']),
+            "profiles": h3_summary["profiles"],
+            "deviations": h3_summary["deviations"]
+        }
 
     # 正文段落
     if classified['BODY']:
         if "main" not in result["sections"]:
             result["sections"]["main"] = {}
-        result["sections"]["main"]["body"] = {
-            "count": len(classified['BODY']),
-            "items": []
-        }
-
-        for para in classified['BODY'][:10]:  # 只取前10个
+        body_items = []
+        for para in classified['BODY']:
             font = get_effective_font(para, styles_dict)
             line_spacing = twips_to_line_spacing(para.get('LineSpacing', ''))
-            result["sections"]["main"]["body"]["items"].append({
+            body_items.append({
                 "index": para['Index'],
                 "text": para['Text'].strip()[:100] + "..." if len(para['Text'].strip()) > 100 else para['Text'].strip(),
                 "font": font['chinese'],
@@ -800,6 +968,16 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 "line_spacing": line_spacing,
                 "alignment": get_alignment(para.get('Alignment', '')),
             })
+        body_summary = aggregate_format_profiles(
+            body_items,
+            ["font", "size", "first_line_indent", "line_spacing", "alignment"],
+            "body_profile"
+        )
+        result["sections"]["main"]["body"] = {
+            "count": len(classified['BODY']),
+            "profiles": body_summary["profiles"],
+            "deviations": body_summary["deviations"]
+        }
 
     # 图标题
     if classified['FIGURE_CAPTION']:

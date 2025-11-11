@@ -22,6 +22,7 @@
 - 脚本已完成: 单位转换(cm, 磅, 中文字号), 段落分类, 样式继承解析
 - 脚本**未做**: 格式符合性判断
 - **你需要做**: 逐项对比规范, 判断每个格式是否符合要求
+- **结构提示**: `sections.toc` 与 `sections.main.(h1/h2/h3/body)` 使用 `profiles + anomalies/deviations` 结构。`profiles` 中同一格式的段落已聚合并列出 `indexes`，`anomalies/deviations` 显示与主 profile 不一致的字段和涉及的段落索引，请据此判断是否合规。
 - **特别说明 (目录)**: Word 自动生成的目录(TOC)条目格式提取情况如下: 
   - ✅ **可以检查**: 
     - `left_indent`
