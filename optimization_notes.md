@@ -149,3 +149,60 @@
   消息6：最终任务提示
   ```
 - **准确性说明**：分块只改变交互方式，不改变 JSON 内容；AI 仍能在最后一步同时参考所有信息（它的对话记忆里已经包含之前各块），不会影响判断。但由于每次输入更短，模型更稳定，且易于在出错时重新发送某一块。
+
+## 7. 正文/目录取样策略 (拟引入)
+
+- **现状问题**：即便经过 profile 聚合，`sections.main.body` 和 `sections.toc` 仍要携带大量 `indexes` 列表，随着段落数增加体积线性增长。
+- **取样方案**：
+  1. **统计 + 样本**：保留 `profiles` 的 `count`/`differences`，但把 `indexes` 截断为固定数量的代表索引（例如正文每个 profile 最多 10 条，目录每层级 5 条），剩余信息通过 `count` 告知。
+  2. **异常优先**：若 profile 被标记为 `deviations`，保留全部 `indexes`；只有“与主 profile 一致”的那部分才抽样。这样任何潜在问题都不会因为采样而丢失。
+  3. **分层采样**：正文按章节 bucket（可用段落索引范围或 `Heading 1` 名称），目录按 `toc_level`。每个桶按“比例 + 最小值”抽样，确保覆盖全篇。
+  4. **可重现性**：采样函数接受 `seed = hash(doc_path)`，同一文档多次生成一致样本，方便 AI 复核。
+- **JSON形态**：
+  ```json
+  "main": {
+    "body": {
+      "profiles": [
+        {
+          "profile_id": "body_profile_1",
+          "count": 214,
+          "indexes": [70, 105, 188, 256, 310],
+          "sample_text": ["随着深度学习...", "..."]
+        }
+      ],
+      "deviations": [
+        { "profile_id": "body_profile_3", "indexes": [412, 413], "differences": { "line_spacing": "单倍" } }
+      ]
+    }
+  }
+  ```
+  AI 可用 `count` 计算完成度；样本可用于引用实例；`deviations` 仍精确给出异常位置。
+
+## 8. 表格缩减策略
+
+- **现状问题**：表格标题字段高度重复，导致 `sections.tables.items` 体积最大。
+- **已实施方案**：
+  1. 计算 `defaults.caption` / `defaults.source`（每个字段出现频率最高的实际值），任何条目若与默认一致就无需重复存储。
+  2. `entries[].caption_diff` / `source.diff` 只列出与默认不同的字段，同时仍保留 `text`、`source.text`，方便 AI 引用编号和来源原文。
+  3. `stats.with_source/without_source` 直接统计来源缺失情况，`structure` 保留完整三线表边框信息供 AI 结合规范判断。
+- **JSON形态**：
+  ```json
+  "tables": {
+    "count": 7,
+    "defaults": {
+      "caption": { "font": "宋体", "size": "五号(10.5pt)", ... },
+      "source": { "font": "宋体", "size": "小五(9.0pt)", ... }
+    },
+    "entries": [
+      {
+        "index": 149,
+        "text": "表3-1 ResNet不同深度变体性能对比",
+        "caption_diff": { "first_line_indent": "", "first_line_indent_pt": "" },
+        "source": { "index": 150, "text": "来源：He et al., 2015", "diff": {} }
+      }
+    ],
+    "stats": { "with_source": 5, "without_source": 2 },
+    "structure": [ { "index": 0, "top_border": { ... } }, ... ]
+  }
+  ```
+  AI 只需结合 `defaults` 与 `diff` 即可还原每张表的真实格式，信息完整但体积显著缩小。

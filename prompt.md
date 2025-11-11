@@ -22,7 +22,9 @@
 - 脚本已完成: 单位转换(cm, 磅, 中文字号), 段落分类, 样式继承解析
 - 脚本**未做**: 格式符合性判断
 - **你需要做**: 逐项对比规范, 判断每个格式是否符合要求
-- **结构提示**: `sections.toc` 与 `sections.main.(h1/h2/h3/body)` 使用 `profiles + anomalies/deviations` 结构。`profiles` 中同一格式的段落已聚合并列出 `indexes`，`anomalies/deviations` 显示与主 profile 不一致的字段和涉及的段落索引，请据此判断是否合规。
+- **结构提示**: `sections.toc` 与 `sections.main.(h1/h2/h3/body)` 使用 `profiles + anomalies/deviations` 结构：`profiles.indexes` 仅保留采样后的代表性段落索引，但 `count` 仍表示该 profile 的总段落数；`anomalies/deviations.indexes` 列出全部异常段落。
+- **结构提示 (lookups)**: JSON 顶层的 `lookups.fonts/sizes/alignments` 以及 `lookups.keys` 映射了短 key（如 `f`、`sz`、`al`、`c_idx`），请用 `lookups.keys` 查回原字段含义，并通过 `lookups.<category>[index]` 还原具体值。
+- **结构提示 (图片/表格)**: `sections.figures` 仍为逐条 `items`，而 `sections.tables` 由 `defaults.caption/source` + `entries` 组成；当 `entries[i].caption_diff` 为空时，表示该表格标题各字段等于默认值，若存在 `diff` 则说明实际值与 `defaults` 不同，AI 需结合当前规范自行判断。
 - **特别说明 (目录)**: Word 自动生成的目录(TOC)条目格式提取情况如下: 
   - ✅ **可以检查**: 
     - `left_indent`

@@ -14,8 +14,10 @@
 """
 
 import json
+import math
 import os
 import re
+from collections import Counter
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
@@ -363,7 +365,10 @@ def tab_stops_signature(tab_stops: Optional[List[Dict[str, Any]]]) -> tuple:
     return tuple(signature)
 
 
-def aggregate_toc_items(items: List[Dict[str, Any]]) -> Dict[str, List[Dict[str, Any]]]:
+def aggregate_toc_items(
+    items: List[Dict[str, Any]],
+    sample_config: Optional[Dict[str, Any]] = None
+) -> Dict[str, List[Dict[str, Any]]]:
     """将目录条目按格式 profile 聚合"""
     profiles: List[Dict[str, Any]] = []
     anomalies: List[Dict[str, Any]] = []
@@ -410,6 +415,7 @@ def aggregate_toc_items(items: List[Dict[str, Any]]) -> Dict[str, List[Dict[str,
 
     primary_profile = max(profiles, key=lambda p: p["count"]) if profiles else None
 
+    anomaly_records: List[Dict[str, Any]] = []
     if primary_profile:
         for profile in profiles:
             if profile is primary_profile:
@@ -420,11 +426,23 @@ def aggregate_toc_items(items: List[Dict[str, Any]]) -> Dict[str, List[Dict[str,
                     differences[field] = profile.get(field)
             if profile.get("tab_stops") != primary_profile.get("tab_stops"):
                 differences["tab_stops"] = profile.get("tab_stops")
-            anomalies.append({
-                "profile_id": profile["profile_id"],
-                "indexes": profile.get("indexes", []),
+            anomaly_records.append({
+                "profile": profile,
                 "differences": differences
             })
+
+    if sample_config:
+        apply_sampling_to_profiles(profiles, sample_config)
+
+    for record in anomaly_records:
+        profile = record["profile"]
+        anomaly_entry = {
+            "profile_id": profile["profile_id"],
+            "count": profile.get("count", 0),
+            "differences": record["differences"],
+            "indexes": profile.get("indexes", [])
+        }
+        anomalies.append(anomaly_entry)
 
     return {"profiles": profiles, "anomalies": anomalies}
 
@@ -432,7 +450,8 @@ def aggregate_toc_items(items: List[Dict[str, Any]]) -> Dict[str, List[Dict[str,
 def aggregate_format_profiles(
     items: List[Dict[str, Any]],
     key_fields: List[str],
-    profile_prefix: str
+    profile_prefix: str,
+    sample_config: Optional[Dict[str, Any]] = None
 ) -> Dict[str, List[Dict[str, Any]]]:
     """通用格式 profile 聚合，用于正文标题/正文段落"""
     profiles: List[Dict[str, Any]] = []
@@ -480,7 +499,181 @@ def aggregate_format_profiles(
                 "differences": differences
             })
 
+    if sample_config:
+        apply_sampling_to_profiles(profiles, sample_config)
+
     return {"profiles": profiles, "deviations": deviations}
+
+
+BODY_SAMPLING_CONFIG = {"ratio": 0.15, "min": 6, "max": 12}
+TOC_SAMPLING_CONFIG = {"ratio": 0.2, "min": 3, "max": 8}
+
+
+def compute_sample_size(total: int, config: Dict[str, Any]) -> int:
+    if total <= 0:
+        return 0
+    ratio = config.get("ratio", 0)
+    minimum = config.get("min", 1)
+    maximum = config.get("max", total)
+    if total <= minimum:
+        return total
+    size = max(minimum, math.ceil(total * ratio)) if ratio > 0 else minimum
+    size = min(size, maximum, total)
+    return size
+
+
+def evenly_spaced_sample(values: List[int], sample_size: int) -> List[int]:
+    cleaned = sorted(v for v in values if isinstance(v, int))
+    n = len(cleaned)
+    if n == 0 or sample_size <= 0:
+        return []
+    if sample_size >= n:
+        return cleaned
+    if sample_size == 1:
+        return [cleaned[n // 2]]
+
+    positions = []
+    for i in range(sample_size):
+        pos = round(i * (n - 1) / (sample_size - 1))
+        positions.append(pos)
+
+    seen = set()
+    sampled = []
+    for pos in positions:
+        if pos not in seen:
+            seen.add(pos)
+            sampled.append(cleaned[pos])
+
+    if len(sampled) < sample_size:
+        for idx in range(n):
+            if idx not in seen:
+                seen.add(idx)
+                sampled.append(cleaned[idx])
+                if len(sampled) == sample_size:
+                    break
+
+    return sorted(sampled)
+
+
+def sample_indexes(indexes: List[Any], config: Dict[str, Any]) -> List[int]:
+    cleaned = [idx for idx in indexes if isinstance(idx, int)]
+    total = len(cleaned)
+    sample_size = compute_sample_size(total, config)
+    if sample_size <= 0:
+        return []
+    return evenly_spaced_sample(cleaned, sample_size)
+
+
+def apply_sampling_to_profiles(profiles: List[Dict[str, Any]], config: Dict[str, Any]) -> None:
+    for profile in profiles:
+        indexes = profile.get("indexes", [])
+        profile["indexes"] = sample_indexes(indexes, config)
+
+
+TABLE_CAPTION_FIELDS = [
+    "font",
+    "font_english",
+    "size",
+    "bold",
+    "alignment",
+    "first_line_indent",
+    "first_line_indent_pt",
+    "line_spacing",
+    "spacing_before",
+    "spacing_after",
+    "blank_before",
+    "blank_after"
+]
+
+TABLE_SOURCE_FIELDS = [
+    "font",
+    "font_english",
+    "size",
+    "bold",
+    "alignment",
+    "first_line_indent",
+    "first_line_indent_pt",
+    "line_spacing",
+    "spacing_before",
+    "spacing_after"
+]
+
+
+def most_common_value(values: List[Any]) -> Any:
+    filtered = [v for v in values if v not in (None, "")]
+    if not filtered:
+        return ""
+    counter = Counter(filtered)
+    max_count = max(counter.values())
+    for val in filtered:
+        if counter[val] == max_count:
+            return val
+    return filtered[0]
+
+
+def summarize_table_entries(entries: List[Dict[str, Any]]) -> Dict[str, Any]:
+    summary = {
+        "count": len(entries),
+        "defaults": {
+            "caption": {},
+            "source": {}
+        },
+        "entries": [],
+        "stats": {
+            "with_source": 0,
+            "without_source": 0
+        }
+    }
+
+    if not entries:
+        return summary
+
+    for field in TABLE_CAPTION_FIELDS:
+        summary["defaults"]["caption"][field] = most_common_value([
+            entry["caption"].get(field) for entry in entries
+        ])
+
+    source_entries = [entry for entry in entries if entry.get("source")]
+    summary["stats"]["with_source"] = len(source_entries)
+    summary["stats"]["without_source"] = len(entries) - len(source_entries)
+
+    if source_entries:
+        for field in TABLE_SOURCE_FIELDS:
+            summary["defaults"]["source"][field] = most_common_value([
+                entry["source"].get(field) for entry in source_entries
+            ])
+
+    for entry in entries:
+        caption_diff = {}
+        for field in TABLE_CAPTION_FIELDS:
+            value = entry["caption"].get(field)
+            if value != summary["defaults"]["caption"].get(field):
+                caption_diff[field] = value
+
+        entry_summary: Dict[str, Any] = {
+            "index": entry["index"],
+            "text": entry["text"],
+            "caption_diff": caption_diff
+        }
+
+        source_data = entry.get("source")
+        if source_data:
+            source_diff = {}
+            for field in TABLE_SOURCE_FIELDS:
+                value = source_data.get(field)
+                if value != summary["defaults"]["source"].get(field):
+                    source_diff[field] = value
+            entry_summary["source"] = {
+                "index": source_data.get("index"),
+                "text": source_data.get("text", ""),
+                "diff": source_diff
+            }
+        else:
+            entry_summary["source"] = {"missing": True}
+
+        summary["entries"].append(entry_summary)
+
+    return summary
 
 
 # ==================== 段落分类 ====================
@@ -868,7 +1061,7 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
             item["numbering_level"] = para.get('NumberingLevel', '')
             toc_items.append(item)
 
-        toc_summary = aggregate_toc_items(toc_items)
+        toc_summary = aggregate_toc_items(toc_items, TOC_SAMPLING_CONFIG)
         result["sections"]["toc"]["profiles"] = toc_summary["profiles"]
         result["sections"]["toc"]["anomalies"] = toc_summary["anomalies"]
 
@@ -971,7 +1164,8 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
         body_summary = aggregate_format_profiles(
             body_items,
             ["font", "size", "first_line_indent", "line_spacing", "alignment"],
-            "body_profile"
+            "body_profile",
+            BODY_SAMPLING_CONFIG
         )
         result["sections"]["main"]["body"] = {
             "count": len(classified['BODY']),
@@ -1006,28 +1200,43 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
 
     # 表标题
     if classified['TABLE_CAPTION']:
-        result["sections"]["tables"] = {
-            "count": len(classified['TABLE_CAPTION']),
-            "items": []
-        }
+        table_entries: List[Dict[str, Any]] = []
 
         for para in classified['TABLE_CAPTION']:
             table_summary = summarize_paragraph_format(para, styles_dict, include_spacing=True)
             caption_index = para.get('Index')
+            blank_before = False
+            blank_after = False
             if isinstance(caption_index, int):
                 prev_para = paragraph_lookup.get(caption_index - 1)
                 next_para = paragraph_lookup.get(caption_index + 1)
-                table_summary["blank_before"] = is_blank_paragraph(prev_para)
-                table_summary["blank_after"] = is_blank_paragraph(next_para)
-            else:
-                table_summary["blank_before"] = False
-                table_summary["blank_after"] = False
+                blank_before = is_blank_paragraph(prev_para)
+                blank_after = is_blank_paragraph(next_para)
 
+            caption_data = {
+                field: table_summary.get(field, '')
+                for field in TABLE_CAPTION_FIELDS
+                if field not in {"blank_before", "blank_after"}
+            }
+            caption_data["blank_before"] = blank_before
+            caption_data["blank_after"] = blank_after
+
+            source_entry = None
             source_para = table_sources.get(caption_index) if isinstance(caption_index, int) else None
             if source_para:
-                table_summary["source"] = summarize_paragraph_format(source_para, styles_dict, include_spacing=True)
+                source_summary = summarize_paragraph_format(source_para, styles_dict, include_spacing=True)
+                source_entry = {field: source_summary.get(field, '') for field in TABLE_SOURCE_FIELDS}
+                source_entry["index"] = source_para.get('Index')
+                source_entry["text"] = source_summary.get('text', '')
 
-            result["sections"]["tables"]["items"].append(table_summary)
+            table_entries.append({
+                "index": caption_index,
+                "text": table_summary.get('text', ''),
+                "caption": caption_data,
+                "source": source_entry
+            })
+
+        result["sections"]["tables"] = summarize_table_entries(table_entries)
 
         # 表格结构信息
         table_structures = []

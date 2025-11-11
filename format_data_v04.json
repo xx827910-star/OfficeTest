@@ -108,10 +108,7 @@
           "count": 6,
           "indexes": [
             9,
-            16,
             24,
-            35,
-            42,
             50
           ],
           "sample_text": "第1章 绪论..............................PAGEREF _Chapter_1 \\h"
@@ -128,25 +125,9 @@
           "count": 21,
           "indexes": [
             10,
-            13,
-            14,
-            15,
-            17,
             20,
-            23,
-            25,
-            28,
-            31,
             34,
-            36,
-            39,
-            40,
-            41,
             43,
-            46,
-            49,
-            51,
-            52,
             53
           ],
           "sample_text": "1.1 研究背景与意义.........................PAGEREF _Heading_1_1 \\h"
@@ -163,26 +144,9 @@
           "count": 22,
           "indexes": [
             11,
-            12,
-            18,
-            19,
-            21,
             22,
-            26,
-            27,
-            29,
-            30,
             32,
-            33,
-            37,
-            38,
-            44,
-            45,
             47,
-            48,
-            54,
-            55,
-            56,
             57
           ],
           "sample_text": "1.1.1 理论意义....................PAGEREF _Heading_1_1_1 \\h"
@@ -191,48 +155,31 @@
       "anomalies": [
         {
           "profile_id": "toc_profile_1",
-          "indexes": [
-            9,
-            16,
-            24,
-            35,
-            42,
-            50
-          ],
+          "count": 6,
           "differences": {
             "toc_level": 1,
             "left_indent": ""
-          }
+          },
+          "indexes": [
+            9,
+            24,
+            50
+          ]
         },
         {
           "profile_id": "toc_profile_2",
-          "indexes": [
-            10,
-            13,
-            14,
-            15,
-            17,
-            20,
-            23,
-            25,
-            28,
-            31,
-            34,
-            36,
-            39,
-            40,
-            41,
-            43,
-            46,
-            49,
-            51,
-            52,
-            53
-          ],
+          "count": 21,
           "differences": {
             "toc_level": 2,
             "left_indent": "1.0字符"
-          }
+          },
+          "indexes": [
+            10,
+            20,
+            34,
+            43,
+            53
+          ]
         }
       ]
     },
@@ -346,57 +293,12 @@
             "count": 53,
             "indexes": [
               60,
-              62,
-              64,
-              66,
-              68,
-              73,
-              75,
               82,
-              84,
-              86,
-              88,
-              90,
-              92,
-              94,
-              99,
               101,
-              108,
-              110,
-              112,
-              119,
-              121,
-              123,
               125,
-              127,
-              129,
-              133,
-              135,
-              140,
-              142,
-              144,
               146,
-              152,
-              154,
-              156,
-              169,
-              171,
-              173,
               175,
-              177,
-              179,
-              181,
-              183,
-              185,
-              187,
-              189,
               191,
-              193,
-              195,
-              197,
-              199,
-              201,
-              203,
               204
             ],
             "sample_text": "图像识别是计算机视觉领域的核心任务之一，旨在让计算机能够像人类一样理解和识别图像内容。近年来，深度学习特别是卷积神经网络的兴起，使得图像识别技术取得了革命性突破。本章将介绍研究背景、研究现状、研究内容",
@@ -574,180 +476,134 @@
     },
     "tables": {
       "count": 7,
-      "items": [
-        {
-          "index": 70,
-          "text": "表1-1 主要深度学习图像识别网络对比",
+      "defaults": {
+        "caption": {
           "font": "宋体",
           "font_english": "宋体",
           "size": "五号(10.5pt)",
           "bold": false,
           "alignment": "居中",
-          "first_line_indent": "",
-          "first_line_indent_pt": "",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.5倍",
           "spacing_before": "",
           "spacing_after": "",
           "blank_before": true,
-          "blank_after": false,
+          "blank_after": false
+        },
+        "source": {
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小五(9.0pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "",
+          "spacing_before": "",
+          "spacing_after": ""
+        }
+      },
+      "entries": [
+        {
+          "index": 70,
+          "text": "表1-1 主要深度学习图像识别网络对比",
+          "caption_diff": {
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": ""
+          },
           "source": {
             "index": 71,
             "text": "来源：2014-2023",
-            "font": "宋体",
-            "font_english": "宋体",
-            "size": "小五(9.0pt)",
-            "bold": false,
-            "alignment": "未提供",
-            "first_line_indent": "",
-            "first_line_indent_pt": "",
-            "spacing_before": "",
-            "spacing_after": ""
+            "diff": {}
           }
         },
         {
           "index": 103,
           "text": "表2-1 常用图像识别数据集对比",
-          "font": "宋体",
-          "font_english": "宋体",
-          "size": "五号(10.5pt)",
-          "bold": false,
-          "alignment": "居中",
-          "first_line_indent": "",
-          "first_line_indent_pt": "",
-          "spacing_before": "",
-          "spacing_after": "",
-          "blank_before": true,
-          "blank_after": false,
+          "caption_diff": {
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": ""
+          },
           "source": {
             "index": 104,
             "text": "来源：公开数据",
-            "font": "宋体",
-            "font_english": "宋体",
-            "size": "小五(9.0pt)",
-            "bold": false,
-            "alignment": "未提供",
-            "first_line_indent": "",
-            "first_line_indent_pt": "",
-            "spacing_before": "",
-            "spacing_after": ""
+            "diff": {}
           }
         },
         {
           "index": 106,
           "text": "表2-1列出了计算机视觉领域常用的基准数据集。ImageNet作为最具影响力的数据集，包含超过140万张标注图像，涵盖1000个类别，成为评估图像识别算法性能的标准基准。",
-          "font": "宋体",
-          "font_english": "Times New Roman",
-          "size": "小四(12.0pt)",
-          "bold": false,
-          "alignment": "两端对齐",
-          "first_line_indent": "2字符",
-          "first_line_indent_pt": "24.0pt",
-          "line_spacing": "1.5倍",
-          "spacing_before": "",
-          "spacing_after": "",
-          "blank_before": true,
-          "blank_after": false
+          "caption_diff": {
+            "font_english": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "alignment": "两端对齐"
+          },
+          "source": {
+            "missing": true
+          }
         },
         {
           "index": 137,
           "text": "表3-1 ResNet不同深度变体性能对比",
-          "font": "宋体",
-          "font_english": "宋体",
-          "size": "五号(10.5pt)",
-          "bold": false,
-          "alignment": "居中",
-          "first_line_indent": "",
-          "first_line_indent_pt": "",
-          "spacing_before": "",
-          "spacing_after": "",
-          "blank_before": true,
-          "blank_after": false,
+          "caption_diff": {
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": ""
+          },
           "source": {
             "index": 138,
             "text": "来源：He et al., 2015",
-            "font": "宋体",
-            "font_english": "宋体",
-            "size": "小五(9.0pt)",
-            "bold": false,
-            "alignment": "未提供",
-            "first_line_indent": "",
-            "first_line_indent_pt": "",
-            "spacing_before": "",
-            "spacing_after": ""
+            "diff": {}
           }
         },
         {
           "index": 148,
           "text": "表4-1 实验环境配置",
-          "font": "宋体",
-          "font_english": "宋体",
-          "size": "五号(10.5pt)",
-          "bold": false,
-          "alignment": "居中",
-          "first_line_indent": "",
-          "first_line_indent_pt": "",
-          "spacing_before": "",
-          "spacing_after": "",
-          "blank_before": true,
-          "blank_after": false,
+          "caption_diff": {
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": ""
+          },
           "source": {
             "index": 149,
             "text": "来源：本文实验",
-            "font": "宋体",
-            "font_english": "宋体",
-            "size": "小五(9.0pt)",
-            "bold": false,
-            "alignment": "未提供",
-            "first_line_indent": "",
-            "first_line_indent_pt": "",
-            "spacing_before": "",
-            "spacing_after": ""
+            "diff": {}
           }
         },
         {
           "index": 164,
           "text": "表4-2 CIFAR-10数据集实验结果对比",
-          "font": "宋体",
-          "font_english": "宋体",
-          "size": "五号(10.5pt)",
-          "bold": false,
-          "alignment": "居中",
-          "first_line_indent": "",
-          "first_line_indent_pt": "",
-          "spacing_before": "",
-          "spacing_after": "",
-          "blank_before": true,
-          "blank_after": false,
+          "caption_diff": {
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": ""
+          },
           "source": {
             "index": 165,
             "text": "来源：本文实验",
-            "font": "宋体",
-            "font_english": "宋体",
-            "size": "小五(9.0pt)",
-            "bold": false,
-            "alignment": "未提供",
-            "first_line_indent": "",
-            "first_line_indent_pt": "",
-            "spacing_before": "",
-            "spacing_after": ""
+            "diff": {}
           }
         },
         {
           "index": 167,
           "text": "表4-2显示ResNet-50在准确率和训练效率上都表现优异，是CIFAR-10任务的最佳选择。",
-          "font": "宋体",
-          "font_english": "Times New Roman",
-          "size": "小四(12.0pt)",
-          "bold": false,
-          "alignment": "两端对齐",
-          "first_line_indent": "2字符",
-          "first_line_indent_pt": "24.0pt",
-          "line_spacing": "1.5倍",
-          "spacing_before": "",
-          "spacing_after": "",
-          "blank_before": true,
-          "blank_after": false
+          "caption_diff": {
+            "font_english": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "alignment": "两端对齐"
+          },
+          "source": {
+            "missing": true
+          }
         }
       ],
+      "stats": {
+        "with_source": 5,
+        "without_source": 2
+      },
       "structure": [
         {
           "index": 0,
