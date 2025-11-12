@@ -43,6 +43,7 @@
 - 对页边距、段落、标题、目录、图片、表格、参考文献、页眉页脚、致谢、附录逐项核对。
 - `profiles.indexes` 只提供代表性样本，但 `count` 反映总体占比；如需引用具体段落，请从 `profiles.indexes` 或 `deviations.indexes` 中取示例索引。
 - 表格：先看 `defaults.caption/source` 是否符合规范，再查看 `entries[].caption_diff` / `source.diff`。若 `diff` 为空则与默认一致；若来源缺失，`entries[].source.missing=true` 或 `stats.without_source>0` 会提示。
+- 以及其他所有的一切 比如纸张大小 公式等等 任何在规范中提到的所有细节 都需要比对
 
 ### 步骤3：计算完成度
 - 权重固定：
@@ -188,7 +189,7 @@
 ## 注意事项
 
 1. **独立判断**: 你需要根据规范独立判断每项, 不能通过编写脚本来判断, 最多写一个文档用来记录你分析得出的权重
-2. **全面检查**: 覆盖 JSON 中每个类别的所有数据——包括 `profiles` 的采样索引、`deviations/anomalies` 的完整索引、`figures.items`、`tables.entries`、`structure` 等——不要遗漏。
+2. **全面检查**: 覆盖 JSON 中每个类别的所有数据——包括 `profiles` 的采样索引、`deviations/anomalies` 的完整索引、`figures.items`、`tables.entries`、`structure` 等——不要遗漏,检查的完整性是最重要的变量。
 3. **精确对比**: 字体, 字号, 对齐等必须完全匹配规范要求
 4. **问题分级**: 
    - `critical`(严重): 字体, 字号, 页边距等核心格式错误
