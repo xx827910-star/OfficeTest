@@ -471,6 +471,24 @@ namespace DocxFormatExtractor
             }
             paraInfo.Runs = runs;
 
+            // 检测 Caption (题注) - 通过 FieldCode 识别 SEQ 指令
+            var fieldCodes = para.Descendants<FieldCode>().ToList();
+            if (fieldCodes.Any())
+            {
+                var allInstructions = string.Join(" ", fieldCodes.Select(fc => fc.Text ?? ""));
+
+                if (allInstructions.Contains("SEQ Table") || allInstructions.Contains("SEQ 表"))
+                {
+                    paraInfo.HasCaptionField = true;
+                    paraInfo.CaptionFieldType = "Table";
+                }
+                else if (allInstructions.Contains("SEQ Figure") || allInstructions.Contains("SEQ 图"))
+                {
+                    paraInfo.HasCaptionField = true;
+                    paraInfo.CaptionFieldType = "Figure";
+                }
+            }
+
             ApplyParagraphStyleFallbacks(paraInfo);
 
             return paraInfo;
@@ -1452,6 +1470,10 @@ namespace DocxFormatExtractor
         public string ShadingColor { get; set; } = "";
         public List<RunInfo> Runs { get; set; } = new List<RunInfo>();
         public List<TabStopInfo> TabStops { get; set; } = new List<TabStopInfo>();
+
+        // Caption (题注) 检测字段
+        public bool HasCaptionField { get; set; }
+        public string CaptionFieldType { get; set; } = "";
     }
 
     public class TabStopInfo

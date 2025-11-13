@@ -1,0 +1,6 @@
+/Users/CodeProjects/OfficeTest/DocxFormatExtractor/obj/Debug/net8.0/CaptionDetectionTest.csproj.AssemblyReference.cache
+/Users/CodeProjects/OfficeTest/DocxFormatExtractor/obj/Debug/net8.0/CaptionDetectionTest.GeneratedMSBuildEditorConfig.editorconfig
+/Users/CodeProjects/OfficeTest/DocxFormatExtractor/obj/Debug/net8.0/CaptionDetectionTest.AssemblyInfoInputs.cache
+/Users/CodeProjects/OfficeTest/DocxFormatExtractor/obj/Debug/net8.0/CaptionDetectionTest.AssemblyInfo.cs
+/Users/CodeProjects/OfficeTest/DocxFormatExtractor/obj/Debug/net8.0/CaptionDetectionTest.csproj.CoreCompileInputs.cache
+/Users/CodeProjects/OfficeTest/DocxFormatExtractor/obj/Debug/net8.0/CaptionDetectionTest.sourcelink.json

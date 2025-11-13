@@ -738,11 +738,13 @@ def classify_paragraph(para: Dict) -> str:
     if text.startswith('Key words') or text.startswith('Keywords'):
         return 'KEYWORDS_EN'
 
-    # 图表标题
-    if re.match(r'^图\d+-\d+', text):
-        return 'FIGURE_CAPTION'
-    if re.match(r'^表\d+-\d+', text):
-        return 'TABLE_CAPTION'
+    # 图表标题 - 使用 C# 提供的 HasCaptionField 布尔值判断
+    if para.get('HasCaptionField'):
+        caption_type = para.get('CaptionFieldType', '')
+        if caption_type == 'Table':
+            return 'TABLE_CAPTION'
+        elif caption_type == 'Figure':
+            return 'FIGURE_CAPTION'
 
     # 参考文献条目
     if re.match(r'^\[\d+\]', text):
@@ -1412,8 +1414,8 @@ def main():
         print(f"错误：输入目录 {input_dir} 不存在")
         return
 
-    # 查找所有 JSON 文件
-    json_files = sorted(input_dir.glob('v*_*_format_output.json'))
+    # 查找所有 JSON 文件（支持 v14_format_output.json 和 v01_xxx_format_output.json 两种格式）
+    json_files = sorted(input_dir.glob('v*_format_output.json'))
 
     if not json_files:
         print(f"错误：在 {input_dir} 中没有找到任何 JSON 文件")
