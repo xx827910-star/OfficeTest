@@ -753,6 +753,55 @@ def classify_paragraph(para: Dict) -> str:
     return 'BODY'
 
 
+# ==================== Caption文本清理和编号推断 ====================
+
+def clean_caption_text(text: str, chapter: int, seq_num: int, caption_type: str) -> str:
+    """
+    清理Caption文本：移除域代码，推断完整编号
+
+    Args:
+        text: 原始文本，如 "表1- SEQ Table_1 \* ARABIC  主要深度学习..."
+        chapter: 章节号，如 1
+        seq_num: 该章内的序号，如 1
+        caption_type: "Table" 或 "Figure"
+
+    Returns:
+        清理后的文本，如 "表1-1 主要深度学习..."
+    """
+    # 移除域代码部分 (SEQ xxx \* ARABIC)
+    text = re.sub(r'\s*SEQ\s+\w+_?\w*\s*\\?\*?\s*\w*\s*', '', text)
+
+    # 推断完整编号
+    prefix = "表" if caption_type == "Table" else "图"
+
+    # 检查是否已有完整编号
+    if re.match(rf'^{prefix}\d+-\d+\s', text):
+        # 已有完整编号，如 "表1-1 xxx"
+        return text
+
+    # 检查是否只有章节号（匹配 "表1-" 或 "表1 "）
+    match = re.match(rf'^{prefix}(\d+)-?\s*(.*)', text)
+    if match:
+        # 提取章节号和剩余文本
+        text_chapter = int(match.group(1))
+        remaining_text = match.group(2).strip()
+
+        # 构造完整编号
+        return f"{prefix}{text_chapter}-{seq_num} {remaining_text}"
+
+    # 如果完全没有编号（不太可能），添加编号
+    return f"{prefix}{chapter}-{seq_num} {text}"
+
+
+def infer_chapter_from_text(text: str) -> Optional[int]:
+    """从Caption文本中提取章节号"""
+    # 匹配 "表1-" 或 "图3-"
+    match = re.match(r'^[表图](\d+)-', text)
+    if match:
+        return int(match.group(1))
+    return None
+
+
 # ==================== 格式数据提取 ====================
 
 def extract_format_data(input_json_path: str) -> Dict[str, Any]:
@@ -890,6 +939,41 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
                 classified['BODY'].append(para)
         elif para_type in classified:
             classified[para_type].append(para)
+
+    # ========== 清理Caption文本并推断完整编号 ==========
+    # 为每个章节的表格和图片维护计数器
+    table_counters = {}  # {chapter: count}
+    figure_counters = {}  # {chapter: count}
+
+    # 处理表格标题
+    for para in classified['TABLE_CAPTION']:
+        text = para.get('Text', '').strip()
+        chapter = infer_chapter_from_text(text)
+
+        if chapter is not None:
+            # 更新计数器
+            table_counters[chapter] = table_counters.get(chapter, 0) + 1
+            seq_num = table_counters[chapter]
+
+            # 清理文本并推断编号
+            cleaned_text = clean_caption_text(text, chapter, seq_num, 'Table')
+            para['Text'] = cleaned_text
+            para['OriginalText'] = text  # 保留原始文本供调试
+
+    # 处理图片标题
+    for para in classified['FIGURE_CAPTION']:
+        text = para.get('Text', '').strip()
+        chapter = infer_chapter_from_text(text)
+
+        if chapter is not None:
+            # 更新计数器
+            figure_counters[chapter] = figure_counters.get(chapter, 0) + 1
+            seq_num = figure_counters[chapter]
+
+            # 清理文本并推断编号
+            cleaned_text = clean_caption_text(text, chapter, seq_num, 'Figure')
+            para['Text'] = cleaned_text
+            para['OriginalText'] = text  # 保留原始文本供调试
 
     # 构建输出结构
     result = {
