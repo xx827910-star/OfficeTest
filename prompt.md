@@ -14,13 +14,15 @@
 ### JSON 结构速览
 - 脚本已做: 单位换算(cm/磅/字号)、段落分类、样式继承解析、目录/正文采样压缩。
 - 脚本未做: 任何"是否合规"的判断。
+- **profiles / defaults**: `profiles` 代表聚合后的主样式(`aggregate_format_profiles` 输出), `profile.count`/`indexes` 用于估算占比与定位; `deviations`/`anomalies` 记录与主样式不同的字段。`defaults.paragraph/run` 提供整篇文档的基础格式, 可作为对照基线。
 - **toc / main**: `sections.toc` 与 `sections.main.(h1/h2/h3/body)` 采用 `profiles + anomalies/deviations`。
   - `profiles.count` = 该格式的段落总数; `profiles.indexes` = 代表性索引(采样后保留少量示例)。
   - `anomalies/deviations.indexes` 保留全部异常段落, 请以它们为准定位问题。
 - **tables**: `sections.tables` 由 `defaults.caption/source` + `entries` 组成。
-  - 若 `entries[i].caption_diff` 为空, 说明该表标题沿用 `defaults.caption` 的全部字段; `diff` 中只列出与默认不一致的部分。
-  - `entries[i].source` 同理; `stats.with_source/without_source` 说明来源是否缺失。
-- **figures**: 仍是逐条 `items`, 字段含义与旧版一致(`blank_before/after` 可能存在误差, 见特别说明)。
+  - 若 `entries[i].caption_diff` 为空, 说明该表标题与 `defaults.caption` 完全一致; `caption_diff` 只列出与默认值不符的字段。
+  - `entries[i].source` 同理; `stats.with_source/without_source` 显示资料来源是否缺失, `source.diff` 仅列出偏差字段。
+- **figures**: `sections.figures.items` 逐条列出图标题字段; `blank_before/after` 由段落相邻关系推断, 可能存在误差(见特别说明)。
+- **formulas**: `sections.formulas.items` 提供每个公式的段落索引、编号(如`(2-1)`)、编号字体/字号、公式字体等, 可直接对照规范的编号规则与字体要求。
 
 ### 特别说明
 - **目录**: Word TOC 无法提取对齐方式, `alignment` 显示为"未提供"时请赋 0 权重或跳过。
@@ -43,6 +45,8 @@
 - 对页边距、段落、标题、目录、图片、表格、参考文献、页眉页脚、致谢、附录逐项核对。
 - `profiles.indexes` 只提供代表性样本, 但 `count` 反映总体占比; 如需引用具体段落, 请从 `profiles.indexes` 或 `deviations.indexes` 中取示例索引。
 - 表格: 先看 `defaults.caption/source` 是否符合规范, 再查看 `entries[].caption_diff` / `source.diff`。若 `diff` 为空则与默认一致; 若来源缺失, `entries[].source.missing=true` 或 `stats.without_source>0` 会提示。
+- 公式: 利用 `sections.formulas.items` 的 `numbering_text/numbering_font/numbering_font_size/equation_font` 等字段, 核对编号格式、字体及排版要求。
+- 页眉页码: 结合 `sections.section_settings` 的 `page_number_format/page_number_start` 与 `sections.headers_footers.headers/footers` 的文本, 判断前置部分是否无页眉、正文是否切换到题目页眉, 以及罗马/阿拉伯页码是否正确。
 - 以及其他所有的一切 比如纸张大小 公式等等 任何在规范中提到的所有细节 都需要比对
 
 ### 步骤3: 统计问题

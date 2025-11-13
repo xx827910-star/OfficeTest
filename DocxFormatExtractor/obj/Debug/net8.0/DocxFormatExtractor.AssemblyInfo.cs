@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DocxFormatExtractor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c2144a427e11649109f6e5c1b2687bb0247cb229")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0f41a3ef46c6d709cf84c8573d58ae894531804")]
 [assembly: System.Reflection.AssemblyProductAttribute("DocxFormatExtractor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DocxFormatExtractor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
