@@ -1,0 +1,233 @@
+page_setup:
+  margin_top: 2.0 cm
+  margin_bottom: 2.0 cm
+  margin_left: 2.5 cm
+  margin_right: 2.0 cm
+  page_width: 21.6 cm
+  page_height: 27.9 cm
+defaults:
+  paragraph:
+    alignment: 未提供
+    line_spacing: 1.5倍
+    spacing_before: 0磅
+    spacing_after: 0磅
+    first_line_indent: ""
+    first_line_indent_pt: ""
+  run:
+    font_chinese: 宋体
+    font_english: Times New Roman
+    size: 小四(12.0pt)
+    bold: false
+    italic: false
+    color: ""
+sections:
+  section_settings[1]:
+    - index: 0
+      title_page: false
+      page_number_format: "NumberFormatValues { }"
+      page_number_start: "1"
+      header_references[1]{Type,RelationshipId}:
+        "HeaderFooterValues { }",rId12
+      footer_references[1]{Type,RelationshipId}:
+        "HeaderFooterValues { }",rId11
+  abstract_cn:
+    title:
+      text: 摘  要
+      font: 宋体
+      size: 三号(16.0pt)
+      bold: true
+      alignment: 居中
+      spacing_before: 12磅
+    content:
+      count: 2
+      items[2]{index,text,font,size,first_line_indent,alignment}:
+        2,随着深度学习技术的快速发展，图像识别领域取得了突破性进展。本文系统研究了卷积神经网络（CNN）在图像识别中的应用，重点分析了ResNet、VGG、Inception等经典网络架构的特点和性能。研究表明...,宋体,小四(12.0pt),2字符,两端对齐
+        3,本文首先介绍了深度学习和图像识别的理论基础，然后详细分析了主流CNN架构的设计原理和技术创新点。通过在CIFAR-10和ImageNet数据集上的实验对比，验证了不同网络架构的性能差异。实验结果表明，...,宋体,小四(12.0pt),2字符,两端对齐
+    keywords:
+      text: 关键词：深度学习；图像识别；卷积神经网络；ResNet；计算机视觉
+      separator: ；
+      keyword_count: 5
+      label_bold: true
+      first_line_indent: 2字符
+      first_line_indent_pt: 24.0pt
+  abstract_en:
+    title:
+      text: Abstract
+      font: Times New Roman
+      size: 三号(16.0pt)
+      bold: true
+      alignment: 居中
+      spacing_before: 12磅
+    content:
+      count: 2
+      items[2]{index,text,font,size,first_line_indent,alignment}:
+        9,"With the rapid development of deep learning technology, image recognition has achieved breakthrough ...",Times New Roman,小四(12.0pt),2字符,两端对齐
+        10,"This paper first introduces the theoretical foundation of deep learning and image recognition, then ...",Times New Roman,小四(12.0pt),2字符,两端对齐
+    keywords:
+      text: "Key words: Deep Learning; Image Recognition; Convolutional Neural Networks; ResNet; Computer Vision"
+      separator: ;
+      keyword_count: 5
+      label_bold: true
+      first_line_indent: 2字符
+      first_line_indent_pt: 24.0pt
+  toc:
+    title:
+      text: 目  录
+      font: 宋体
+      size: 三号(16.0pt)
+      bold: true
+      alignment: 居中
+      spacing_before: 12磅
+    items_count: 49
+    profiles[3]:
+      - profile_id: toc_profile_1
+        toc_level: 1
+        font: 宋体
+        size: 五号(10.5pt)
+        bold: false
+        alignment: 未提供
+        left_indent: ""
+        tab_stops[1]{position,alignment,leader}:
+          16.0 cm,"TabStopValues { }","TabStopLeaderCharValues { }"
+        count: 6
+        indexes[3]: 16,31,57
+        sample_text: "第1章 绪论PAGEREF _Chapter_1 \\h"
+      - profile_id: toc_profile_2
+        toc_level: 2
+        font: 宋体
+        size: 五号(10.5pt)
+        bold: false
+        alignment: 未提供
+        left_indent: 1.0字符
+        tab_stops[1]{position,alignment,leader}:
+          16.0 cm,"TabStopValues { }","TabStopLeaderCharValues { }"
+        count: 21
+        indexes[5]: 17,27,41,50,60
+        sample_text: "1.1 研究背景与意义PAGEREF _Heading_1_1 \\h"
+      - profile_id: toc_profile_3
+        toc_level: 3
+        font: 宋体
+        size: 五号(10.5pt)
+        bold: false
+        alignment: 未提供
+        left_indent: 2.0字符
+        tab_stops[1]{position,alignment,leader}:
+          16.0 cm,"TabStopValues { }","TabStopLeaderCharValues { }"
+        count: 22
+        indexes[5]: 18,29,39,54,64
+        sample_text: "1.1.1 理论意义PAGEREF _Heading_1_1_1 \\h"
+    anomalies[2]:
+      - profile_id: toc_profile_1
+        count: 6
+        differences:
+          toc_level: 1
+          left_indent: ""
+        indexes[3]: 16,31,57
+      - profile_id: toc_profile_2
+        count: 21
+        differences:
+          toc_level: 2
+          left_indent: 1.0字符
+        indexes[5]: 17,27,41,50,60
+  main:
+    h1:
+      count: 6
+      profiles[1]:
+        - profile_id: h1_profile_1
+          count: 6
+          indexes[6]: 66,90,115,152,181,197
+          sample_text: 第1章 绪论
+          font: 宋体
+          size: 三号(16.0pt)
+          bold: true
+          alignment: 居中
+          spacing_before: 12磅
+      deviations[0]:
+    h2:
+      count: 21
+      profiles[1]:
+        - profile_id: h2_profile_1
+          count: 21
+          indexes[21]: 68,74,81,88,92,98,108,117,128,134,150,154,164,177,179,183,189,195,199,201,203
+          sample_text: 1.1 研究背景与意义
+          font: 宋体
+          size: 四号(14.0pt)
+          bold: true
+          alignment: 左对齐
+      deviations[0]:
+    h3:
+      count: 22
+      profiles[1]:
+        - profile_id: h3_profile_1
+          count: 22
+          indexes[22]: 70,72,94,96,100,106,119,126,130,132,136,143,160,162,185,187,191,193,205,207,209,211
+          sample_text: 1.1.1 理论意义
+          font: 宋体
+          size: 小四(12.0pt)
+          bold: true
+          alignment: 左对齐
+      deviations[0]:
+    body:
+      count: 69
+      profiles[3]:
+        - profile_id: body_profile_1
+          count: 56
+          indexes[9]: 67,89,107,129,149,165,186,200,213
+          sample_text: 图像识别是计算机视觉领域的核心任务之一，旨在让计算机能够像人类一样理解和识别图像内容。近年来，深度学习特别是卷积神经网络的兴起，使得图像识别技术取得了革命性突破。本章将介绍研究背景、研究现状、研究内容
+          font: 宋体
+          size: 小四(12.0pt)
+          first_line_indent: 2字符
+          line_spacing: 1.5倍
+          alignment: 两端对齐
+        - profile_id: body_profile_2
+          count: 11
+          indexes[6]: 77,103,123,146,167,173
+          sample_text: 表1-1 主要深度学习图像识别网络对比
+          font: 宋体
+          size: 五号(10.5pt)
+          first_line_indent: ""
+          line_spacing: 1.5倍
+          alignment: 居中
+        - profile_id: body_profile_3
+          count: 2
+          indexes[2]: 104,140
+          sample_text: W_out = floor((W + 2p - k) / s) + 1(2-1)
+          font: 宋体
+          size: 五号(10.5pt)
+          first_line_indent: ""
+          line_spacing: 1.5倍
+          alignment: 未提供
+      deviations[2]:
+        - profile_id: body_profile_2
+          indexes[11]: 77,85,103,111,123,139,146,157,167,168,173
+          differences:
+            size: 五号(10.5pt)
+            first_line_indent: ""
+            alignment: 居中
+        - profile_id: body_profile_3
+          indexes[2]: 104,140
+          differences:
+            size: 五号(10.5pt)
+            first_line_indent: ""
+            alignment: 未提供
+  headers_footers:
+    header_count: 1
+    footer_count: 3
+    headers[1]:
+      - index: 0
+        text: 基于深度学习的图像识别技术研究与应用
+        paragraphs[1]{index,text,font,font_english,size,bold,alignment,first_line_indent,first_line_indent_pt,line_spacing,spacing_before,spacing_after}:
+          0,基于深度学习的图像识别技术研究与应用,宋体,宋体,小五(9.0pt),false,居中,"","",1.5倍,0磅,0磅
+    footers[3]:
+      - index: 0
+        text: "PAGE \\* roman"
+        paragraphs[1]{index,text,font,font_english,size,bold,alignment,first_line_indent,first_line_indent_pt,line_spacing,spacing_before,spacing_after}:
+          0,"PAGE \\* roman",Times New Roman,Times New Roman,小五(9.0pt),false,居中,"","",1.5倍,0磅,0磅
+      - index: 1
+        text: "PAGE \\* roman"
+        paragraphs[1]{index,text,font,font_english,size,bold,alignment,first_line_indent,first_line_indent_pt,line_spacing,spacing_before,spacing_after}:
+          0,"PAGE \\* roman",Times New Roman,Times New Roman,小五(9.0pt),false,居中,"","",1.5倍,0磅,0磅
+      - index: 2
+        text: PAGE
+        paragraphs[1]{index,text,font,font_english,size,bold,alignment,first_line_indent,first_line_indent_pt,line_spacing,spacing_before,spacing_after}:
+          0,PAGE,Times New Roman,Times New Roman,小五(9.0pt),false,居中,"","",1.5倍,0磅,0磅

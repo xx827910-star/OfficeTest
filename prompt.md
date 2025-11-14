@@ -9,7 +9,7 @@
 
 ## 输入
 1. **格式规范**: `/Users/CodeProjects/OfficeTest/浙江师范大学本科毕业论文(设计)格式规范_filtered.md`
-2. **实际格式数据**: `<format_data_vXX.json>` (由脚本生成, 示例见 `format_data_v13.json`)。
+2. **实际格式数据**: `<json_output/format_data_vXX.json>` (由脚本生成, 示例见 `json_output/format_data_v13.json`)。
 
 ### JSON 结构速览
 - 脚本已做: 单位换算(cm/磅/字号)、段落分类、样式继承解析、目录/正文采样压缩。

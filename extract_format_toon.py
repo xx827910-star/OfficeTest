@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-粗粒度论文格式检测方案 - 格式数据提取脚本
+粗粒度论文格式检测方案 - TOON格式输出脚本
 
 功能：
 1. 读取 batch_output/ 中的 JSON 文件
 2. 提取格式信息（只提取原始数据，不做格式检查）
-3. 输出简洁的 format_data_vXX.json
+3. 输出为 TOON 格式到 toon_output/ 目录
 
-设计理念：
-- 脚本只负责数据提取和单位转换
-- AI 负责所有格式判断、规范对比和完成度计算
+TOON格式优势：
+- 相比JSON减少30-60%的token使用量
+- 更适合LLM处理
+- 保持人类可读性
 """
 
 import json
@@ -21,7 +22,15 @@ from collections import Counter
 from pathlib import Path
 from typing import Dict, List, Any, Optional
 
+# 导入TOON库
+try:
+    from toon_format import encode
+except ImportError:
+    print("错误：未找到 toon_format 库")
+    print("请运行：pip3 install toon-format")
+    exit(1)
 
+# 导入原始脚本中的所有辅助函数
 # ==================== 单位换算工具 ====================
 
 def twips_to_cm(twips: str) -> str:
@@ -1488,17 +1497,20 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
 # ==================== 主函数 ====================
 
 def main():
-    """主函数：批量处理所有版本的格式数据"""
+    """主函数：批量处理所有版本的格式数据并输出为TOON格式"""
 
     # 输入输出目录
     input_dir = Path('batch_output')
-    output_dir = Path('json_output')  # 输出到 json_output 目录
+    output_dir = Path('toon_output')  # 输出到 toon_output 目录
 
     if not input_dir.exists():
         print(f"错误：输入目录 {input_dir} 不存在")
         return
 
+    # 创建输出目录
     output_dir.mkdir(exist_ok=True)
+    print(f"输出目录：{output_dir}")
+    print()
 
     # 查找所有 JSON 文件（支持 v14_format_output.json 和 v01_xxx_format_output.json 两种格式）
     json_files = sorted(input_dir.glob('v*_format_output.json'))
@@ -1519,19 +1531,29 @@ def main():
             continue
 
         version = match.group(1)
-        output_file = output_dir / f'format_data_{version}.json'
+        output_file_toon = output_dir / f'format_data_{version}.toon'
 
-        print(f"处理 {json_file.name} -> {output_file}")
+        print(f"处理 {json_file.name}")
 
         try:
             # 提取格式数据
             format_data = extract_format_data(str(json_file))
 
-            # 写入输出文件
-            with open(output_file, 'w', encoding='utf-8') as f:
-                json.dump(format_data, f, ensure_ascii=False, indent=2)
+            # 写入TOON格式文件
+            toon_content = encode(format_data)
+            with open(output_file_toon, 'w', encoding='utf-8') as f:
+                f.write(toon_content)
+            print(f"  ✓ 成功生成 TOON 格式: {output_file_toon.name}")
 
-            print(f"  ✓ 成功生成 {output_file.name}")
+            # 计算 JSON 大小（仅用于对比，不落盘）
+            json_payload = json.dumps(format_data, ensure_ascii=False, indent=2)
+            toon_size = output_file_toon.stat().st_size
+            json_size = len(json_payload.encode('utf-8'))
+            reduction = (1 - toon_size / json_size) * 100 if json_size > 0 else 0
+            print(f"  📊 文件大小对比:")
+            print(f"     TOON: {toon_size:,} bytes")
+            print(f"     JSON: {json_size:,} bytes")
+            print(f"     节省: {reduction:.1f}%")
 
         except Exception as e:
             print(f"  ✗ 错误：{e}")
@@ -1541,6 +1563,7 @@ def main():
         print()
 
     print("批量处理完成！")
+    print(f"所有输出文件已保存到: {output_dir}")
 
 
 if __name__ == '__main__':
