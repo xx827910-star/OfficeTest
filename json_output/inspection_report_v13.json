@@ -1,0 +1,105 @@
+{
+  "inspection_summary": {
+    "total_items_checked": 110,
+    "total_issues": 9,
+    "by_severity": {
+      "critical": 6,
+      "medium": 3,
+      "low": 0
+    },
+    "by_category": {
+      "页面设置": {"checked": 10, "issues": 2},
+      "中文摘要": {"checked": 12, "issues": 0},
+      "英文摘要": {"checked": 12, "issues": 0},
+      "目录": {"checked": 15, "issues": 0},
+      "正文格式": {"checked": 18, "issues": 0},
+      "图片": {"checked": 1, "issues": 1},
+      "表格": {"checked": 1, "issues": 1},
+      "公式": {"checked": 4, "issues": 3},
+      "参考文献": {"checked": 9, "issues": 1},
+      "页眉页脚": {"checked": 10, "issues": 1},
+      "致谢": {"checked": 9, "issues": 0},
+      "附录": {"checked": 9, "issues": 0}
+    }
+  },
+  "failed_rules": [
+    {
+      "category": "页面设置-纸张尺寸",
+      "rule": "纸张宽度应为21.0 cm (A4标准)",
+      "actual": "21.6 cm",
+      "locations": ["全文"],
+      "severity": "critical",
+      "suggestion": "修改纸张宽度为21.0 cm"
+    },
+    {
+      "category": "页面设置-纸张尺寸",
+      "rule": "纸张高度应为29.7 cm (A4标准)",
+      "actual": "27.9 cm",
+      "locations": ["全文"],
+      "severity": "critical",
+      "suggestion": "修改纸张高度为29.7 cm"
+    },
+    {
+      "category": "图片",
+      "rule": "论文应包含图片板块，需有编号、图名(五号宋体)、资料来源等",
+      "actual": "缺失整个图片板块",
+      "locations": ["全文"],
+      "severity": "critical",
+      "suggestion": "添加图片板块的完整格式数据，包括图号、图名、字体、字号、资料来源等信息"
+    },
+    {
+      "category": "表格",
+      "rule": "论文应包含表格板块，需为三线表，表号和表名(五号宋体)居表上方正中",
+      "actual": "缺失整个表格板块",
+      "locations": ["全文"],
+      "severity": "critical",
+      "suggestion": "添加表格板块的完整格式数据，包括表号、表名、字体、字号、线条粗细、资料来源等信息"
+    },
+    {
+      "category": "公式",
+      "rule": "论文应包含公式板块，需有编号(如2-1)、字体为Times New Roman五号",
+      "actual": "缺失整个公式板块",
+      "locations": ["全文"],
+      "severity": "critical",
+      "suggestion": "添加公式板块的完整格式数据，包括公式编号、字体、字号、对齐方式等信息"
+    },
+    {
+      "category": "页眉页脚-节设置",
+      "rule": "应有多个节设置以区分前置部分(摘要、目录无页眉)和正文部分(有页眉)",
+      "actual": "section_settings只有1个section，无法区分前置部分和正文部分的页眉设置",
+      "locations": ["全文节设置"],
+      "severity": "critical",
+      "suggestion": "添加完整的节设置信息，至少包含前置部分(摘要、目录)和正文部分的分节信息"
+    },
+    {
+      "category": "公式-字体",
+      "rule": "公式字体应为Times New Roman",
+      "actual": "宋体 (从body_profile_3中推断)",
+      "locations": ["段落索引107, 143"],
+      "severity": "medium",
+      "suggestion": "将公式字体改为Times New Roman五号"
+    },
+    {
+      "category": "公式-对齐方式",
+      "rule": "公式应居中，序号右对齐",
+      "actual": "未提供对齐方式 (从body_profile_3中推断)",
+      "locations": ["段落索引107, 143"],
+      "severity": "medium",
+      "suggestion": "设置公式居中对齐，编号右对齐"
+    },
+    {
+      "category": "参考文献-标题格式",
+      "rule": "参考文献标题应有段前12磅间距",
+      "actual": "标题中未提供spacing_before字段",
+      "locations": ["参考文献标题"],
+      "severity": "medium",
+      "suggestion": "为参考文献标题添加段前12磅间距"
+    }
+  ],
+  "recommendations": [
+    "严重问题(6个): ① 纸张尺寸不符合A4标准(宽21.6cm应为21.0cm，高27.9cm应为29.7cm); ② 缺失图片、表格、公式三个完整板块; ③ 节设置不完整，无法区分前置部分和正文部分",
+    "中等问题(3个): ① 公式字体为宋体(应为Times New Roman); ② 公式对齐方式未提供(应居中，编号右对齐); ③ 参考文献标题缺少段前12磅间距",
+    "已符合规范的部分: 中文摘要、英文摘要、目录、正文各级标题、致谢、附录的格式均符合要求，页眉页脚的字体字号设置正确",
+    "整体评价: 共检查110项，发现9个问题(问题率8.2%)，其中6个严重问题主要集中在页面设置和缺失板块，3个中等问题涉及公式和参考文献格式。修正后可达到基本符合的水平，但需要补充图片、表格、公式板块的完整数据"
+  ]
+}
