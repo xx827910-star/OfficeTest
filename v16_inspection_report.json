@@ -1,0 +1,89 @@
+{
+  "inspection_summary": {
+    "total_items_checked": 113,
+    "total_issues": 1,
+    "by_severity": {
+      "critical": 1,
+      "medium": 0,
+      "low": 0
+    },
+    "by_category": {
+      "页面设置": {
+        "checked": 9,
+        "issues": 0
+      },
+      "中文摘要": {
+        "checked": 8,
+        "issues": 0
+      },
+      "英文摘要": {
+        "checked": 8,
+        "issues": 0
+      },
+      "目录": {
+        "checked": 10,
+        "issues": 0
+      },
+      "正文格式": {
+        "checked": 20,
+        "issues": 1
+      },
+      "图片": {
+        "checked": 12,
+        "issues": 0
+      },
+      "表格": {
+        "checked": 15,
+        "issues": 0
+      },
+      "公式": {
+        "checked": 4,
+        "issues": 1
+      },
+      "参考文献": {
+        "checked": 7,
+        "issues": 0
+      },
+      "页眉页脚": {
+        "checked": 8,
+        "issues": 0
+      },
+      "致谢": {
+        "checked": 6,
+        "issues": 0
+      },
+      "附录": {
+        "checked": 6,
+        "issues": 0
+      }
+    }
+  },
+  "failed_rules": [
+    {
+      "category": "正文-公式",
+      "rule": "公式字体用Times New Roman五号",
+      "actual": "宋体，五号(10.5pt)",
+      "locations": [
+        "段落101: y = x + 1(2-1)",
+        "段落105: f(x) = max(0, x)(2-2)",
+        "段落109: L = a + b + c(2-3)",
+        "段落115: g = 2x(2-4)",
+        "段落119: w = w - lr(2-5)",
+        "段落127: y = x * w + b(2-6)",
+        "段落131: Hout = floor((H + 2p - k) / s) + 1(2-7)",
+        "段落136: y = max(x)(2-8)",
+        "段落164: O = A + B + C(3-1)",
+        "段落174: y = F(x) + x(3-2)"
+      ],
+      "severity": "critical",
+      "suggestion": "将所有公式的字体改为Times New Roman五号，确保公式内容（不仅是编号）使用正确的字体"
+    }
+  ],
+  "recommendations": [
+    "严重问题(1个): 公式字体错误，10处公式使用了宋体而非Times New Roman，需修改为Times New Roman五号",
+    "整体评价: 共检查113项格式要求，发现1个严重问题(问题率0.9%)，主要集中在公式格式。除公式字体外，论文的页面设置、摘要、目录、正文标题层级、图片、表格、参考文献、页眉页脚等各方面均符合规范要求",
+    "优点: 页面设置完全符合A4纸张和页边距要求；标题层级(一级、二级、三级)的字体、字号、对齐方式均准确；图表编号规范，三线表格式正确；参考文献格式规范",
+    "修正建议: 仅需修正10处公式的字体设置，将公式内容从宋体改为Times New Roman五号，修正后即可达到优秀水平",
+    "总体评分: 基本符合要求，修正公式字体后可达到良好水平"
+  ]
+}
