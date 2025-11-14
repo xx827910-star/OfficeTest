@@ -1,0 +1,90 @@
+{
+  "inspection_summary": {
+    "total_items_checked": 57,
+    "total_issues": 8,
+    "by_severity": {
+      "critical": 7,
+      "medium": 0,
+      "low": 0
+    },
+    "by_category": {
+      "页面设置": {"checked": 5, "issues": 1},
+      "中文摘要": {"checked": 10, "issues": 0},
+      "英文摘要": {"checked": 10, "issues": 0},
+      "目录": {"checked": 8, "issues": 0},
+      "正文格式": {"checked": 15, "issues": 0},
+      "图片": {"checked": 1, "issues": 1},
+      "表格": {"checked": 1, "issues": 1},
+      "公式": {"checked": 1, "issues": 1},
+      "参考文献": {"checked": 1, "issues": 1},
+      "页眉页脚": {"checked": 4, "issues": 0},
+      "致谢": {"checked": 1, "issues": 1},
+      "附录": {"checked": 1, "issues": 1}
+    }
+  },
+  "failed_rules": [
+    {
+      "category": "页面设置-纸张尺寸",
+      "rule": "纸张规格应为A4 (21.0 cm × 29.7 cm)",
+      "actual": "21.6 cm × 27.9 cm",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "将页面尺寸调整为标准A4规格 (21.0 cm × 29.7 cm)"
+    },
+    {
+      "category": "图片板块",
+      "rule": "论文应包含图片板块，需有图号、图名（五号宋体）、资料来源等",
+      "actual": "缺失图片板块（figures节点不存在）",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "添加图片板块，确保图号图名居图下方正中，按章编号（如图1-1），图与上下正文之间各空一行"
+    },
+    {
+      "category": "表格板块",
+      "rule": "论文应包含表格板块，需有表号、表名（五号宋体）、三线表格式等",
+      "actual": "缺失表格板块（tables节点不存在）",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "添加表格板块，确保表号表名居表上方正中，按章编号（如表1-1），使用三线表格式，表与上下正文之间各空一行"
+    },
+    {
+      "category": "公式板块",
+      "rule": "论文应包含公式板块，公式需有编号（按章编号如2-1），公式居中，编号右对齐",
+      "actual": "缺失公式板块（formulas节点不存在）",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "添加公式板块，确保公式使用Times New Roman五号字体，编号加圆括号并右对齐"
+    },
+    {
+      "category": "参考文献板块",
+      "rule": "论文应包含参考文献板块，采用顺序编码制，方括号序号",
+      "actual": "缺失参考文献板块（references节点不存在）",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "添加参考文献板块，按GB7714-87规范著录，序号左顶格，用方括号标示"
+    },
+    {
+      "category": "致谢板块",
+      "rule": "论文应包含致谢板块，标题为"致 谢"（宋体、三号、居中，段前12磅），内容为宋体小四号",
+      "actual": "缺失致谢板块（acknowledgement节点不存在）",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "添加致谢板块，标题两字间空两格，内容采用宋体小四号"
+    },
+    {
+      "category": "附录板块",
+      "rule": "论文应包含附录板块，标题为"附录"（宋体、三号、居中，段前12磅），内容为宋体小四号",
+      "actual": "缺失附录板块（appendix节点不存在）",
+      "locations": ["全文档"],
+      "severity": "critical",
+      "suggestion": "添加附录板块，标题两字间空两格，内容采用宋体小四号"
+    }
+  ],
+  "recommendations": [
+    "严重问题(7个): 纸张尺寸不符合A4标准，缺失图片、表格、公式、参考文献、致谢、附录等6个必需板块",
+    "中等问题(0个): 无",
+    "轻微问题(0个): 无",
+    "现有板块格式良好: 中文摘要、英文摘要、目录、正文标题层级、页眉页脚等板块的格式完全符合规范要求",
+    "整体评价: 共检查57项，发现8个严重问题(问题率14.0%)。现有的摘要、目录、正文等板块格式规范，但缺少论文必需的图片、表格、公式、参考文献、致谢、附录等核心内容板块，且纸张尺寸不符合A4标准。建议：1)将纸张尺寸调整为标准A4；2)补充所有缺失的必需板块。修正后方可达到规范要求。当前评级：严重不符"
+  ]
+}
