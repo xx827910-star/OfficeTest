@@ -338,8 +338,29 @@ namespace DocxFormatExtractor
                 var formulaInfo = new FormulaInfo
                 {
                     ParagraphIndex = paragraphIndex,
-                    Alignment = ConvertJustificationToString(para.ParagraphProperties?.Justification)
+                    Alignment = ""
                 };
+
+                // 提取公式对齐方式：优先从 Math.Paragraph 的 ParagraphProperties 中获取
+                var mathParagraph = para.Descendants<DocumentFormat.OpenXml.Math.Paragraph>().FirstOrDefault();
+                if (mathParagraph != null)
+                {
+                    var mathParaProps = mathParagraph.GetFirstChild<DocumentFormat.OpenXml.Math.ParagraphProperties>();
+                    if (mathParaProps != null)
+                    {
+                        var mathJustification = mathParaProps.GetFirstChild<DocumentFormat.OpenXml.Math.Justification>();
+                        if (mathJustification != null)
+                        {
+                            formulaInfo.Alignment = ConvertMathJustificationToString(mathJustification);
+                        }
+                    }
+                }
+
+                // 如果没有 Math.Paragraph 的对齐信息，尝试从段落的 Justification 获取
+                if (string.IsNullOrEmpty(formulaInfo.Alignment))
+                {
+                    formulaInfo.Alignment = ConvertJustificationToString(para.ParagraphProperties?.Justification);
+                }
 
                 var numberingRun = para.Descendants<Run>()
                     .Select(r => new { Run = r, Text = (r.InnerText ?? string.Empty).Trim() })
@@ -356,15 +377,40 @@ namespace DocxFormatExtractor
                     formulaInfo.NumberingFontSize = numberingRun.Run.RunProperties?.FontSize?.Val?.Value ?? "";
                 }
 
+                // 尝试从 OMath 内部提取公式字体
                 var officeMath = para.Descendants<DocumentFormat.OpenXml.Math.OfficeMath>().FirstOrDefault();
                 if (officeMath != null)
                 {
                     var mathRun = officeMath.Descendants<Run>().FirstOrDefault(r => !string.IsNullOrWhiteSpace(r.InnerText));
-                    if (mathRun != null && mathRun.RunProperties?.RunFonts != null)
+                    if (mathRun?.RunProperties != null)
                     {
-                        var fonts = mathRun.RunProperties.RunFonts;
-                        formulaInfo.EquationFont = fonts.Ascii?.Value ?? fonts.EastAsia?.Value ?? "";
-                        formulaInfo.EquationFontSize = mathRun.RunProperties.FontSize?.Val?.Value ?? "";
+                        if (mathRun.RunProperties.RunFonts != null)
+                        {
+                            var fonts = mathRun.RunProperties.RunFonts;
+                            formulaInfo.EquationFont = fonts.Ascii?.Value ?? fonts.EastAsia?.Value ?? "";
+                        }
+                        if (mathRun.RunProperties.FontSize?.Val?.Value != null)
+                        {
+                            formulaInfo.EquationFontSize = mathRun.RunProperties.FontSize.Val.Value;
+                        }
+                    }
+                }
+
+                // 回退策略：如果 OMath 内没有字体信息，从段落的第一个有效 Run 中获取
+                if (string.IsNullOrEmpty(formulaInfo.EquationFont) || string.IsNullOrEmpty(formulaInfo.EquationFontSize))
+                {
+                    var firstRun = para.Descendants<Run>().FirstOrDefault(r => r.RunProperties != null && !string.IsNullOrWhiteSpace(r.InnerText));
+                    if (firstRun?.RunProperties != null)
+                    {
+                        if (string.IsNullOrEmpty(formulaInfo.EquationFont) && firstRun.RunProperties.RunFonts != null)
+                        {
+                            var fonts = firstRun.RunProperties.RunFonts;
+                            formulaInfo.EquationFont = fonts.Ascii?.Value ?? fonts.EastAsia?.Value ?? "";
+                        }
+                        if (string.IsNullOrEmpty(formulaInfo.EquationFontSize) && firstRun.RunProperties.FontSize?.Val?.Value != null)
+                        {
+                            formulaInfo.EquationFontSize = firstRun.RunProperties.FontSize.Val.Value;
+                        }
                     }
                 }
 
@@ -1165,6 +1211,23 @@ namespace DocxFormatExtractor
             {
                 return "";
             }
+        }
+
+        static string ConvertMathJustificationToString(DocumentFormat.OpenXml.Math.Justification? mathJustification)
+        {
+            if (mathJustification?.Val == null)
+            {
+                return "";
+            }
+
+            // 直接从 InnerText 获取值（例如 "center", "left", "right", "centerGroup"）
+            var innerText = mathJustification.Val.InnerText;
+            if (!string.IsNullOrWhiteSpace(innerText))
+            {
+                return innerText.Trim();
+            }
+
+            return "";
         }
 
         static void ApplyParagraphStyleFallbacks(ParagraphInfo paraInfo)

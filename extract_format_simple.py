@@ -179,6 +179,9 @@ ALIGNMENT_MAP = {
     'highkashida': 'HighKashida',
     'mediumkashida': 'MediumKashida',
     'lowkashida': 'LowKashida',
+    # Math equation alignments
+    'centergroup': '居中(组)',
+    'centergroupvalues { }': '居中(组)',
     '': '未提供'
 }
 
@@ -1364,18 +1367,48 @@ def extract_format_data(input_json_path: str) -> Dict[str, Any]:
     if formulas:
         items = []
         for formula in formulas:
-            para = paragraph_lookup.get(formula.get('ParagraphIndex'))
+            para_index = formula.get('ParagraphIndex')
+            para = paragraph_lookup.get(para_index)
             text_preview = ''
-            if para:
+
+            # 提取公式字体和对齐方式
+            equation_font = formula.get('EquationFont', '')
+            equation_font_size = formula.get('EquationFontSize', '')
+            alignment = get_alignment(formula.get('Alignment', ''))
+
+            # 如果公式字体为空，从段落的Run中获取
+            if para and (not equation_font or not equation_font_size):
+                # 获取段落文本
                 text_preview = para.get('Text', '').strip()
+
+                # 从段落的Runs中获取字体信息
+                runs = para.get('Runs', [])
+                if runs:
+                    # 找到第一个包含字体信息的Run
+                    for run in runs:
+                        if not equation_font:
+                            font_ascii = run.get('FontNameAscii', '')
+                            font_east_asia = run.get('FontNameEastAsia', '')
+                            equation_font = font_east_asia or font_ascii
+                        if not equation_font_size:
+                            equation_font_size = run.get('FontSize', '')
+                        if equation_font and equation_font_size:
+                            break
+
+                # 如果对齐方式为空，从段落属性中获取
+                if not alignment or alignment == '未提供':
+                    alignment = get_alignment(para.get('Alignment', ''))
+            elif para:
+                text_preview = para.get('Text', '').strip()
+
             items.append({
-                "paragraph_index": formula.get('ParagraphIndex'),
-                "alignment": get_alignment(formula.get('Alignment', '')),
+                "paragraph_index": para_index,
+                "alignment": alignment,
                 "numbering_text": formula.get('NumberingText', ''),
                 "numbering_font": formula.get('NumberingFont', ''),
                 "numbering_font_size": half_point_to_pt_and_chinese(formula.get('NumberingFontSize', '')),
-                "equation_font": formula.get('EquationFont', ''),
-                "equation_font_size": half_point_to_pt_and_chinese(formula.get('EquationFontSize', '')),
+                "equation_font": equation_font,
+                "equation_font_size": half_point_to_pt_and_chinese(equation_font_size),
                 "paragraph_preview": text_preview[:80] + '...' if len(text_preview) > 80 else text_preview,
             })
 

@@ -247,8 +247,8 @@
               93,
               146,
               186,
-              215,
-              231
+              210,
+              226
             ],
             "sample_text": "第1章 绪论",
             "font": "宋体",
@@ -280,14 +280,14 @@
               184,
               188,
               198,
-              211,
-              213,
-              217,
-              223,
-              229,
-              233,
-              235,
-              237
+              206,
+              208,
+              212,
+              218,
+              224,
+              228,
+              230,
+              232
             ],
             "sample_text": "1.1 研究背景与意义",
             "font": "宋体",
@@ -319,14 +319,14 @@
               177,
               194,
               196,
-              219,
-              221,
-              225,
-              227,
-              239,
-              241,
-              243,
-              245
+              214,
+              216,
+              220,
+              222,
+              234,
+              236,
+              238,
+              240
             ],
             "sample_text": "1.1.1 理论意义",
             "font": "宋体",
@@ -338,7 +338,7 @@
         "deviations": []
       },
       "body": {
-        "count": 76,
+        "count": 75,
         "profiles": [
           {
             "profile_id": "body_profile_1",
@@ -351,9 +351,9 @@
               158,
               178,
               199,
-              220,
-              234,
-              247
+              215,
+              229,
+              242
             ],
             "sample_text": "图像识别是计算机视觉领域的核心任务之一，旨在让计算机能够像人类一样理解和识别图像内容。近年来，深度学习特别是卷积神经网络的兴起，使得图像识别技术取得了革命性突破。本章将介绍研究背景、研究现状、研究内容",
             "font": "宋体",
@@ -374,19 +374,6 @@
               174
             ],
             "sample_text": "y = x + 1(2-1)",
-            "font": "宋体",
-            "size": "五号(10.5pt)",
-            "first_line_indent": "",
-            "line_spacing": "1.5倍",
-            "alignment": "未提供"
-          },
-          {
-            "profile_id": "body_profile_3",
-            "count": 1,
-            "indexes": [
-              201
-            ],
-            "sample_text": "[图片占位: 不同网络在CIFAR-10上的训练曲线]",
             "font": "宋体",
             "size": "五号(10.5pt)",
             "first_line_indent": "",
@@ -412,17 +399,6 @@
             "differences": {
               "size": "五号(10.5pt)",
               "first_line_indent": "",
-              "alignment": "未提供"
-            }
-          },
-          {
-            "profile_id": "body_profile_3",
-            "indexes": [
-              201
-            ],
-            "differences": {
-              "size": "五号(10.5pt)",
-              "first_line_indent": "",
               "alignment": "居中"
             }
           }
@@ -430,7 +406,7 @@
       }
     },
     "figures": {
-      "count": 3,
+      "count": 2,
       "items": [
         {
           "index": 88,
@@ -480,36 +456,6 @@
           "source": {
             "index": 155,
             "text": "来源：Simonyan et al., 2014",
-            "font": "宋体",
-            "font_english": "宋体",
-            "size": "小五(9.0pt)",
-            "bold": false,
-            "alignment": "未提供",
-            "first_line_indent": "",
-            "first_line_indent_pt": "",
-            "line_spacing": "1.5倍",
-            "spacing_before": "0磅",
-            "spacing_after": "0磅"
-          }
-        },
-        {
-          "index": 202,
-          "text": "图4-1 不同网络在CIFAR-10上的训练曲线",
-          "font": "宋体",
-          "font_english": "宋体",
-          "size": "五号(10.5pt)",
-          "bold": false,
-          "alignment": "居中",
-          "first_line_indent": "",
-          "first_line_indent_pt": "",
-          "line_spacing": "1.5倍",
-          "spacing_before": "0磅",
-          "spacing_after": "0磅",
-          "blank_before": false,
-          "blank_after": false,
-          "source": {
-            "index": 203,
-            "text": "来源：实验结果",
             "font": "宋体",
             "font_english": "宋体",
             "size": "小五(9.0pt)",
@@ -596,11 +542,11 @@
           }
         },
         {
-          "index": 207,
+          "index": 202,
           "text": "表4-2 CIFAR-10数据集实验结果对比",
           "caption_diff": {},
           "source": {
-            "index": 208,
+            "index": 203,
             "text": "来源：本文实验",
             "diff": {}
           }
@@ -738,7 +684,7 @@
       "items": [
         {
           "paragraph_index": 101,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-1)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -748,7 +694,7 @@
         },
         {
           "paragraph_index": 105,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-2)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -758,7 +704,7 @@
         },
         {
           "paragraph_index": 109,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-3)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -768,7 +714,7 @@
         },
         {
           "paragraph_index": 115,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-4)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -778,7 +724,7 @@
         },
         {
           "paragraph_index": 119,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-5)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -788,7 +734,7 @@
         },
         {
           "paragraph_index": 127,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-6)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -798,7 +744,7 @@
         },
         {
           "paragraph_index": 131,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-7)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -808,7 +754,7 @@
         },
         {
           "paragraph_index": 136,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(2-8)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -818,7 +764,7 @@
         },
         {
           "paragraph_index": 164,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(3-1)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -828,7 +774,7 @@
         },
         {
           "paragraph_index": 174,
-          "alignment": "未提供",
+          "alignment": "居中",
           "numbering_text": "(3-2)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
@@ -849,7 +795,7 @@
       "items_count": 8,
       "items": [
         {
-          "index": 250,
+          "index": 245,
           "text": "[1] 刘沛恺. 智能制造让工厂拥有\"大脑\"[N]. 经济日报, 2025⁠-⁠11⁠-⁠08(004).",
           "font": "宋体",
           "size": "小四(12.0pt)",
@@ -860,7 +806,7 @@
           "ends_with_period": true
         },
         {
-          "index": 251,
+          "index": 246,
           "text": "[2] 张璇, 魏一骏. \"六小龙乌镇对话\", 他们如何思考AI和未来[N]. 新华每日电讯, 2025⁠-⁠11⁠-⁠08(002).",
           "font": "宋体",
           "size": "小四(12.0pt)",
@@ -871,7 +817,7 @@
           "ends_with_period": true
         },
         {
-          "index": 252,
+          "index": 247,
           "text": "[3] 于祥明. 在数字经济, AI等六大领域打造一批应用场景[N]. 上海证券报, 2025⁠-⁠11⁠-⁠08(001).",
           "font": "宋体",
           "size": "小四(12.0pt)",
@@ -882,7 +828,7 @@
           "ends_with_period": true
         },
         {
-          "index": 253,
+          "index": 248,
           "text": "[4] 黄玲娜, 姜敏思, 张婷婷. AI时代, 未来新闻人如何培养[N]. 广西日报, 2025⁠-⁠11⁠-⁠08(006).",
           "font": "宋体",
           "size": "小四(12.0pt)",
@@ -893,7 +839,7 @@
           "ends_with_period": true
         },
         {
-          "index": 254,
+          "index": 249,
           "text": "[5] 曹元龙. 让贸易和人工智能惠及所有人[N]. 光明日报, 2025⁠-⁠11⁠-⁠08(006).",
           "font": "宋体",
           "size": "小四(12.0pt)",
@@ -1065,7 +1011,7 @@
       "content_count": 3,
       "content_samples": [
         {
-          "index": 260,
+          "index": 255,
           "text": "本研究得到学院人工智能实验班同学们的大力支持，大家在实验环境搭建、数据标注与模型调试方面投入了大量时间，使团队能够快速完成多轮对比试验。",
           "font": "宋体",
           "font_english": "Times New Roman",
@@ -1079,7 +1025,7 @@
           "spacing_after": "0磅"
         },
         {
-          "index": 261,
+          "index": 256,
           "text": "特别感谢指导教师在研究思路、论文写作与规范审阅方面提供的持续反馈，同时也感谢企业合作伙伴分享真实的工业视觉场景需求，为本文应用案例提供了灵感。",
           "font": "宋体",
           "font_english": "Times New Roman",
@@ -1093,7 +1039,7 @@
           "spacing_after": "0磅"
         },
         {
-          "index": 262,
+          "index": 257,
           "text": "我们还感谢学院科研管理部门提供的开放GPU算力资源，并感谢同行评审专家提出的宝贵意见，这些建议帮助我们完善了实验设计与结论表达。",
           "font": "宋体",
           "font_english": "Times New Roman",
@@ -1120,7 +1066,7 @@
       "content_count": 3,
       "content_samples": [
         {
-          "index": 265,
+          "index": 260,
           "text": "附录A展示了实验脚本的关键参数设置，包括学习率调度、优化器超参数以及图像增强策略，可为后续复现提供参考。",
           "font": "宋体",
           "font_english": "Times New Roman",
@@ -1134,7 +1080,7 @@
           "spacing_after": "0磅"
         },
         {
-          "index": 266,
+          "index": 261,
           "text": "附录B给出了额外的性能对比曲线，其中包含不同模型在推理延迟、显存占用方面的定量指标，帮助读者全面评估部署成本。",
           "font": "宋体",
           "font_english": "Times New Roman",
@@ -1148,7 +1094,7 @@
           "spacing_after": "0磅"
         },
         {
-          "index": 267,
+          "index": 262,
           "text": "附录C补充了数据集划分及预处理流程的伪代码，便于读者根据自身设备条件调整批大小与显存需求。",
           "font": "宋体",
           "font_english": "Times New Roman",

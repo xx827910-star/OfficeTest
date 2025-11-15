@@ -451,8 +451,8 @@
           "numbering_text": "(2-1)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "y = x + 1(2-1)"
         },
         {
@@ -461,8 +461,8 @@
           "numbering_text": "(2-2)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "f(x) = max(0, x)(2-2)"
         },
         {
@@ -471,8 +471,8 @@
           "numbering_text": "(2-3)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "L = a + b + c(2-3)"
         },
         {
@@ -481,8 +481,8 @@
           "numbering_text": "(2-4)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "g = 2x(2-4)"
         },
         {
@@ -491,8 +491,8 @@
           "numbering_text": "(2-5)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "w = w - lr(2-5)"
         },
         {
@@ -501,8 +501,8 @@
           "numbering_text": "(2-6)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "y = x * w + b(2-6)"
         },
         {
@@ -511,8 +511,8 @@
           "numbering_text": "(2-7)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "Hout = floor((H + 2p - k) / s) + 1(2-7)"
         },
         {
@@ -521,8 +521,8 @@
           "numbering_text": "(2-8)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "y = max(x)(2-8)"
         },
         {
@@ -531,8 +531,8 @@
           "numbering_text": "(3-1)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "O = A + B + C(3-1)"
         },
         {
@@ -541,8 +541,8 @@
           "numbering_text": "(3-2)",
           "numbering_font": "Times New Roman",
           "numbering_font_size": "五号(10.5pt)",
-          "equation_font": "",
-          "equation_font_size": "",
+          "equation_font": "Times New Roman",
+          "equation_font_size": "五号(10.5pt)",
           "paragraph_preview": "y = F(x) + x(3-2)"
         }
       ]

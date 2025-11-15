@@ -8275,7 +8275,7 @@
     },
     {
       "Index": 80,
-      "Text": "表1-1 主要深度学习图像识别网络对比",
+      "Text": "表1- SEQ Table_1 \\* ARABIC  主要深度学习图像识别网络对比",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -8293,7 +8293,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "表1-1 主要深度学习图像识别网络对比",
+          "Text": "表",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "1",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Table_1 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " 主要深度学习图像识别网络对比",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -8308,8 +8364,8 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Table"
     },
     {
       "Index": 81,
@@ -8591,7 +8647,7 @@
     },
     {
       "Index": 88,
-      "Text": "图1-1 本文研究技术路线图",
+      "Text": "图1- SEQ Figure_1 \\* ARABIC  本文研究技术路线图",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -8609,7 +8665,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "图1-1 本文研究技术路线图",
+          "Text": "图",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "1",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Figure_1 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " 本文研究技术路线图",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -8624,8 +8736,8 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Figure"
     },
     {
       "Index": 89,
@@ -9113,7 +9225,7 @@
       "Index": 101,
       "Text": "y = x + 1(2-1)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -9274,7 +9386,7 @@
       "Index": 105,
       "Text": "f(x) = max(0, x)(2-2)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -9435,7 +9547,7 @@
       "Index": 109,
       "Text": "L = a + b + c(2-3)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -9686,7 +9798,7 @@
       "Index": 115,
       "Text": "g = 2x(2-4)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -9847,7 +9959,7 @@
       "Index": 119,
       "Text": "w = w - lr(2-5)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -10188,7 +10300,7 @@
       "Index": 127,
       "Text": "y = x * w + b(2-6)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -10349,7 +10461,7 @@
       "Index": 131,
       "Text": "Hout = floor((H + 2p - k) / s) + 1(2-7)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -10562,7 +10674,7 @@
       "Index": 136,
       "Text": "y = max(x)(2-8)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -10811,7 +10923,7 @@
     },
     {
       "Index": 142,
-      "Text": "表2-1 常用图像识别数据集对比",
+      "Text": "表2- SEQ Table_2 \\* ARABIC  常用图像识别数据集对比",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -10829,7 +10941,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "表2-1 常用图像识别数据集对比",
+          "Text": "表",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "2",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Table_2 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " 常用图像识别数据集对比",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -10844,8 +11012,8 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Table"
     },
     {
       "Index": 143,
@@ -11279,7 +11447,7 @@
     },
     {
       "Index": 154,
-      "Text": "图3-1 VGG-16网络架构图",
+      "Text": "图3- SEQ Figure_3 \\* ARABIC  VGG-16网络架构图",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -11297,7 +11465,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "图3-1 VGG-16网络架构图",
+          "Text": "图",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "3",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Figure_3 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " VGG-16网络架构图",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -11312,8 +11536,8 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Figure"
     },
     {
       "Index": 155,
@@ -11673,7 +11897,7 @@
       "Index": 164,
       "Text": "O = A + B + C(3-1)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -12104,7 +12328,7 @@
       "Index": 174,
       "Text": "y = F(x) + x(3-2)",
       "StyleId": "",
-      "Alignment": "",
+      "Alignment": "center",
       "LeftIndent": "",
       "RightIndent": "",
       "FirstLineIndent": "",
@@ -12353,7 +12577,7 @@
     },
     {
       "Index": 180,
-      "Text": "表3-1 ResNet不同深度变体性能对比",
+      "Text": "表3- SEQ Table_3 \\* ARABIC  ResNet不同深度变体性能对比",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -12371,7 +12595,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "表3-1 ResNet不同深度变体性能对比",
+          "Text": "表",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "3",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Table_3 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " ResNet不同深度变体性能对比",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -12386,8 +12666,8 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Table"
     },
     {
       "Index": 181,
@@ -12783,7 +13063,7 @@
     },
     {
       "Index": 191,
-      "Text": "表4-1 实验环境配置",
+      "Text": "表4- SEQ Table_4 \\* ARABIC  实验环境配置",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -12801,7 +13081,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "表4-1 实验环境配置",
+          "Text": "表",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "4",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Table_4 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " 实验环境配置",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -12816,8 +13152,8 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Table"
     },
     {
       "Index": 192,
@@ -13152,6 +13488,44 @@
     },
     {
       "Index": 200,
+      "Text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
+      "StyleId": "",
+      "Alignment": "both",
+      "LeftIndent": "",
+      "RightIndent": "",
+      "FirstLineIndent": "480",
+      "HangingIndent": "",
+      "SpacingBefore": "0",
+      "SpacingAfter": "0",
+      "LineSpacing": "360",
+      "LineSpacingRule": "LineSpacingRuleValues { }",
+      "NumberingId": "",
+      "NumberingLevel": "",
+      "HasBorders": false,
+      "ShadingFill": "",
+      "ShadingColor": "",
+      "Runs": [
+        {
+          "Text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
+          "FontNameAscii": "Times New Roman",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "24",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        }
+      ],
+      "TabStops": [],
+      "HasCaptionField": false,
+      "CaptionFieldType": ""
+    },
+    {
+      "Index": 201,
       "Text": "",
       "StyleId": "",
       "Alignment": "",
@@ -13174,46 +13548,8 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 201,
-      "Text": "[图片占位: 不同网络在CIFAR-10上的训练曲线]",
-      "StyleId": "",
-      "Alignment": "center",
-      "LeftIndent": "",
-      "RightIndent": "",
-      "FirstLineIndent": "",
-      "HangingIndent": "",
-      "SpacingBefore": "0",
-      "SpacingAfter": "0",
-      "LineSpacing": "360",
-      "LineSpacingRule": "",
-      "NumberingId": "",
-      "NumberingLevel": "",
-      "HasBorders": false,
-      "ShadingFill": "",
-      "ShadingColor": "",
-      "Runs": [
-        {
-          "Text": "[图片占位: 不同网络在CIFAR-10上的训练曲线]",
-          "FontNameAscii": "宋体",
-          "FontNameEastAsia": "宋体",
-          "FontNameComplexScript": "",
-          "FontSize": "21",
-          "Bold": false,
-          "Italic": false,
-          "Underline": "",
-          "Strike": false,
-          "Color": "",
-          "Highlight": "",
-          "VerticalAlignment": ""
-        }
-      ],
-      "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
-    },
-    {
       "Index": 202,
-      "Text": "图4-1 不同网络在CIFAR-10上的训练曲线",
+      "Text": "表4- SEQ Table_4 \\* ARABIC  CIFAR-10数据集实验结果对比",
       "StyleId": "",
       "Alignment": "center",
       "LeftIndent": "",
@@ -13231,7 +13567,63 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "图4-1 不同网络在CIFAR-10上的训练曲线",
+          "Text": "表",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "4",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": "-",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " SEQ Table_4 \\* ARABIC ",
+          "FontNameAscii": "宋体",
+          "FontNameEastAsia": "宋体",
+          "FontNameComplexScript": "",
+          "FontSize": "21",
+          "Bold": false,
+          "Italic": false,
+          "Underline": "",
+          "Strike": false,
+          "Color": "",
+          "Highlight": "",
+          "VerticalAlignment": ""
+        },
+        {
+          "Text": " CIFAR-10数据集实验结果对比",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -13246,12 +13638,12 @@
         }
       ],
       "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
+      "HasCaptionField": true,
+      "CaptionFieldType": "Table"
     },
     {
       "Index": 203,
-      "Text": "来源：实验结果",
+      "Text": "来源：本文实验",
       "StyleId": "",
       "Alignment": "",
       "LeftIndent": "",
@@ -13269,7 +13661,7 @@
       "ShadingColor": "",
       "Runs": [
         {
-          "Text": "来源：实验结果",
+          "Text": "来源：本文实验",
           "FontNameAscii": "宋体",
           "FontNameEastAsia": "宋体",
           "FontNameComplexScript": "",
@@ -13312,166 +13704,6 @@
     },
     {
       "Index": 205,
-      "Text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
-      "StyleId": "",
-      "Alignment": "both",
-      "LeftIndent": "",
-      "RightIndent": "",
-      "FirstLineIndent": "480",
-      "HangingIndent": "",
-      "SpacingBefore": "0",
-      "SpacingAfter": "0",
-      "LineSpacing": "360",
-      "LineSpacingRule": "LineSpacingRuleValues { }",
-      "NumberingId": "",
-      "NumberingLevel": "",
-      "HasBorders": false,
-      "ShadingFill": "",
-      "ShadingColor": "",
-      "Runs": [
-        {
-          "Text": "图4-1展示了三种网络的训练损失和准确率曲线。可以观察到ResNet收敛速度最快，最终准确率最高。VGG由于参数量大，容易过拟合。",
-          "FontNameAscii": "Times New Roman",
-          "FontNameEastAsia": "宋体",
-          "FontNameComplexScript": "",
-          "FontSize": "24",
-          "Bold": false,
-          "Italic": false,
-          "Underline": "",
-          "Strike": false,
-          "Color": "",
-          "Highlight": "",
-          "VerticalAlignment": ""
-        }
-      ],
-      "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
-    },
-    {
-      "Index": 206,
-      "Text": "",
-      "StyleId": "",
-      "Alignment": "",
-      "LeftIndent": "",
-      "RightIndent": "",
-      "FirstLineIndent": "",
-      "HangingIndent": "",
-      "SpacingBefore": "0",
-      "SpacingAfter": "0",
-      "LineSpacing": "360",
-      "LineSpacingRule": "",
-      "NumberingId": "",
-      "NumberingLevel": "",
-      "HasBorders": false,
-      "ShadingFill": "",
-      "ShadingColor": "",
-      "Runs": [],
-      "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
-    },
-    {
-      "Index": 207,
-      "Text": "表4-2 CIFAR-10数据集实验结果对比",
-      "StyleId": "",
-      "Alignment": "center",
-      "LeftIndent": "",
-      "RightIndent": "",
-      "FirstLineIndent": "",
-      "HangingIndent": "",
-      "SpacingBefore": "0",
-      "SpacingAfter": "0",
-      "LineSpacing": "360",
-      "LineSpacingRule": "",
-      "NumberingId": "",
-      "NumberingLevel": "",
-      "HasBorders": false,
-      "ShadingFill": "",
-      "ShadingColor": "",
-      "Runs": [
-        {
-          "Text": "表4-2 CIFAR-10数据集实验结果对比",
-          "FontNameAscii": "宋体",
-          "FontNameEastAsia": "宋体",
-          "FontNameComplexScript": "",
-          "FontSize": "21",
-          "Bold": false,
-          "Italic": false,
-          "Underline": "",
-          "Strike": false,
-          "Color": "",
-          "Highlight": "",
-          "VerticalAlignment": ""
-        }
-      ],
-      "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
-    },
-    {
-      "Index": 208,
-      "Text": "来源：本文实验",
-      "StyleId": "",
-      "Alignment": "",
-      "LeftIndent": "",
-      "RightIndent": "",
-      "FirstLineIndent": "",
-      "HangingIndent": "",
-      "SpacingBefore": "0",
-      "SpacingAfter": "0",
-      "LineSpacing": "360",
-      "LineSpacingRule": "",
-      "NumberingId": "",
-      "NumberingLevel": "",
-      "HasBorders": false,
-      "ShadingFill": "",
-      "ShadingColor": "",
-      "Runs": [
-        {
-          "Text": "来源：本文实验",
-          "FontNameAscii": "宋体",
-          "FontNameEastAsia": "宋体",
-          "FontNameComplexScript": "",
-          "FontSize": "18",
-          "Bold": false,
-          "Italic": false,
-          "Underline": "",
-          "Strike": false,
-          "Color": "",
-          "Highlight": "",
-          "VerticalAlignment": ""
-        }
-      ],
-      "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
-    },
-    {
-      "Index": 209,
-      "Text": "",
-      "StyleId": "",
-      "Alignment": "",
-      "LeftIndent": "",
-      "RightIndent": "",
-      "FirstLineIndent": "",
-      "HangingIndent": "",
-      "SpacingBefore": "0",
-      "SpacingAfter": "0",
-      "LineSpacing": "360",
-      "LineSpacingRule": "",
-      "NumberingId": "",
-      "NumberingLevel": "",
-      "HasBorders": false,
-      "ShadingFill": "",
-      "ShadingColor": "",
-      "Runs": [],
-      "TabStops": [],
-      "HasCaptionField": false,
-      "CaptionFieldType": ""
-    },
-    {
-      "Index": 210,
       "Text": "表4-2显示ResNet-50在准确率和训练效率上都表现优异，是CIFAR-10任务的最佳选择。",
       "StyleId": "",
       "Alignment": "both",
@@ -13509,7 +13741,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 211,
+      "Index": 206,
       "Text": "4.3 消融实验",
       "StyleId": "",
       "Alignment": "left",
@@ -13561,7 +13793,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 212,
+      "Index": 207,
       "Text": "为验证残差连接的有效性，我们进行了消融实验。将ResNet-50中的残差连接移除，退化为普通的深层卷积网络，结果准确率下降至92.1%，证明残差连接对深层网络训练至关重要。",
       "StyleId": "",
       "Alignment": "both",
@@ -13599,7 +13831,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 213,
+      "Index": 208,
       "Text": "4.4 结果分析与讨论",
       "StyleId": "",
       "Alignment": "left",
@@ -13651,7 +13883,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 214,
+      "Index": 209,
       "Text": "实验结果表明，深度卷积神经网络在图像识别任务上具有显著优势。ResNet通过残差连接有效解决了深层网络训练困难的问题，使得网络可以更深、性能更强。但需要注意的是，更深的网络并非总是更好，需要根据具体任务和数据规模选择合适的模型深度。",
       "StyleId": "",
       "Alignment": "both",
@@ -13689,7 +13921,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 215,
+      "Index": 210,
       "Text": "第5章 应用案例研究",
       "StyleId": "",
       "Alignment": "center",
@@ -13741,7 +13973,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 216,
+      "Index": 211,
       "Text": "深度学习图像识别技术在多个实际场景中得到广泛应用。本章介绍医疗影像诊断和自动驾驶两个典型应用案例。 光明日报强调，要让贸易和人工智能的成果惠及所有群体，需要以开放的制度设计配合可落地的技术路径，这与本文聚焦的行业应用逻辑高度契合[5]。",
       "StyleId": "",
       "Alignment": "both",
@@ -13807,7 +14039,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 217,
+      "Index": 212,
       "Text": "5.1 医疗影像诊断",
       "StyleId": "",
       "Alignment": "left",
@@ -13859,7 +14091,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 218,
+      "Index": 213,
       "Text": "在医疗领域，深度学习用于X光片、CT和MRI图像的病灶检测和疾病诊断。斯坦福大学开发的CheXNet系统在胸部X光肺炎检测任务上达到了放射科医生的水平。",
       "StyleId": "",
       "Alignment": "both",
@@ -13897,7 +14129,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 219,
+      "Index": 214,
       "Text": "5.1.1 肺炎检测系统",
       "StyleId": "",
       "Alignment": "left",
@@ -13949,7 +14181,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 220,
+      "Index": 215,
       "Text": "使用ResNet-121在ChestX-ray14数据集上训练，该数据集包含112,120张胸部X光图像。系统可检测14种胸部疾病，对肺炎的检测准确率达到92.8%，AUC值为0.943。",
       "StyleId": "",
       "Alignment": "both",
@@ -13987,7 +14219,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 221,
+      "Index": 216,
       "Text": "5.1.2 皮肤癌分类",
       "StyleId": "",
       "Alignment": "left",
@@ -14039,7 +14271,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 222,
+      "Index": 217,
       "Text": "基于Inception-v3的皮肤癌分类系统，在129,450张皮肤病变图像上训练，可区分良性痣和恶性黑色素瘤，准确率达到91.0%，与专业皮肤科医生的诊断水平相当。",
       "StyleId": "",
       "Alignment": "both",
@@ -14077,7 +14309,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 223,
+      "Index": 218,
       "Text": "5.2 自动驾驶场景理解",
       "StyleId": "",
       "Alignment": "left",
@@ -14129,7 +14361,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 224,
+      "Index": 219,
       "Text": "自动驾驶需要实时理解道路场景，包括车道线检测、交通标志识别、行人和车辆检测等。特斯拉的Autopilot系统使用8个摄像头和深度神经网络实现360度环境感知。",
       "StyleId": "",
       "Alignment": "both",
@@ -14167,7 +14399,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 225,
+      "Index": 220,
       "Text": "5.2.1 交通标志识别",
       "StyleId": "",
       "Alignment": "left",
@@ -14219,7 +14451,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 226,
+      "Index": 221,
       "Text": "在德国交通标志识别基准（GTSRB）数据集上，基于CNN的方法准确率达到99.5%，超过人类的98.8%。系统可识别43种交通标志，处理速度达到30fps，满足实时性要求。",
       "StyleId": "",
       "Alignment": "both",
@@ -14257,7 +14489,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 227,
+      "Index": 222,
       "Text": "5.2.2 行人检测",
       "StyleId": "",
       "Alignment": "left",
@@ -14309,7 +14541,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 228,
+      "Index": 223,
       "Text": "使用Faster R-CNN在Caltech Pedestrian数据集上训练，行人检测准确率达到87.3%，漏检率降低到9.6%。该技术已应用于高级驾驶辅助系统（ADAS）中的行人碰撞预警功能。",
       "StyleId": "",
       "Alignment": "both",
@@ -14347,7 +14579,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 229,
+      "Index": 224,
       "Text": "5.3 其他应用领域",
       "StyleId": "",
       "Alignment": "left",
@@ -14399,7 +14631,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 230,
+      "Index": 225,
       "Text": "除上述案例外，图像识别技术还应用于人脸识别、工业质检、农业病虫害识别等多个领域，推动了智能化技术的普及和应用。 文汇报披露的“AI报关”实践进一步说明，跨境流转场景对高可靠图像识别与多模态感知能力的需求正在快速提升[6]。",
       "StyleId": "",
       "Alignment": "both",
@@ -14465,7 +14697,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 231,
+      "Index": 226,
       "Text": "第6章 总结与展望",
       "StyleId": "",
       "Alignment": "center",
@@ -14517,7 +14749,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 232,
+      "Index": 227,
       "Text": "本文系统研究了基于深度学习的图像识别技术，分析了主流CNN架构的设计原理和性能特点，通过实验验证了深度神经网络在图像识别任务上的有效性。",
       "StyleId": "",
       "Alignment": "both",
@@ -14555,7 +14787,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 233,
+      "Index": 228,
       "Text": "6.1 研究工作总结",
       "StyleId": "",
       "Alignment": "left",
@@ -14607,7 +14839,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 234,
+      "Index": 229,
       "Text": "本文的主要工作包括：（1）综述了深度学习图像识别的研究现状和发展趋势；（2）深入分析了VGG、GoogLeNet和ResNet等经典架构的技术创新；（3）在CIFAR-10和ImageNet数据集上对比了不同架构的性能；（4）探讨了医疗和自动驾驶等实际应用案例。研究表明，ResNet通过残差学习机制有效提升了深层网络的训练效果，在多个基准测试中取得了优异性能。",
       "StyleId": "",
       "Alignment": "both",
@@ -14645,7 +14877,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 235,
+      "Index": 230,
       "Text": "6.2 存在的不足",
       "StyleId": "",
       "Alignment": "left",
@@ -14697,7 +14929,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 236,
+      "Index": 231,
       "Text": "本研究也存在一些局限：（1）实验主要集中在图像分类任务，未深入探讨目标检测和语义分割；（2）缺乏模型压缩和加速的研究，未考虑边缘设备部署；（3）对对抗样本和模型鲁棒性关注不足。 四川行政学院学报的最新案例研究提醒我们，生成式人工智能嵌入政务系统时需要配套的风险规制，这也是推进行业化落地必须正视的治理议题[7]。",
       "StyleId": "",
       "Alignment": "both",
@@ -14763,7 +14995,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 237,
+      "Index": 232,
       "Text": "6.3 未来研究方向",
       "StyleId": "",
       "Alignment": "left",
@@ -14815,7 +15047,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 238,
+      "Index": 233,
       "Text": "未来的研究可以从以下几个方向展开：",
       "StyleId": "",
       "Alignment": "both",
@@ -14853,7 +15085,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 239,
+      "Index": 234,
       "Text": "6.3.1 轻量化网络设计",
       "StyleId": "",
       "Alignment": "left",
@@ -14905,7 +15137,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 240,
+      "Index": 235,
       "Text": "针对移动端和嵌入式设备，研究MobileNet、ShuffleNet等轻量化网络架构，在保持准确率的同时降低计算复杂度和内存占用。",
       "StyleId": "",
       "Alignment": "both",
@@ -14943,7 +15175,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 241,
+      "Index": 236,
       "Text": "6.3.2 自监督学习",
       "StyleId": "",
       "Alignment": "left",
@@ -14995,7 +15227,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 242,
+      "Index": 237,
       "Text": "探索利用未标注数据进行预训练的自监督学习方法，减少对大规模标注数据的依赖，降低数据标注成本。",
       "StyleId": "",
       "Alignment": "both",
@@ -15033,7 +15265,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 243,
+      "Index": 238,
       "Text": "6.3.3 跨域迁移学习",
       "StyleId": "",
       "Alignment": "left",
@@ -15085,7 +15317,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 244,
+      "Index": 239,
       "Text": "研究域适应和域泛化技术，提高模型在不同数据分布下的泛化能力，使模型能够适应多样化的应用场景。",
       "StyleId": "",
       "Alignment": "both",
@@ -15123,7 +15355,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 245,
+      "Index": 240,
       "Text": "6.3.4 可解释性研究",
       "StyleId": "",
       "Alignment": "left",
@@ -15175,7 +15407,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 246,
+      "Index": 241,
       "Text": "深入研究深度神经网络的决策机制，开发可视化工具和可解释性方法，增强模型的可信度和透明度，促进在关键领域的应用。 围绕网络文学平台AI协议争议的分析表明，在内容生产领域部署生成式算法同样需要透明、可解释的机制以回应创作者与用户的关切[8]。",
       "StyleId": "",
       "Alignment": "both",
@@ -15241,7 +15473,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 247,
+      "Index": 242,
       "Text": "总之，深度学习图像识别技术仍处于快速发展阶段，随着算法创新和硬件进步，其性能和应用范围将不断扩展，为人工智能的发展提供重要支撑。",
       "StyleId": "",
       "Alignment": "both",
@@ -15279,7 +15511,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 248,
+      "Index": 243,
       "Text": "",
       "StyleId": "",
       "Alignment": "",
@@ -15302,7 +15534,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 249,
+      "Index": 244,
       "Text": "参考文献",
       "StyleId": "",
       "Alignment": "center",
@@ -15340,7 +15572,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 250,
+      "Index": 245,
       "Text": "[1] 刘沛恺. 智能制造让工厂拥有\"大脑\"[N]. 经济日报, 2025⁠-⁠11⁠-⁠08(004).",
       "StyleId": "",
       "Alignment": "",
@@ -15392,7 +15624,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 251,
+      "Index": 246,
       "Text": "[2] 张璇, 魏一骏. \"六小龙乌镇对话\", 他们如何思考AI和未来[N]. 新华每日电讯, 2025⁠-⁠11⁠-⁠08(002).",
       "StyleId": "",
       "Alignment": "",
@@ -15444,7 +15676,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 252,
+      "Index": 247,
       "Text": "[3] 于祥明. 在数字经济, AI等六大领域打造一批应用场景[N]. 上海证券报, 2025⁠-⁠11⁠-⁠08(001).",
       "StyleId": "",
       "Alignment": "",
@@ -15496,7 +15728,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 253,
+      "Index": 248,
       "Text": "[4] 黄玲娜, 姜敏思, 张婷婷. AI时代, 未来新闻人如何培养[N]. 广西日报, 2025⁠-⁠11⁠-⁠08(006).",
       "StyleId": "",
       "Alignment": "",
@@ -15548,7 +15780,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 254,
+      "Index": 249,
       "Text": "[5] 曹元龙. 让贸易和人工智能惠及所有人[N]. 光明日报, 2025⁠-⁠11⁠-⁠08(006).",
       "StyleId": "",
       "Alignment": "",
@@ -15600,7 +15832,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 255,
+      "Index": 250,
       "Text": "[6] 苏展. AI报关提效, 交易不止于签约[N]. 文汇报, 2025⁠-⁠11⁠-⁠08(002).",
       "StyleId": "",
       "Alignment": "",
@@ -15652,7 +15884,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 256,
+      "Index": 251,
       "Text": "[7] 章昌平, 汪宇萌, 常继元. 生成式人工智能在政务系统智能化转型中的嵌入逻辑与风险规制: 基于DeepSeek应用实践的案例分析[J/OL]. 四川行政学院学报, 1⁠-⁠16[2025⁠-⁠11⁠-⁠08].",
       "StyleId": "",
       "Alignment": "",
@@ -15704,7 +15936,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 257,
+      "Index": 252,
       "Text": "[8] 陆朦朦, 李睿. 网络文学领域人工智能生成内容应用的社会技术想象--基于某平台AI协议争议的微博文本分析[J/OL]. 中国数字出版, 1⁠-⁠10[2025⁠-⁠11⁠-⁠08].",
       "StyleId": "",
       "Alignment": "",
@@ -15756,7 +15988,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 258,
+      "Index": 253,
       "Text": "",
       "StyleId": "",
       "Alignment": "",
@@ -15779,7 +16011,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 259,
+      "Index": 254,
       "Text": "致  谢",
       "StyleId": "",
       "Alignment": "center",
@@ -15817,7 +16049,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 260,
+      "Index": 255,
       "Text": "本研究得到学院人工智能实验班同学们的大力支持，大家在实验环境搭建、数据标注与模型调试方面投入了大量时间，使团队能够快速完成多轮对比试验。",
       "StyleId": "",
       "Alignment": "both",
@@ -15855,7 +16087,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 261,
+      "Index": 256,
       "Text": "特别感谢指导教师在研究思路、论文写作与规范审阅方面提供的持续反馈，同时也感谢企业合作伙伴分享真实的工业视觉场景需求，为本文应用案例提供了灵感。",
       "StyleId": "",
       "Alignment": "both",
@@ -15893,7 +16125,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 262,
+      "Index": 257,
       "Text": "我们还感谢学院科研管理部门提供的开放GPU算力资源，并感谢同行评审专家提出的宝贵意见，这些建议帮助我们完善了实验设计与结论表达。",
       "StyleId": "",
       "Alignment": "both",
@@ -15931,7 +16163,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 263,
+      "Index": 258,
       "Text": "",
       "StyleId": "",
       "Alignment": "",
@@ -15954,7 +16186,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 264,
+      "Index": 259,
       "Text": "附  录",
       "StyleId": "",
       "Alignment": "center",
@@ -15992,7 +16224,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 265,
+      "Index": 260,
       "Text": "附录A展示了实验脚本的关键参数设置，包括学习率调度、优化器超参数以及图像增强策略，可为后续复现提供参考。",
       "StyleId": "",
       "Alignment": "both",
@@ -16030,7 +16262,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 266,
+      "Index": 261,
       "Text": "附录B给出了额外的性能对比曲线，其中包含不同模型在推理延迟、显存占用方面的定量指标，帮助读者全面评估部署成本。",
       "StyleId": "",
       "Alignment": "both",
@@ -16068,7 +16300,7 @@
       "CaptionFieldType": ""
     },
     {
-      "Index": 267,
+      "Index": 262,
       "Text": "附录C补充了数据集划分及预处理流程的伪代码，便于读者根据自身设备条件调整批大小与显存需求。",
       "StyleId": "",
       "Alignment": "both",
@@ -19171,7 +19403,7 @@
   "Formulas": [
     {
       "ParagraphIndex": 101,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-1)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19180,7 +19412,7 @@
     },
     {
       "ParagraphIndex": 105,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-2)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19189,7 +19421,7 @@
     },
     {
       "ParagraphIndex": 109,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-3)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19198,7 +19430,7 @@
     },
     {
       "ParagraphIndex": 115,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-4)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19207,7 +19439,7 @@
     },
     {
       "ParagraphIndex": 119,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-5)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19216,7 +19448,7 @@
     },
     {
       "ParagraphIndex": 127,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-6)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19225,7 +19457,7 @@
     },
     {
       "ParagraphIndex": 131,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-7)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19234,7 +19466,7 @@
     },
     {
       "ParagraphIndex": 136,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(2-8)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19243,7 +19475,7 @@
     },
     {
       "ParagraphIndex": 164,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(3-1)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
@@ -19252,7 +19484,7 @@
     },
     {
       "ParagraphIndex": 174,
-      "Alignment": "",
+      "Alignment": "center",
       "NumberingText": "(3-2)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",

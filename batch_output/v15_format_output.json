@@ -19623,8 +19623,8 @@
       "NumberingText": "(2-1)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 105,
@@ -19632,8 +19632,8 @@
       "NumberingText": "(2-2)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 109,
@@ -19641,8 +19641,8 @@
       "NumberingText": "(2-3)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 115,
@@ -19650,8 +19650,8 @@
       "NumberingText": "(2-4)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 119,
@@ -19659,8 +19659,8 @@
       "NumberingText": "(2-5)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 127,
@@ -19668,8 +19668,8 @@
       "NumberingText": "(2-6)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 131,
@@ -19677,8 +19677,8 @@
       "NumberingText": "(2-7)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 136,
@@ -19686,8 +19686,8 @@
       "NumberingText": "(2-8)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 164,
@@ -19695,8 +19695,8 @@
       "NumberingText": "(3-1)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     },
     {
       "ParagraphIndex": 174,
@@ -19704,8 +19704,8 @@
       "NumberingText": "(3-2)",
       "NumberingFont": "Times New Roman",
       "NumberingFontSize": "21",
-      "EquationFont": "",
-      "EquationFontSize": ""
+      "EquationFont": "Times New Roman",
+      "EquationFontSize": "21"
     }
   ],
   "ThemeName": "Office Theme"
