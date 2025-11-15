@@ -1,0 +1,72 @@
+{
+  "inspection_summary": {
+    "total_items_checked": 153,
+    "total_issues": 0,
+    "by_severity": {
+      "critical": 0,
+      "medium": 0,
+      "low": 0
+    },
+    "by_category": {
+      "页面设置": {
+        "checked": 6,
+        "issues": 0
+      },
+      "全局默认": {
+        "checked": 3,
+        "issues": 0
+      },
+      "中文摘要": {
+        "checked": 14,
+        "issues": 0
+      },
+      "英文摘要": {
+        "checked": 13,
+        "issues": 0
+      },
+      "目录": {
+        "checked": 15,
+        "issues": 0
+      },
+      "正文格式": {
+        "checked": 18,
+        "issues": 0
+      },
+      "图片": {
+        "checked": 12,
+        "issues": 0
+      },
+      "表格": {
+        "checked": 15,
+        "issues": 0
+      },
+      "公式": {
+        "checked": 16,
+        "issues": 0
+      },
+      "参考文献": {
+        "checked": 10,
+        "issues": 0
+      },
+      "页眉页脚": {
+        "checked": 15,
+        "issues": 0
+      },
+      "致谢": {
+        "checked": 8,
+        "issues": 0
+      },
+      "附录": {
+        "checked": 8,
+        "issues": 0
+      }
+    }
+  },
+  "failed_rules": [],
+  "recommendations": [
+    "检测结果优秀：共检查153项格式要求，未发现任何问题",
+    "所有必需板块（页面设置、中英文摘要、目录、正文、图片、表格、公式、参考文献、页眉页脚、致谢、附录）均完整存在",
+    "所有格式细节（字体、字号、对齐、缩进、行距、间距等）完全符合浙江师范大学本科毕业论文格式规范",
+    "整体评价：问题率0%，格式完全规范，达到优秀水平，可直接提交"
+  ]
+}
