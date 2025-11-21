@@ -1,0 +1,677 @@
+{
+  "page_setup": {
+    "margin_top": "2.0 cm",
+    "margin_bottom": "2.0 cm",
+    "margin_left": "2.5 cm",
+    "margin_right": "2.0 cm",
+    "page_width": "21.0 cm",
+    "page_height": "29.7 cm"
+  },
+  "defaults": {
+    "paragraph": {
+      "alignment": "未提供",
+      "line_spacing": "1.5倍",
+      "spacing_before": "0磅",
+      "spacing_after": "0磅",
+      "first_line_indent": "",
+      "first_line_indent_pt": ""
+    },
+    "run": {
+      "font_chinese": "宋体",
+      "font_english": "Times New Roman",
+      "size": "小四(12.0pt)",
+      "bold": false,
+      "italic": false,
+      "color": ""
+    }
+  },
+  "sections": {
+    "section_settings": [
+      {
+        "index": 0,
+        "title_page": false,
+        "page_number_format": "NumberFormatValues { }",
+        "page_number_start": "",
+        "header_references": [],
+        "footer_references": []
+      }
+    ],
+    "main": {
+      "body": {
+        "count": 85,
+        "profiles": [
+          {
+            "profile_id": "body_profile_1",
+            "count": 12,
+            "indexes": [
+              0,
+              41,
+              61,
+              97,
+              147,
+              164
+            ],
+            "sample_text": "摘 要",
+            "font": "黑体",
+            "size": "三号(16.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "居中"
+          },
+          {
+            "profile_id": "body_profile_2",
+            "count": 36,
+            "indexes": [
+              42,
+              58,
+              76,
+              106,
+              136,
+              165
+            ],
+            "sample_text": "房地产是国民经济发展的支柱之一，经济增长依靠房地产行业的投资和发展。房地产是一个资金密集型行业并且具有周期长和投资高的特征，其资金来源高度依赖于外部融资，足以说明表明资金在房地产开发中的地位很高。因此",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.7倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "profile_id": "body_profile_3",
+            "count": 12,
+            "indexes": [
+              43,
+              47,
+              55,
+              75,
+              109,
+              135
+            ],
+            "sample_text": "第一节 相关行业界定",
+            "font": "宋体",
+            "size": "小三(15.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "左对齐"
+          },
+          {
+            "profile_id": "body_profile_4",
+            "count": 13,
+            "indexes": [
+              48,
+              57,
+              107,
+              117,
+              141,
+              145
+            ],
+            "sample_text": "一、 理论意义",
+            "font": "宋体",
+            "size": "四号(14.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "左对齐"
+          },
+          {
+            "profile_id": "body_profile_5",
+            "count": 12,
+            "indexes": [
+              151,
+              153,
+              155,
+              158,
+              160,
+              162
+            ],
+            "sample_text": "1. 曾鸿杰. 房地产企业融资模式研究[D]. 华东理工大学, 2018.",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.7倍",
+            "alignment": "未提供"
+          }
+        ],
+        "deviations": [
+          {
+            "profile_id": "body_profile_1",
+            "indexes": [
+              0,
+              4,
+              41,
+              52,
+              61,
+              68,
+              72,
+              97,
+              127,
+              147,
+              150,
+              164
+            ],
+            "differences": {
+              "font": "黑体",
+              "size": "三号(16.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "居中"
+            }
+          },
+          {
+            "profile_id": "body_profile_3",
+            "indexes": [
+              43,
+              45,
+              47,
+              53,
+              55,
+              69,
+              73,
+              75,
+              99,
+              109,
+              128,
+              135
+            ],
+            "differences": {
+              "size": "小三(15.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "左对齐"
+            }
+          },
+          {
+            "profile_id": "body_profile_4",
+            "indexes": [
+              48,
+              50,
+              57,
+              59,
+              100,
+              107,
+              110,
+              117,
+              137,
+              139,
+              141,
+              143,
+              145
+            ],
+            "differences": {
+              "size": "四号(14.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "左对齐"
+            }
+          },
+          {
+            "profile_id": "body_profile_5",
+            "indexes": [
+              151,
+              152,
+              153,
+              154,
+              155,
+              156,
+              157,
+              158,
+              159,
+              160,
+              161,
+              162
+            ],
+            "differences": {
+              "first_line_indent": "",
+              "alignment": "未提供"
+            }
+          }
+        ]
+      }
+    },
+    "tables": {
+      "count": 10,
+      "defaults": {
+        "caption": {
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": false
+        },
+        "source": {
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        }
+      },
+      "entries": [
+        {
+          "index": 64,
+          "text": "表3-1 房地产类实际到位融资资金分析",
+          "caption_diff": {},
+          "source": {
+            "index": 65,
+            "text": "来源：数据来源：data国家数据，中华人民共和国国家统计局（http://data.stats.gov.cn/easyquery.htm?cn=C01）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 78,
+          "text": "表5-1 万科各个阶段融资方式",
+          "caption_diff": {},
+          "source": {
+            "index": 79,
+            "text": "来源：数据来源：万科网络公开数据整理",
+            "diff": {}
+          }
+        },
+        {
+          "index": 83,
+          "text": "表5-2 万科2015-2018年债务融资方式单位：万元",
+          "caption_diff": {},
+          "source": {
+            "index": 84,
+            "text": "来源：数据来源：新浪财经数据万科A年报（http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_Bulletin/stockid/000002/page_type/ndbg.phtml）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 88,
+          "text": "表5-3",
+          "caption_diff": {},
+          "source": {
+            "index": 89,
+            "text": "来源：数据来源：新浪财经数据万科A年报（https://vip.stock.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?stockid=000002&id=5113208）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 93,
+          "text": "表5-4 万科2015年-2018年有息负债合计占总资产比例分析",
+          "caption_diff": {},
+          "source": {
+            "index": 94,
+            "text": "来源：数据来源：新浪财经数据万科A年报（http://vip.stock.finance.sina.com.cn/corp/go.php/vCB_Bulletin/stockid/000002/page_type/ndbg.phtml）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 103,
+          "text": "表6-1 万科2015-2018年盈利能力指标",
+          "caption_diff": {},
+          "source": {
+            "index": 104,
+            "text": "来源：数据来源：东方财富万科A（http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=sz000002）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 113,
+          "text": "表6-2 万科2015-2018年偿债能力指标",
+          "caption_diff": {},
+          "source": {
+            "index": 114,
+            "text": "来源：数据来源：东方财富万科A（http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=sz000002）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 119,
+          "text": "表6-3 盈利能力指标对比",
+          "caption_diff": {},
+          "source": {
+            "index": 120,
+            "text": "来源：数据来源：东方财富",
+            "diff": {}
+          }
+        },
+        {
+          "index": 123,
+          "text": "表6-4 盈利趋势",
+          "caption_diff": {},
+          "source": {
+            "index": 124,
+            "text": "来源：数据来源：东方财富万科A（http://f10.eastmoney.com/f10_v2/FinanceAnalysis.aspx?code=sz000002）",
+            "diff": {}
+          }
+        },
+        {
+          "index": 131,
+          "text": "表7-1 中国房地产主要资金来源2013-2018年单位：亿元",
+          "caption_diff": {},
+          "source": {
+            "index": 132,
+            "text": "来源：数据来源：data国家数据，中华人民共和国国家统计局（http://data.stats.gov.cn/easyquery.htm?cn=C01）",
+            "diff": {}
+          }
+        }
+      ],
+      "stats": {
+        "with_source": 10,
+        "without_source": 0
+      },
+      "structure": [
+        {
+          "index": 0,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 1,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 2,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 3,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 4,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 5,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 6,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 7,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 8,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 9,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        }
+      ]
+    },
+    "headers_footers": {
+      "header_count": 0,
+      "footer_count": 3,
+      "headers": [],
+      "footers": [
+        {
+          "index": 0,
+          "text": "PAGE \\* roman",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE \\* roman",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "1.5倍",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "text": "PAGE \\* roman",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE \\* roman",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "右对齐",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "1.5倍",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "text": "PAGE",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "1.5倍",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

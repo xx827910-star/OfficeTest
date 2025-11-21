@@ -1,0 +1,550 @@
+{
+  "page_setup": {
+    "margin_top": "2.5 cm",
+    "margin_bottom": "2.5 cm",
+    "margin_left": "3.0 cm",
+    "margin_right": "2.5 cm",
+    "page_width": "21.0 cm",
+    "page_height": "29.7 cm"
+  },
+  "defaults": {
+    "paragraph": {
+      "alignment": "未提供",
+      "line_spacing": "1.5倍",
+      "spacing_before": "0磅",
+      "spacing_after": "0磅",
+      "first_line_indent": "",
+      "first_line_indent_pt": ""
+    },
+    "run": {
+      "font_chinese": "宋体",
+      "font_english": "Times New Roman",
+      "size": "小四(12.0pt)",
+      "bold": false,
+      "italic": false,
+      "color": ""
+    }
+  },
+  "sections": {
+    "section_settings": [
+      {
+        "index": 0,
+        "title_page": false,
+        "page_number_format": "NumberFormatValues { }",
+        "page_number_start": "",
+        "header_references": [],
+        "footer_references": []
+      }
+    ],
+    "main": {
+      "body": {
+        "count": 167,
+        "profiles": [
+          {
+            "profile_id": "body_profile_1",
+            "count": 1,
+            "indexes": [
+              0
+            ],
+            "sample_text": "摘 要",
+            "font": "黑体",
+            "size": "四号(14.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "居中"
+          },
+          {
+            "profile_id": "body_profile_2",
+            "count": 1,
+            "indexes": [
+              4
+            ],
+            "sample_text": "目 录",
+            "font": "宋体",
+            "size": "三号(16.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "居中"
+          },
+          {
+            "profile_id": "body_profile_3",
+            "count": 8,
+            "indexes": [
+              69,
+              78,
+              82,
+              110,
+              223,
+              245
+            ],
+            "sample_text": "一、 绪论",
+            "font": "黑体",
+            "size": "四号(14.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "左对齐"
+          },
+          {
+            "profile_id": "body_profile_4",
+            "count": 104,
+            "indexes": [
+              70,
+              91,
+              105,
+              121,
+              135,
+              153,
+              165,
+              179,
+              195,
+              211,
+              236,
+              253
+            ],
+            "sample_text": "当前我国的互联网金融行业发展迅速，并受到相关部门和各行各业的重视。然而，互联网消费金融作为一种新兴的金融模式，发展时间比较短，现阶段的快速发展并不意味着足够成熟，发展过猛的同时衍生出了一系列问题。尽管",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "1.8倍",
+            "alignment": "两端对齐"
+          },
+          {
+            "profile_id": "body_profile_5",
+            "count": 53,
+            "indexes": [
+              71,
+              97,
+              122,
+              149,
+              177,
+              213,
+              234,
+              251
+            ],
+            "sample_text": "一、 1研究背景与意义",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.5倍",
+            "alignment": "左对齐"
+          }
+        ],
+        "deviations": [
+          {
+            "profile_id": "body_profile_1",
+            "indexes": [
+              0
+            ],
+            "differences": {
+              "font": "黑体",
+              "size": "四号(14.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "居中"
+            }
+          },
+          {
+            "profile_id": "body_profile_2",
+            "indexes": [
+              4
+            ],
+            "differences": {
+              "size": "三号(16.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "居中"
+            }
+          },
+          {
+            "profile_id": "body_profile_3",
+            "indexes": [
+              69,
+              78,
+              80,
+              82,
+              110,
+              143,
+              223,
+              245
+            ],
+            "differences": {
+              "font": "黑体",
+              "size": "四号(14.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "左对齐"
+            }
+          },
+          {
+            "profile_id": "body_profile_5",
+            "indexes": [
+              71,
+              72,
+              75,
+              83,
+              84,
+              89,
+              94,
+              97,
+              98,
+              100,
+              111,
+              112,
+              114,
+              119,
+              120,
+              122,
+              124,
+              126,
+              127,
+              132,
+              136,
+              147,
+              149,
+              152,
+              157,
+              160,
+              162,
+              166,
+              171,
+              175,
+              177,
+              180,
+              192,
+              198,
+              200,
+              205,
+              208,
+              213,
+              216,
+              224,
+              225,
+              227,
+              229,
+              230,
+              232,
+              234,
+              235,
+              237,
+              239,
+              240,
+              242,
+              246,
+              251
+            ],
+            "differences": {
+              "first_line_indent": "",
+              "line_spacing": "1.5倍",
+              "alignment": "左对齐"
+            }
+          }
+        ]
+      }
+    },
+    "tables": {
+      "count": 5,
+      "defaults": {
+        "caption": {
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "1.5倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅",
+          "blank_before": true,
+          "blank_after": true
+        },
+        "source": {}
+      },
+      "entries": [
+        {
+          "index": 146,
+          "text": "表1-1 表1 互联网消费金融模式及其典型机构",
+          "caption_diff": {
+            "blank_after": false
+          },
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 186,
+          "text": "表1-2 表２ 不同消费金融公司的年化利率的比较",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 191,
+          "text": "表1-3 表3 北银消费金融公司的相关产品比较",
+          "caption_diff": {
+            "blank_after": false
+          },
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 203,
+          "text": "表1-4 表4 中银Ｅ贷的详细信息",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 219,
+          "text": "表1-5 表5 不同模式下互联网消费金融差异化比较",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        }
+      ],
+      "stats": {
+        "with_source": 0,
+        "without_source": 5
+      },
+      "structure": [
+        {
+          "index": 0,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 1,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 2,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        }
+      ]
+    },
+    "references": {
+      "title": {
+        "text": "参考文献",
+        "font": "黑体",
+        "size": "四号(14.0pt)",
+        "bold": true,
+        "alignment": "左对齐"
+      },
+      "items_count": 26,
+      "items": [
+        {
+          "index": 256,
+          "text": "[1] Peter Tufano. Consumer Finance[J]. Annual Review of Financial Economics, 2009, (1): 227⁠-⁠247.",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 1,
+          "ends_with_period": true
+        },
+        {
+          "index": 257,
+          "text": "[2] Tufano P. Consumer finance[J]. Journal of Economic Literature, 2009(1): 227~247.",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 2,
+          "ends_with_period": true
+        },
+        {
+          "index": 258,
+          "text": "[3] Shanshan Fan, Zhaodan Wu, Lei Wang. The Opportunity and Risk Analysis of Innovative Internet Consumer Finance Based on the Rigid Demand Market of ...",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 3,
+          "ends_with_period": true
+        },
+        {
+          "index": 259,
+          "text": "[4] Lee A Schneider, Max Shaul and Clare K Lascelles. Regulatory Priorities for FinTech Firms-and Investors-in the Coming Year[J]. Journal of Taxation...",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 4,
+          "ends_with_period": true
+        },
+        {
+          "index": 260,
+          "text": "[5] Kregel, J A. Margins of Safety and Weight of The Argument in Generating Financial Fragility[J]. Journal of Economics Issues, 2016, 6(31): 543~548.",
+          "font": "宋体",
+          "size": "小四(12.0pt)",
+          "hanging_indent": "",
+          "hanging_indent_pt": "",
+          "starts_with_bracket": true,
+          "sequence_number": 5,
+          "ends_with_period": true
+        }
+      ]
+    },
+    "headers_footers": {
+      "header_count": 0,
+      "footer_count": 3,
+      "headers": [],
+      "footers": [
+        {
+          "index": 0,
+          "text": "PAGE \\* roman",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE \\* roman",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "五号(10.5pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "1.5倍",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "text": "PAGE \\* roman",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE \\* roman",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "五号(10.5pt)",
+              "bold": false,
+              "alignment": "右对齐",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "1.5倍",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "text": "PAGE",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "五号(10.5pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "1.5倍",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        }
+      ]
+    },
+    "acknowledgement": {
+      "title": {
+        "text": "致谢",
+        "font": "黑体",
+        "size": "四号(14.0pt)",
+        "bold": true,
+        "alignment": "左对齐",
+        "spacing_before": "12磅"
+      },
+      "content_count": 1,
+      "content_samples": [
+        {
+          "index": 284,
+          "text": "路漫漫其修远兮，吾将上下而求索。行文至此，落笔为终。转眼就到了交毕业论文的最后一步，大学生涯也即将结束，我与湖南工学院的故事始于2017年金秋，终于2021年盛夏。有幸成为金融工程专业的一名学生，与八十多名同学，数位恩师相识于此。转眼四年已经过去了，初到湖工的一幕仿佛还在昨天。一路走来不是很优秀，但是一直在努力，一直在成长。在以后的工作和生活中，我也将秉承“勤学，务实，圆融，卓越”的校训，不忘初心，砥砺前行。目之所及，皆是回忆，心之所向，皆是过往。四年时间里，拼搏过也迷茫过，成功过也失败过，有过欢笑也有过泪水。这里有我数不尽的回忆，即使有万般无奈，但还是要说再见。 饮水思其源，学成念吾师。感谢我的论文指导老师席萍老师，亦师亦友，本作品的最终完成离不开老师的悉心教导、耐心指导。不仅如此，席老师严谨的治学态度、认真的工作风格潜移默化地影响着我，使我受益匪浅。在此也要感谢大学四年所有教导我的老师们，是你们教会我专业知识和人生的道理，我将牢记老师之教诲，奋力拼搏，为实现中华民族伟大复兴贡献青春力量。祝愿老师们工作顺利、平安幸福。 父母之爱子，则为之计深远。感谢父母二十余载对我的悉心照顾和培养，正是因为有了你们在我求学路上的无私奉献和支持，才让我圆满的完成求学之路。养育之恩，无以为报，只想不断努力，成为你们的骄傲。同时，也要感谢我所有的亲人给予我的帮助。祝愿父母和亲人在以后的生活中身体健康，万事胜意。 岁月虽清浅，时光亦潋滟。感谢所有陪伴我的同学和室友，因为缘分相聚于湖南工学院，相互包容，相互扶持。愿大家有前程可奔赴，亦有岁月共回首。 以梦为马，不负韶华。感谢一直努力的自己，不曾放弃的自己，即使尚未看见胜利的曙光，但也会朝着胜利前行。每一次的经历都是成长，前路漫漫亦灿灿。 纸短情长，溢于言表，山水一程，三生有幸。最后感谢母校的培育，四年经历，收获满满，山水相逢，终有一别。湖南工学院，我们后会有期！",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "1.8倍",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        }
+      ]
+    }
+  }
+}

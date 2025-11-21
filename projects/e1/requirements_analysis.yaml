@@ -1,0 +1,251 @@
+explicit_requirements:
+  document_settings:
+    page_size: A4
+    margins_cm:
+      top: 2.0  # 未明确，采用参考模板默认
+      bottom: 2.0
+      left: 2.5
+      right: 2.0
+    header_distance_cm: 1.4
+    footer_distance_cm: 1.3
+    gutter_cm: 0.5
+  abstract:
+    chinese:
+      title:
+        text: "摘 要"
+        font: 黑体
+        size: 三号
+        bold: true
+        alignment: center
+        line_spacing: single
+        space_before_pt: 24
+        space_after_pt: 18
+      content:
+        font_chinese: 宋体
+        font_english: Times New Roman
+        size: 小四
+        line_spacing_pt: 20
+        first_line_indent_chars: 0
+        space_before_pt: 0
+        space_after_pt: 0
+      keywords:
+        label: "关键词："
+        label_bold: true
+        alignment: left
+        hanging_indent_chars: 4
+        separator: "；"
+        line_spacing_pt: 20
+    english:
+      title:
+        text: "ABSTRACT"
+        font: Times New Roman
+        size: 三号
+        bold: true
+        alignment: center
+        line_spacing: single
+        space_before_pt: 24
+        space_after_pt: 18
+      content:
+        font: Times New Roman
+        size: 小四
+        line_spacing_pt: 20
+        space_before_pt: 0
+        space_after_pt: 0
+      keywords:
+        label: "Key Words:"
+        label_bold: true
+        alignment: left
+        hanging_indent_chars: 6.5
+        separator: ";"
+        capitalize_each: true
+        line_spacing_pt: 20
+  toc:
+    title:
+      text: "目 录"
+      font: 黑体
+      size: 三号
+      bold: true
+      alignment: center
+      space_before_pt: 24
+      space_after_pt: 18
+    entry:
+      font: 宋体
+      size: 小四
+      line_spacing_pt: 20
+      indent_rules:
+        level1_indent_chars: 0  # 章顶格
+        level2_indent_chars: 2
+        level3_indent_chars: 4
+      page_number_alignment: right
+  body:
+    heading1:
+      numbering_format: "第{chapter_cn}章"
+      font: 黑体
+      size: 三号
+      bold: false
+      alignment: center
+    heading2:
+      numbering_format: "第{section_cn}节"
+      font: 黑体
+      size_pt: 15  # 小三
+      bold: false
+      alignment: left
+    heading3:
+      numbering_format: "{item_cn}、"
+      font: 黑体
+      size: 四号
+      bold: false
+      alignment: left
+    paragraph:
+      font_chinese: 宋体
+      font_english: Times New Roman
+      size: 小四
+      line_spacing_pt: 20
+      first_line_indent_chars: 2
+      space_before_pt: 0
+      space_after_pt: 0
+    list_numbering:
+      level4: "1."
+      level5: "（1）"
+      mixing_rule: "标题编号中不得混用中英文数字"
+  tables:
+    numbering_options: ["表{seq}", "表{chapter}-{seq}"]
+    adopt: "表{chapter}-{seq}"  # 选定按章编号以保持一致性
+    caption_position: above
+    caption_font: 宋体
+    caption_size: 小四
+    alignment: center
+    content_font: 宋体
+    content_size_choice: [小四, 五号]
+    adopt_content_size: 小四
+    style: three_line
+    borders_pt:
+      top: 1.5
+      middle: 0.5
+      bottom: 1.5
+  figures:
+    numbering_options: ["图{seq}", "图{chapter}-{seq}"]
+    adopt: "图{chapter}-{seq}"
+    caption_position: below
+    caption_font: 宋体
+    caption_size: 小四
+    alignment: center
+  formula:
+    alignment: center
+    numbering_format: "({index})"
+    numbering_position: right_same_line
+    font: Times New Roman
+    size: 小四
+    line_spacing_pt: 20
+    variable_style: italic
+    constant_style: normal
+    vector_style: bold_italic
+    tensor_style: bold
+    no_leader_between_formula_and_number: true
+  references:
+    title:
+      text: "参 考 文 献"
+      font: 黑体
+      size: 三号
+      bold: false
+      alignment: center
+      line_spacing: single
+      space_before_pt: 24
+      space_after_pt: 18
+    entry:
+      numbering: "1. 2. 3. 顺序编码"
+      number_style: plain_arabic_with_dot
+      font_chinese: 宋体
+      font_english: Times New Roman
+      size: 小四
+      line_spacing_pt: 20
+  acknowledgements:
+    title:
+      text: "致 谢"
+      font: 黑体
+      size: 三号
+      bold: false
+      alignment: center
+      space_before_pt: 24
+      space_after_pt: 18
+    content:
+      font: 宋体
+      size: 小四
+      line_spacing_pt: 20
+  appendix:
+    title:
+      text: "附 录"
+      font: 黑体
+      size: 三号
+      bold: false
+      alignment: center
+      space_before_pt: 24
+      space_after_pt: 18
+    content:
+      font: 宋体
+      size: 小四
+      line_spacing_pt: 20
+
+implicit_requirements:
+  toc:
+    clickable_links: true
+    auto_page_numbers: true
+    link_color: black
+    dot_leaders: true
+  figures:
+    seq_fields: true
+  tables:
+    seq_fields: true
+  references:
+    citation_links: true
+    backlink_from_list: false
+  formulas:
+    omml_format: true
+  fonts:
+    separate_cjk_latin: true
+  hyperlinks:
+    color: black
+  other:
+    skip_empty_paragraphs: true
+    missing_image_placeholder: "[图片缺失: 请检查路径]" (red)
+    sanitize_reference_text: true
+
+conflict_analysis:
+  - item: "标题编号格式"
+    implicit: "默认支持阿拉伯数字（1.1、1.1.1）"
+    explicit: "要求中文格式：第X章、第一节、一、"
+    resolution: "采用显式中文编号格式，解析时将汉字编号转为章节数字，生成时按中文模板渲染"
+  - item: "图表编号范围"
+    implicit: "章节内重置（图1-1/表1-1）"
+    explicit: "规范允许全文统一或按章编号"
+    resolution: "配置默认按章编号，同时保留配置切换为全局编号的能力"
+  - item: "行距表达方式"
+    implicit: "使用倍数行距"
+    explicit: "固定20磅"
+    resolution: "代码支持exact line spacing，显式设置为20pt"
+
+implementation_suggestions:
+  must_use_methods:
+    - 目录系统_reference.py: _add_bookmark_to_paragraph, _create_standard_hyperlink, _add_pageref_field, _add_tab_stop
+    - 图表系统_reference.py: _add_seq_field, _add_chapter_based_seq_field, _set_table_borders, _repeat_table_header
+    - 参考文献系统_reference.py: _add_internal_reference_link, _add_text_with_citations
+    - 公式系统_reference.py: _build_omml_runs, _add_omml_text_run, _apply_math_justification
+    - 字体样式_reference.py: set_mixed_font
+  adjustable_methods:
+    - _add_figure: 按 numbering_format 切换章节/全局编号，题注位置下方，字体小四宋体
+    - _add_table: 使用三线表边框，上/中/下线 1.5/0.5/1.5 pt
+    - _add_formula: 编号右对齐同行，字号小四，行距20磅，变量/常量/矢量/张量按样式
+    - parse_heading: 支持 "一、" "（一）" "1." 等多种形式映射到中文编号
+  school_custom_methods:
+    - 目录缩进规则：章顶格，节缩进2字符，段缩进4字符
+    - 标题编号渲染：Chapter→第X章；Section→第一节；Subsection→一、
+    - 关键词悬挂缩进：中文4字，英文6.5字符
+  config_highlights:
+    - 在 config 中保留 abstract/toc/body 页码分节，前置部分使用罗马数字，正文阿拉伯数字
+    - figure/table/formula numbering_format 可切换（全局或按章）
+    - formula.numbering_position 支持 right_same_line / separate_line
+  other_recommendations:
+    - 为缺图插入红色占位符
+    - 跳过空行，防止产生空段落
+    - 对参考文献文本进行 URL 去除、标点统一和空格清理
+    - 书签命名遵循 _Chapter_n / _Heading_1_1 / _Reference_i 规则

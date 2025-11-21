@@ -1,0 +1,264 @@
+explicit_requirements:
+  document_settings:
+    page_size: A4
+    margins_cm:
+      top: 2.5  # 规范未写，采用常用默认
+      bottom: 2.5
+      left: 3.0
+      right: 2.5
+    header_distance_cm: 1.5
+    footer_distance_cm: 1.5
+  abstract:
+    chinese:
+      title:
+        text: "摘 要"
+        font: 黑体
+        size: 四号
+        bold: true
+        alignment: center
+      content:
+        font_chinese: 楷体
+        font_english: Times New Roman
+        size: 小四
+        line_spacing: 1.5
+        first_line_indent_chars: 0
+      keywords:
+        label: "关键词："
+        font_chinese: 楷体
+        font_english: Times New Roman
+        size: 小四
+        separator: "；"
+        end_punctuation: none
+        count: "3-5"
+        same_page_as_abstract: true
+    english:
+      title:
+        text: "ABSTRACT"
+        font: 黑体
+        size: 四号
+        bold: true
+        alignment: center
+      content:
+        font: Times New Roman
+        size: 小四
+        line_spacing: 1.5
+        first_line_indent_chars: 0
+      keywords:
+        label: "Key Words:"
+        font: Times New Roman
+        size: 小四
+        separator: ";"
+        end_punctuation: none
+        count: "3-5"
+        same_page_as_abstract: true
+    page_number:
+      style: roman
+      font: Times New Roman
+      size: 五号
+      alignment: center
+  toc:
+    title:
+      text: "目 录"
+      font: 宋体
+      size: 三号
+      bold: true
+      alignment: center
+      start_new_page: true
+    chapter_entries:
+      font: 黑体
+      size: 四号
+    other_entries:
+      font: 宋体
+      size: 小四
+    numbering_format_options: ["一、", "（一）", "1", "1.1"]
+    page_number:
+      style: roman
+      font: Times New Roman
+      size: 五号
+      alignment: right
+  body:
+    title:
+      font: 宋体
+      size: 三号
+      bold: true
+      alignment: center
+    heading1:
+      font: 黑体
+      size: 四号
+      bold: true
+      numbering_format_choices: ["{chapter_cn}、", "{chapter_arabic}"]
+      alignment: left
+      start_new_page: true  # 每章另起页
+    heading2:
+      font: 黑体
+      size: 小四
+      bold: true
+      numbering_format_choices: ["（{section_cn}）", "{chapter}.{section}"]
+      alignment: left
+    heading3:
+      font: 黑体
+      size: 小四
+      bold: false
+      numbering_format_choices: ["{item_cn}、", "{chapter}.{section}.{subsection}"]
+      alignment: left
+    heading4:
+      font: 黑体
+      size: 小四
+      bold: false
+      numbering_format_choices: ["（{item_arabic}）", "{chapter}.{section}.{subsection}.{item}"]
+      alignment: left
+    paragraph:
+      font_chinese: 宋体
+      font_english: Times New Roman
+      size: 小四
+      line_spacing: 1.5
+      first_line_indent_chars: 2
+    page_number:
+      style: arabic
+      font: Times New Roman
+      size: 五号
+      alignment: center
+      continuous: true
+    pagination_rules:
+      start_on_right_page: true
+      each_chapter_new_page: true
+  figures:
+    numbering_format: "图{chapter}-{seq}"
+    caption_position: below
+    caption_font: 宋体
+    caption_size: 五号
+    caption_bold: true
+    content_font: 宋体
+    content_size: 五号
+    alignment: center
+    spacing_blank_line_before_after: true
+  tables:
+    numbering_format: "表{chapter}-{seq}"
+    caption_position: above
+    caption_font: 宋体
+    caption_size: 五号
+    caption_bold: true
+    content_font: 宋体
+    content_size: 五号
+    line_spacing: single
+    alignment: center
+    spacing_blank_line_before_after: true
+    border_style: grid
+  formula:
+    alignment: center
+    numbering_format: "({index})"
+    numbering_position: right_same_line
+    font: Times New Roman
+    size: 小四
+    line_spacing: single
+    variable_style: italic
+  references:
+    title:
+      text: "参考文献"
+      font: 黑体
+      size: 四号
+      bold: true
+      alignment: left
+      new_page: true
+    entry:
+      font_chinese: 宋体
+      font_english: Times New Roman
+      size: 小四
+      line_spacing: single
+      number_format: "[n]"
+      end_punctuation: "."
+      sort_rule: "author_year_sequence when using author-year"
+  acknowledgements:
+    title:
+      text: "致谢"
+      font: 黑体
+      size: 四号
+      bold: true
+      alignment: left
+    content:
+      font: 宋体
+      size: 小四
+      line_spacing: 1.5
+      page_limit: one
+  appendix:
+    title:
+      text: "附录"
+      font: 黑体
+      size: 四号
+      bold: true
+      alignment: left
+    content:
+      font: 宋体
+      size: 小四
+      line_spacing: 1.5
+  footnote:
+    font: 宋体
+    size: 五号
+    numbering: per_page_restart
+    marker_style: superscript
+
+implicit_requirements:
+  toc:
+    clickable_links: true
+    auto_page_numbers: true
+    link_color: black
+    dot_leaders: true
+  figures:
+    seq_fields: true
+  tables:
+    seq_fields: true
+  references:
+    citation_links: true
+    backlink_from_list: false
+  formulas:
+    omml_format: true
+  fonts:
+    separate_cjk_latin: true
+  hyperlinks:
+    color: black
+  other:
+    skip_empty_paragraphs: true
+    missing_image_placeholder: "[图片缺失: 请检查路径]"
+    sanitize_reference_text: true
+
+conflict_analysis:
+  - item: "目录编号形式多样"
+    implicit: "默认支持阿拉伯分级编号"
+    explicit: "规范允许一、（一）或1、1.1混用"
+    resolution: "在配置中列出可选格式，生成时使用配置选择的格式"
+  - item: "脚注每页重置编号"
+    implicit: "未在默认需求中覆盖"
+    explicit: "要求每页独立编号"
+    resolution: "通过配置 footnote.numbering=per_page_restart，并在生成器中设置 footnotePr numRestart eachPage；如渲染引擎受限则回退为全局编号"
+  - item: "章节起始页要求右页"
+    implicit: "默认顺序分页"
+    explicit: "主体需从另页右页开始"
+    resolution: "在分页规则中加入 start_on_right_page 标志，生成时如当前页为左页则插入空白页"
+
+implementation_suggestions:
+  must_use_methods:
+    - 目录系统_reference.py: _add_bookmark_to_paragraph, _create_standard_hyperlink, _add_pageref_field, _add_tab_stop
+    - 图表系统_reference.py: _add_seq_field, _add_chapter_based_seq_field, _set_table_borders
+    - 参考文献系统_reference.py: _add_internal_reference_link, _add_text_with_citations
+    - 公式系统_reference.py: _build_omml_runs, _add_omml_text_run
+    - 字体样式_reference.py: set_mixed_font
+  adjustable_methods:
+    - _add_figure: 按 numbering_format "图{chapter}-{seq}"，题注在下、五号加粗
+    - _add_table: 使用全框线(grid)表格，题注上方，五号加粗，单倍行距
+    - _add_formula: 编号右对齐同行，字号小四，行距单倍
+    - parse_heading: 支持 "一、" "（一）" "1" "1.1" 等形式
+    - pagination: start_on_right_page 和 each chapter new page
+  school_custom_methods:
+    - 目录章节字号差异：章条目四号黑体，其余小四宋体
+    - 关键词分号分隔且末尾无标点
+    - 每页脚注编号重置（footnotePr 设置）
+  config_highlights:
+    - 分节页码：前置部分罗马数字，正文阿拉伯数字
+    - figure/table numbering 固定按章编号
+    - line spacing：正文1.5倍，表格单倍
+    - heading number formats列出中文与阿拉伯可选
+  other_recommendations:
+    - 缺图占位符红色文字提示
+    - 跳过空行防止空段落
+    - 参考文献尾部强制以句号结束
+    - 插入章节前如当前为左页，添加空白页保证右页开始
