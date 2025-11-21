@@ -1,200 +1,264 @@
-"""
-样式管理器 - 负责管理和应用文档样式
-"""
-import json
-from docx.shared import Pt, RGBColor, Cm, Inches
+from typing import Any, Dict, Optional
+
 from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_LINE_SPACING
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
+from docx.shared import Pt
+
+from src.styles import StyleManager as BaseStyleManager
 
 
-class StyleManager:
-    """管理论文格式样式"""
+class E1StyleManager(BaseStyleManager):
+    """
+    Project-specific style helper that keeps every layout knob config-driven.
+    """
 
-    def __init__(self, config_path):
-        """加载格式配置文件"""
-        with open(config_path, 'r', encoding='utf-8') as f:
-            self.config = json.load(f)
+    def __init__(self, config_path: str):
+        super().__init__(config_path)
+        self._fonts = self.config.get('fonts', {})
+        self._size_map = self.config.get('sizes', {})
+        self._default_para_style = self.config.get('body', {}).get('paragraph', {})
+        self._link_color = '000000'
 
-    def get_font_size(self, size_name):
-        """
-        获取字号对应的磅值
-        :param size_name: 字号名称（如"小四"）
-        :return: Pt对象
-        """
-        size = self.config['sizes'].get(size_name, 12)
-        return Pt(size)
+    # ------------------------------------------------------------------
+    # Generic helpers
+    # ------------------------------------------------------------------
+    def get_fonts(self) -> Dict[str, str]:
+        return self._fonts
 
-    def get_fonts(self):
-        """获取全局字体设置"""
-        return self.config.get('fonts', {})
+    def get_link_color(self) -> str:
+        return self._link_color
 
-    def get_document_settings(self):
-        """获取文档级设置"""
-        return self.config.get('document', {})
+    def get_toc_config(self) -> Dict[str, Any]:
+        return self.config.get('toc', {})
 
-    def get_page_number_config(self, section_name):
-        """获取指定部分的页码配置"""
-        section_map = {
-            'abstract': self.config.get('abstract', {}),
-            'abstract_en': self.config.get('abstract_en', {}),
-            'toc': self.config.get('toc', {}),
-            'body': self.config.get('body', {})
+    def get_document_settings(self) -> Dict[str, Any]:
+        document_config = self.config.get('document', {}).copy()
+        margins = document_config.get('margins', {})
+        document_config['margins'] = {
+            'top': margins.get('top', 2.5),
+            'bottom': margins.get('bottom', 2.5),
+            'left': margins.get('left', 3.0),
+            'right': margins.get('right', 2.5),
         }
-        return section_map.get(section_name, {}).get('page_number', {})
+        return document_config
 
-    def apply_paragraph_style(self, paragraph, style_config):
-        """
-        应用段落样式
-        :param paragraph: python-docx的段落对象
-        :param style_config: 样式配置字典
-        """
-        alignment_map = {
-            'left': WD_ALIGN_PARAGRAPH.LEFT,
-            'center': WD_ALIGN_PARAGRAPH.CENTER,
-            'right': WD_ALIGN_PARAGRAPH.RIGHT,
-            'justify': WD_ALIGN_PARAGRAPH.JUSTIFY
-        }
-        if 'alignment' in style_config:
-            paragraph.alignment = alignment_map.get(style_config['alignment'], WD_ALIGN_PARAGRAPH.LEFT)
+    # ------------------------------------------------------------------
+    # Formatting utilities
+    # ------------------------------------------------------------------
+    def apply_paragraph_style(self, paragraph, style_config: Optional[Dict[str, Any]]):
+        if not style_config:
+            return
 
-        paragraph.paragraph_format.space_before = Pt(style_config.get('space_before', 0))
-        paragraph.paragraph_format.space_after = Pt(style_config.get('space_after', 0))
+        fmt = paragraph.paragraph_format
+        alignment = style_config.get('alignment')
+        if alignment:
+            paragraph.alignment = {
+                'left': WD_ALIGN_PARAGRAPH.LEFT,
+                'center': WD_ALIGN_PARAGRAPH.CENTER,
+                'right': WD_ALIGN_PARAGRAPH.RIGHT,
+                'justify': WD_ALIGN_PARAGRAPH.JUSTIFY,
+            }.get(alignment, WD_ALIGN_PARAGRAPH.LEFT)
+
+        space_before = self._to_pt(style_config.get('space_before') or style_config.get('spacing_before_pt'))
+        if space_before is not None:
+            fmt.space_before = space_before
+
+        space_after = self._to_pt(style_config.get('space_after') or style_config.get('spacing_after_pt'))
+        if space_after is not None:
+            fmt.space_after = space_after
+
+        self._apply_line_spacing(fmt, style_config.get('line_spacing'))
+
+        size_hint = self._resolve_size_value(style_config.get('size'))
+        if size_hint is None:
+            size_hint = self._resolve_size_value(self._default_para_style.get('size'))
+
+        if 'first_line_indent' in style_config:
+            indent = self._chars_to_pt(style_config['first_line_indent'], size_hint)
+            if indent is not None:
+                fmt.first_line_indent = indent
+
+        if 'first_line_indent_chars' in style_config:
+            indent = self._chars_to_pt(style_config['first_line_indent_chars'], size_hint)
+            if indent is not None:
+                fmt.first_line_indent = indent
+
+        if 'left_indent_chars' in style_config:
+            indent = self._chars_to_pt(style_config['left_indent_chars'], size_hint)
+            if indent is not None:
+                fmt.left_indent = indent
 
         if 'hanging_indent_chars' in style_config:
-            char_count = style_config['hanging_indent_chars']
-            font_size = style_config.get('size', 12)
-            indent_value = Pt(char_count * font_size)
-            paragraph.paragraph_format.left_indent = indent_value
-            paragraph.paragraph_format.first_line_indent = Pt(-char_count * font_size)
-        elif 'first_line_indent' in style_config:
-            char_count = style_config['first_line_indent']
-            font_size = style_config.get('size', 12)
-            indent_twips = int(char_count * font_size * 20)
-            paragraph.paragraph_format.first_line_indent = Pt(char_count * font_size)
-            self._apply_character_indent(paragraph, char_count, indent_twips)
+            indent = self._chars_to_pt(style_config['hanging_indent_chars'], size_hint)
+            if indent is not None:
+                fmt.left_indent = indent
+                fmt.first_line_indent = Pt(-indent.pt)
+                self._write_char_based_indent(paragraph, style_config['hanging_indent_chars'])
 
-        # 行距：优先精确磅值，再次是倍数
-        if 'line_spacing_pt' in style_config:
-            paragraph.paragraph_format.line_spacing = Pt(style_config['line_spacing_pt'])
-            paragraph.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
-        elif 'line_spacing' in style_config:
-            spacing = style_config['line_spacing']
-            rule_map = {
-                1.0: WD_LINE_SPACING.SINGLE,
-                1.5: WD_LINE_SPACING.ONE_POINT_FIVE,
-                2.0: WD_LINE_SPACING.DOUBLE
-            }
-            rule = rule_map.get(spacing)
-            if rule:
-                paragraph.paragraph_format.line_spacing_rule = rule
-            else:
-                paragraph.paragraph_format.line_spacing = spacing
+        if 'first_line_chars' in style_config:
+            indent = self._chars_to_pt(style_config['first_line_chars'], size_hint)
+            if indent is not None:
+                fmt.first_line_indent = indent
 
-    def _apply_character_indent(self, paragraph, char_count, indent_twips):
-        """通过 XML 设置字符单位的首行缩进"""
+    def set_mixed_font(
+        self,
+        run,
+        text: str,
+        chinese_font: Optional[str] = None,
+        english_font: Optional[str] = None,
+        size: Optional[float] = None,
+        bold: bool = False,
+        italic: bool = False,
+    ):
+        if text is None:
+            return
+        run.text = text
+        ascii_font = english_font or self._fonts.get('english', 'Times New Roman')
+        east_font = chinese_font or self._fonts.get('chinese', '宋体')
+        run.font.name = ascii_font
+        r_pr = run._element.get_or_add_rPr()
+        r_fonts = r_pr.rFonts
+        if r_fonts is None:
+            r_fonts = OxmlElement('w:rFonts')
+            r_pr.append(r_fonts)
+        r_fonts.set(qn('w:ascii'), ascii_font)
+        r_fonts.set(qn('w:hAnsi'), ascii_font)
+        r_fonts.set(qn('w:eastAsia'), east_font)
+        if size:
+            run.font.size = self._to_pt(size)
+        if bold:
+            run.font.bold = True
+        if italic:
+            run.font.italic = True
+
+    def apply_tab_stop(self, paragraph, position_cm=16.0, alignment='right', leader='dot'):
+        pPr = paragraph._element.get_or_add_pPr()
+        tabs = pPr.find(qn('w:tabs'))
+        if tabs is None:
+            tabs = OxmlElement('w:tabs')
+            pPr.append(tabs)
+        tab = OxmlElement('w:tab')
+        tab.set(qn('w:val'), alignment)
+        tab.set(qn('w:pos'), str(int(position_cm * 567)))
+        if leader:
+            tab.set(qn('w:leader'), leader)
+        tabs.append(tab)
+
+    # ------------------------------------------------------------------
+    # Heading number helpers
+    # ------------------------------------------------------------------
+    def format_heading_label(self, level: int, chapter_number: int, ordinal: int = 0) -> str:
+        if level == 1:
+            return f'第{self._to_chinese(chapter_number)}章'
+        if level == 2:
+            return f'第{self._to_chinese(max(ordinal, 1))}节'
+        if level == 3:
+            return f'{self._to_chinese(max(ordinal, 1))}、'
+        return ''
+
+    # ------------------------------------------------------------------
+    # Internal helpers
+    # ------------------------------------------------------------------
+    def _resolve_size_value(self, value: Any) -> Optional[float]:
+        if value is None:
+            return None
+        if isinstance(value, (int, float)):
+            return float(value)
+        if isinstance(value, str):
+            if value.endswith('pt'):
+                try:
+                    return float(value[:-2])
+                except ValueError:
+                    return None
+            if value in self._size_map:
+                return float(self._size_map[value])
+            try:
+                return float(value)
+            except ValueError:
+                return None
+        return None
+
+    def _to_pt(self, value: Any) -> Optional[Pt]:
+        numeric = self._resolve_size_value(value)
+        if numeric is None:
+            return None
+        return Pt(numeric)
+
+    def _chars_to_pt(self, char_count: float, font_size_pt: Optional[float]) -> Optional[Pt]:
+        if char_count is None or font_size_pt is None:
+            return None
+        return Pt(float(char_count) * float(font_size_pt))
+
+    def _apply_line_spacing(self, paragraph_format, spacing_value: Any):
+        if spacing_value is None:
+            return
+        if isinstance(spacing_value, str):
+            if spacing_value.startswith('fixed_'):
+                numeric = spacing_value.split('_', 1)[1].replace('pt', '')
+                try:
+                    paragraph_format.line_spacing = Pt(float(numeric))
+                except ValueError:
+                    pass
+                return
+            if spacing_value.startswith('multiple_'):
+                try:
+                    multiple = float(spacing_value.split('_', 1)[1])
+                    paragraph_format.line_spacing = multiple
+                    paragraph_format.line_spacing_rule = WD_LINE_SPACING.MULTIPLE
+                except ValueError:
+                    pass
+                return
+        try:
+            numeric = float(spacing_value)
+        except (TypeError, ValueError):
+            return
+        rule_map = {
+            1.0: WD_LINE_SPACING.SINGLE,
+            1.5: WD_LINE_SPACING.ONE_POINT_FIVE,
+            2.0: WD_LINE_SPACING.DOUBLE,
+        }
+        if numeric in rule_map:
+            paragraph_format.line_spacing_rule = rule_map[numeric]
+        elif numeric <= 3:
+            paragraph_format.line_spacing = numeric
+            paragraph_format.line_spacing_rule = WD_LINE_SPACING.MULTIPLE
+        else:
+            paragraph_format.line_spacing = Pt(numeric)
+
+    def _write_char_based_indent(self, paragraph, char_count: float):
         pPr = paragraph._element.get_or_add_pPr()
         ind = pPr.find(qn('w:ind'))
         if ind is None:
             ind = OxmlElement('w:ind')
             pPr.append(ind)
-        ind.set(qn('w:firstLine'), str(indent_twips))
         ind.set(qn('w:firstLineChars'), str(int(char_count * 100)))
 
-    def apply_run_style(self, run, style_config, text_type='chinese'):
-        """
-        应用文字样式（Run级别）
-        :param run: python-docx的Run对象
-        :param style_config: 样式配置字典
-        :param text_type: 文本类型（'chinese' 或 'english'）
-        """
-        if 'font' in style_config:
-            run.font.name = style_config['font']
-            run._element.rPr.rFonts.set(qn('w:eastAsia'), style_config['font'])
-
-        if 'size' in style_config:
-            run.font.size = Pt(style_config['size'])
-
-        if 'bold' in style_config:
-            run.font.bold = style_config['bold']
-
-        if 'italic' in style_config:
-            run.font.italic = style_config['italic']
-
-    def set_mixed_font(self, run, text, chinese_font, english_font, size, bold=False):
-        """
-        为包含中英文混合的文本设置不同字体
-        """
-        run.text = text
-        run.font.name = english_font
-        run._element.rPr.rFonts.set(qn('w:eastAsia'), chinese_font)
-        run.font.size = Pt(size)
-        run.font.bold = bold
-
-    def get_abstract_title_style(self):
-        """获取摘要标题样式"""
-        return self.config['abstract']['title']
-
-    def get_abstract_content_style(self):
-        """获取摘要正文样式"""
-        return self.config['abstract']['content']
-
-    def get_abstract_keywords_style(self):
-        """获取摘要关键词样式"""
-        return self.config['abstract']['keywords']
-
-    def get_abstract_en_title_style(self):
-        """获取英文摘要标题样式"""
-        return self.config.get('abstract_en', {}).get('title', {})
-
-    def get_abstract_en_content_style(self):
-        """获取英文摘要正文样式"""
-        return self.config.get('abstract_en', {}).get('content', {})
-
-    def get_abstract_en_keywords_style(self):
-        """获取英文摘要关键词样式"""
-        return self.config.get('abstract_en', {}).get('keywords', {})
-
-    def get_toc_config(self):
-        """获取目录整体配置"""
-        return self.config.get('toc', {})
-
-    def get_heading_style(self, level):
-        """
-        获取标题样式
-        """
-        heading_map = {
-            1: 'heading1',
-            2: 'heading2',
-            3: 'heading3'
-        }
-        key = heading_map.get(level, 'heading1')
-        return self.config['body'][key]
-
-    def get_paragraph_style(self):
-        """获取正文段落样式"""
-        return self.config['body']['paragraph']
-
-    def get_figure_style(self):
-        """获取图片样式"""
-        return self.config['figure']
-
-    def get_table_style(self):
-        """获取表格样式"""
-        return self.config['table']
-
-    def get_formula_style(self):
-        """获取公式样式"""
-        return self.config['formula']
-
-    def get_references_style(self):
-        """获取参考文献样式"""
-        return self.config.get('references', {})
-
-    def get_acknowledgement_style(self):
-        """获取致谢样式"""
-        return self.config.get('acknowledgements', {})
-
-    def get_appendix_style(self):
-        """获取附录样式"""
-        return self.config.get('appendix', {})
+    def _to_chinese(self, number: int) -> str:
+        digits = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+        units = ['', '十', '百', '千']
+        if number <= 0:
+            return digits[0]
+        if number < 10:
+            return digits[number]
+        if number < 20:
+            tail = number % 10
+            prefix = '十'
+            return prefix if tail == 0 else f'{prefix}{digits[tail]}'
+        chars = []
+        str_num = str(number)
+        length = len(str_num)
+        for idx, ch in enumerate(str_num):
+            digit = int(ch)
+            pos = length - idx - 1
+            if digit == 0:
+                if chars and chars[-1] != digits[0]:
+                    chars.append(digits[0])
+                continue
+            chars.append(digits[digit])
+            chars.append(units[pos])
+        result = ''.join(chars).rstrip('零')
+        result = result.replace('零零', '零')
+        if result.endswith('零'):
+            result = result[:-1]
+        return result or digits[0]

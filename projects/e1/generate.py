@@ -1,42 +1,70 @@
+import argparse
 import os
 import sys
 
-# 项目内模块
-from custom.styles import StyleManager
-from custom.parser import ContentParser
-from custom.formatter import ThesisGenerator
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+REPO_ROOT = os.path.dirname(BASE_DIR)  # projects
+REPO_ROOT = os.path.dirname(REPO_ROOT)  # repo root
+if REPO_ROOT not in sys.path:
+    sys.path.insert(0, REPO_ROOT)
+
+from custom import E1ContentParser, E1StyleManager, E1ThesisFormatter
+
+PROJECT_ID = 'e1'
+DEFAULT_CONFIG = os.path.join(BASE_DIR, 'config', 'thesis_format.json')
+DEFAULT_INPUT = os.path.join(BASE_DIR, 'input', 'normalized.txt')
+DEFAULT_OUTPUT = os.path.join(BASE_DIR, 'output', f'{PROJECT_ID}thesis.docx')
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(description='Generate the formatted thesis document for project e1.')
+    parser.add_argument('--config', default=DEFAULT_CONFIG, help='Path to thesis_format.json')
+    parser.add_argument('--input', default=DEFAULT_INPUT, help='Path to normalized.txt content file')
+    parser.add_argument('--output', default=DEFAULT_OUTPUT, help='Destination docx path')
+    parser.add_argument('--images', nargs='*', default=None, help='Optional override for image search directories')
+    return parser.parse_args()
 
 
 def main():
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    config_path = os.path.join(base_dir, 'config', 'thesis_format.json')
-    input_path = os.path.join(base_dir, 'input', 'normalized.txt')
-    output_path = os.path.join(base_dir, 'output', 'thesis.docx')
+    args = parse_args()
+    if not os.path.exists(args.config):
+        raise FileNotFoundError(f'Config not found: {args.config}')
+    if not os.path.exists(args.input):
+        raise FileNotFoundError(f'Input not found: {args.input}')
+    output_dir = os.path.dirname(args.output)
+    if output_dir and not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
 
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    style_manager = E1StyleManager(args.config)
+    parser = E1ContentParser(image_dirs=args.images)
+    content = parser.parse_file(args.input)
 
-    try:
-        style_manager = StyleManager(config_path)
-    except Exception as exc:
-        print(f"加载配置失败: {exc}")
-        sys.exit(1)
+    formatter = E1ThesisFormatter(style_manager)
+    formatter.generate(content, args.output, include_toc=True)
 
-    try:
-        parser = ContentParser(image_dir=os.path.join(base_dir, 'input'))
-        content = parser.parse_file(input_path)
-    except Exception as exc:
-        print(f"解析输入失败: {exc}")
-        sys.exit(1)
+    audit = formatter.audit_log
+    missing_assets = parser.get_missing_assets()
+    self_check = {
+        'toc_inserted': audit.get('toc_inserted', False),
+        'bookmark_count': audit.get('bookmark_count', 0),
+        'cn_abstract_present': bool(content.get('abstract', {}).get('content')),
+        'en_abstract_present': bool(content.get('abstract_en', {}).get('content')),
+        'omml_enabled': audit.get('omml_used', False),
+        'seq_fields': audit.get('seq_fields_used', False),
+        'heading_eastAsia': audit.get('heading_runs_have_east_asia', False),
+        'paragraph_spacing_enforced': audit.get('paragraph_spacing_applied', False),
+        'missing_figures': audit.get('missing_figures', []) or missing_assets,
+    }
 
-    try:
-        generator = ThesisGenerator(style_manager)
-        generator.generate(content, output_path)
-    except Exception as exc:
-        print(f"生成文档失败: {exc}")
-        sys.exit(1)
-
-    print(f"生成完成: {output_path}")
+    print('--- Self-check log ---')
+    for key, value in self_check.items():
+        print(f'{key}: {value}')
+    print(f'Document generated at: {args.output}')
 
 
 if __name__ == '__main__':
-    main()
+    try:
+        main()
+    except Exception as exc:
+        print(f'Generation failed: {exc}', file=sys.stderr)
+        sys.exit(1)
