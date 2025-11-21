@@ -1,323 +1,702 @@
-project_id: e1
-source_documents:
-  filtered: projects/e1/input/filtered.md
-  implementation_notes: best_practices/implementation_notes.md
-  config_reference: best_practices/配置文件_reference.json
-  config_field_notes: best_practices/配置文件_说明.md
-assumptions:
-  - 纸张边距、页眉/页脚距离和装订线位置在规范中未给出，暂沿用参考模板默认值（上/下2.0cm，左2.5cm，右2.0cm，页眉1.4cm，页脚1.3cm，装订线0.5cm）；若学校给出不同要求需再调整。
-  - 页码格式未说明，采用惯例：摘要与目录延续前置罗马数字，小写从i开始；正文及其后续部分使用阿拉伯数字从1重新编号。
-  - 表格和图片编号规范写明“全文统一编号或按章编号”，为方便章内引用，默认采用“按章编号（章序号-顺序号）”，但在配置中保留切换能力。
-  - 部分段前/段后间距未写明，按照相邻章节给出的24/18磅模式补全，确保标题与正文之间留足空白。
-  - 规范未讨论封面、诚信声明等内容，已经在过滤阶段删除，不在脚本范围内。
-explicit_requirements:
-  document_settings:
-    page_size: A4
-    margins_cm:
-      top: null
-      bottom: null
-      left: null
-      right: null
-    header_footer_distance_cm:
-      header: null
-      footer: null
-    gutter_cm: null
-    notes:
-      - 仅明确A4纸张大小，其余参数依赖模板默认值或后续学校补充。
-  abstract:
-    chinese:
-      title:
-        text: "摘 要"
-        font: 黑体
-        size_name: 三号
-        approx_pt: 16
-        bold: true
-        alignment: center
-        line_spacing: single
-        space_before_pt: 24
-        space_after_pt: 18
-      content:
-        chinese_font: 宋体
-        western_font: Times New Roman
-        size_name: 小四
-        approx_pt: 12
-        line_spacing: fixed_20pt
-        first_line_indent_chars: 2
-        space_before_pt: 0
-        space_after_pt: 0
-      keywords:
-        label_text: "关键词："
-        label_bold: true
-        alignment: left
-        hanging_chars: 4
-        separator: "；"
-        layout: single_line_per_keyword_with_blank_line_spacing
-    english:
-      title:
-        text: "ABSTRACT"
-        font: Times New Roman
-        size_name: 三号
-        approx_pt: 16
-        bold: true
-        alignment: center
-        line_spacing: single
-        space_before_pt: 24
-        space_after_pt: 18
-      content:
-        font: Times New Roman
-        size_name: 小四
-        approx_pt: 12
-        line_spacing: fixed_20pt
-        first_line_indent_chars: 2
-        space_before_pt: 0
-        space_after_pt: 0
-      keywords:
-        label_text: "Key Words:"
-        label_bold: true
-        alignment: left
-        hanging_chars: 6.5
-        separator: ";"
-        casing: title_case_each_word
-  toc:
-    title:
-      text: "目 录"
-      font: 黑体
-      size_name: 三号
-      approx_pt: 16
-      alignment: center
-      line_spacing: single
-      space_before_pt: 24
-      space_after_pt: 18
-    entries:
-      font: 宋体
-      size_name: 小四
-      approx_pt: 12
-      line_spacing: fixed_20pt
-      space_before_pt: 0
-      space_after_pt: 0
-      indent_rules:
-        chapter: 0_chars_bold
-        section: 2_chars
-        subsection: 4_chars
-      page_number_position: right_align_with_tab_leader
-  body_headings:
-    level1:
-      numbering: 第一章/第二章（中文序号）
-      font: 黑体
-      size_name: 三号
-      approx_pt: 16
-      alignment: center
-      line_spacing: single
-      space_before_pt: 24
-      space_after_pt: 12
-    level2:
-      numbering: 第一节/第二节
-      font: 黑体
-      size_name: 小三
-      approx_pt: 15
-      alignment: left
-      line_spacing: single
-      space_before_pt: 18
-      space_after_pt: 9
-    level3:
-      numbering: 一、二、三（中文序号+顿号）
-      font: 黑体
-      size_name: 四号
-      approx_pt: 14
-      alignment: left
-      line_spacing: single
-      space_before_pt: 12
-      space_after_pt: 6
-    list_levels:
-      level4: "1."（阿拉伯数字+句点）
-      level5: "（1）"（括号序号）
-      rule: 标题内禁止混用数字与汉字序号
-  body_paragraphs:
-    font: 宋体（中文）、Times New Roman（英文与数字）
-    size_name: 小四
-    approx_pt: 12
-    line_spacing: fixed_20pt
-    first_line_indent_chars: 2
-    alignment: justify
-    space_before_pt: 0
-    space_after_pt: 0
-  tables:
-    caption:
-      numbering_format: "表{chapter_sequence}" # 章内编号，格式可在配置切换
-      label_text: "表"
-      font: 宋体
-      size_name: 小四
-      approx_pt: 12
-      position: above_table
-      alignment: center
-    content:
-      font: 宋体
-      size_choices: [小四, 五号]
-      chosen_size: 小四
-    style:
-      type: three_line
-      lines:
-        top: 1.5pt
-        header: 0.5pt
-        bottom: 1.5pt
-        vertical_lines: none
-    notes:
-      - 文中强调三线表，顶线/栏目线/底线需要精确控制粗细。
-  figures:
-    caption:
-      numbering_format: "图{chapter_sequence}" # 默认章内编号
-      font: 宋体
-      size_name: 小四
-      approx_pt: 12
-      position: below_figure
-      alignment: center
-    notes:
-      - 若改为全局编号需调整配置。
-  formulas:
-    layout:
-      block_alignment: center
-      occupies_single_line: true
-      line_spacing: single
-    numbering:
-      format: "（{seq}）"（阿拉伯数字+全角括号）
-      position: right_same_line
-      font: 与正文一致（宋体小四）
-      spacing_to_formula: single_space
-    typography:
-      variables: italic
-      constants_functions: upright
-      vectors: bold_italic
-      tensors: bold_upright
-  references:
-    title:
-      text: "参 考 文 献"
-      font: 黑体
-      size_name: 三号
-      approx_pt: 16
-      alignment: center
-      line_spacing: single
-      space_before_pt: 24
-      space_after_pt: 18
-    entries:
-      numbering: sequential_arabic_with_period
-      font: 中文宋体，英文Times New Roman
-      size_name: 小四
-      approx_pt: 12
-      notes:
-        - 需支持多种著录类型（书籍、期刊、学位论文），但核心是顺序编码样式。
-  acknowledgements:
-    title:
-      text: "致 谢"
-      font: 黑体
-      size_name: 三号
-      approx_pt: 16
-      alignment: center
-      space_before_pt: 24
-      space_after_pt: 18
-    content:
-      font: 宋体
-      size_name: 小四
-      approx_pt: 12
-      line_spacing: fixed_20pt
-  appendix:
-    title:
-      text: "附 录"
-      font: 黑体
-      size_name: 三号
-      approx_pt: 16
-      alignment: center
-      space_before_pt: 24
-      space_after_pt: 18
-implicit_requirements:
-  toc:
-    clickable_links: true
-    auto_page_numbers: true
-    hyperlink_color: "000000"
-    use_word_field: TOC
-    bookmarks:
-      per_heading_level: true
-  numbering_systems:
-    figure_seq_fields: true
-    table_seq_fields: true
-    formula_seq_fields: true
-    reference_crosslinks: true
-  references:
-    citation_links:
-      enable: true
-      link_style: black_brackets
-      bidirectional: preferred
-  formulas:
-    omml_format: true
-    numbering_cross_reference: true
-  fonts:
-    separate_cjk_latin: true
-    explicit_rFonts_tags: true
-    enforce_bold_italic_tags: true
-  layout_defaults:
-    heading_spacing_guardrails: true
-    paragraph_spacing_minimum: true
-    keyword_indent_character_based: true
-  error_handling:
-    missing_image_placeholder: true
-    skip_empty_paragraphs: true
-  metadata:
-    bookmarks_for_special_sections:
-      abstract_cn: true
-      abstract_en: true
-      references: true
-      appendix: true
-conflict_analysis:
-  - item: 目录颜色
-    implicit_expectation: 目录超链接默认为黑色
-    explicit_requirement: 未指定颜色
-    resolution: 采用隐式默认的黑色超链接，无冲突。
-  - item: 公式变量字体
-    implicit_expectation: 变量斜体，函数正体
-    explicit_requirement: 对变量、常量、矢量、张量分别提出字体要求
-    resolution: 明确遵循学校规范；与隐式要求一致。
-  - item: 图表编号方式
-    implicit_expectation: 使用SEQ自动编号
-    explicit_requirement: 允许全文或按章编号但未指明
-    resolution: 保持SEQ实现并提供配置项切换；默认章内编号。
-  - item: 摘要首行缩进
-    implicit_expectation: 摘要正文默认首行缩进2字符
-    explicit_requirement: 未写明
-    resolution: 采用隐式默认首行缩进，必要时可在配置中关闭。
-  - item: 页码格式
-    implicit_expectation: 前置罗马+正文阿拉伯
-    explicit_requirement: 未写明
-    resolution: 采用隐式默认并在配置中可调整。
-implementation_guidance:
-  reuse_methods:
-    - 目录系统：直接复用`best_practices/目录系统_reference.py`中的书签、超链接、PAGEREF相关方法。
-    - 图表序号：复用`_add_seq_field`与`_add_chapter_based_seq_field`，仅按编号格式插入“图/表”文字与分隔符。
-    - OMML公式：复用`_build_omml_runs`、`_add_omml_text_run`，记得根据配置写变量样式。
-    - 字体处理：复用`set_mixed_font`确保`w:eastAsia`和`w:ascii`都被设定。
-    - 参考文献交叉引用：复用`_add_internal_reference_link`和`_add_text_with_citations`实现跳转。
-  adapt_methods:
-    - 标题解析：根据“第一章/第一节/一、”等中文格式定制正则表达式和编号映射。
-    - 目录条目：为章/节/段分别设置左缩进（0/2/4字符）和加粗规则。
-    - 表格渲染：三线表需要在XML层精确设置边框粗细、清空垂直线，可参考`_set_table_borders`再按本规范值写入。
-    - 公式编号：确保编号 run 与公式同段，右对齐；若将来学校要求独立成行，可通过配置切换。
-  custom_methods:
-    - 关键词块：实现“另起一行 + 悬挂缩进 + 分号分隔 + 英文首字母大写”的独立渲染函数（中文/英文共用逻辑，参数控制缩进字符数和分隔符）。
-    - 中文数字编号：需要映射“一、二、三”到段落序号，便于交叉引用及自动编号。
-    - 三线表生成：若内置helper不满足“仅顶/栏目/底三条横线”需求，需要自定义`_apply_three_line_style`清除垂直线、控制粗细。
-  self_checklist:
-    - toc_field_inserted: 是否插入TOC域而非手写段落
-    - chapter_bookmark_count: 章级书签数量是否匹配正文章数
-    - abstract_presence: 抽象（abstract_cn/abstract_en）节点若输入存在文本则生成内容
-    - formula_omml_enabled: 公式是否以OMML写入
-    - figure_placeholder_when_missing: 图片缺失时是否生成占位并保留SEQ题注
-    - heading_runs_with_eastAsia: 标题及编号run是否写入eastAsia字体和字号
-    - spacing_config_applied: 行距、段前/段后是否按配置写入
-  configuration_highlights:
-    - `figure.numbering_format` 与 `table.number_format` 应支持 "{chapter}-{seq}"、"{seq}" 切换。
-    - `keywords` 节点需要额外字段描述悬挂缩进字符数与分隔符类型。
-    - `formula.numbering_position` 需明确为 `right_same_line`，并包含编号括号样式配置。
-    - `fonts` 部分要写明中文=宋体、英文=Times New Roman，用于 run 级字体分离。
-    - `body.heading*` 必须写出段前/段后以避免默认值导致排版紧贴。
-  other_notes:
-    - 表格/图片内容字号在规范中给出可选项，配置层固定为小四并在文档中注明如需小五可覆写。
-    - 需确保关键词行的“悬挂缩进按字符数转换为精确左缩进值（字符数×全角字符宽度）”。
-    - 若后续拓展英文目录，需要保持`toc`配置中的缩进映射可国际化。
+# 中国科学技术大学本科毕业论文格式 - 需求分析清单
+
+## 显式需求（从 filtered.md 解析）
+
+### 1. 文档基本设置
+page_setup:
+  paper_size: A4
+  # 注意：filtered.md中未提及页边距，需要在配置中使用合理默认值
+
+### 2. 字体配置
+fonts:
+  chinese: 宋体
+  english: Times New Roman
+
+sizes:
+  三号: 16pt
+  小三: 15pt
+  四号: 14pt
+  小四: 12pt
+  五号: 10.5pt
+
+### 3. 中文摘要格式
+abstract_chinese:
+  title:
+    text: "摘 要"
+    font: 黑体
+    size: 三号 (16pt)
+    bold: false  # 黑体本身已经是粗体外观
+    alignment: 居中
+    line_spacing: 单倍行距 (1.0)
+    space_before: 24磅
+    space_after: 18磅
+
+  content:
+    font: 宋体 (中文)、Times New Roman (英文和数字)
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)
+    space_before: 0磅
+    space_after: 0磅
+    first_line_indent: 2字符  # 规范未写"顶格"，根据人类默认需求补充
+
+  keywords:
+    label: "关键词："
+    label_bold: true
+    position: 另起一行，隔行排列于摘要下方
+    alignment: 左顶格
+    hanging_indent: 4字符
+    separator: "；"
+    font: 同摘要内容
+    size: 小四 (12pt)
+
+### 4. 英文摘要格式
+abstract_english:
+  title:
+    text: "ABSTRACT"
+    font: Times New Roman
+    size: 三号 (16pt)
+    bold: true
+    alignment: 居中
+    line_spacing: 单倍行距 (1.0)
+    space_before: 24磅
+    space_after: 18磅
+
+  content:
+    font: Times New Roman
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)
+    space_before: 0磅
+    space_after: 0磅
+    first_line_indent: 2字符  # 规范未写"顶格"，根据人类默认需求补充
+
+  keywords:
+    label: "Key Words:"
+    label_bold: true
+    position: 另起一行
+    alignment: 左顶格
+    hanging_indent: 6.5字符
+    separator: ";"
+    format: 每个关键词首字母大写
+    font: Times New Roman
+    size: 小四 (12pt)
+
+### 5. 目录格式
+toc:
+  title:
+    text: "目 录"
+    font: 黑体
+    size: 三号 (16pt)
+    line_spacing: 单倍行距 (1.0)
+    space_before: 24磅
+    space_after: 18磅
+    alignment: 居中
+
+  entries:
+    font: 宋体
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)
+    space_before: 0磅
+    space_after: 0磅
+
+  indentation:
+    chapter: 左顶格，加粗
+    section: 缩进2字符
+    subsection: 缩进4字符
+
+  page_number:
+    position: 行末右顶格
+
+### 6. 正文标题格式
+body_headings:
+  heading1_chapter:
+    format: "第一章"、"第二章" 等 (中文数字格式)
+    font: 黑体
+    size: 三号 (16pt)
+    alignment: 居中  # 规范未明确，根据常规学术规范补充
+    space_before: 24磅  # 规范未明确，根据人类默认需求补充
+    space_after: 18磅   # 规范未明确，根据人类默认需求补充
+    line_spacing: 单倍行距 (1.0)  # 规范未明确，根据常规学术规范补充
+
+  heading2_section:
+    format: "第一节"、"第二节" 等 (中文数字格式)
+    font: 黑体
+    size: 小三 (15pt)
+    alignment: 左对齐  # 规范未明确，根据常规学术规范补充
+    space_before: 18磅  # 规范未明确，根据人类默认需求补充
+    space_after: 12磅   # 规范未明确，根据人类默认需求补充
+    line_spacing: 单倍行距 (1.0)  # 规范未明确，根据常规学术规范补充
+
+  heading3_subsection:
+    format: "一、"、"二、" 等 (中文数字+顿号)
+    font: 黑体
+    size: 四号 (14pt)
+    alignment: 左对齐  # 规范未明确，根据常规学术规范补充
+    space_before: 12磅  # 规范未明确，根据人类默认需求补充
+    space_after: 6磅    # 规范未明确，根据人类默认需求补充
+    line_spacing: 单倍行距 (1.0)  # 规范未明确，根据常规学术规范补充
+
+  heading4:
+    format: "1."、"2." 等
+    # 规范未明确其他样式，使用正文格式
+
+  heading5:
+    format: "（1）"、"（2）" 等
+    # 规范未明确其他样式，使用正文格式
+
+### 7. 正文段落格式
+body_paragraph:
+  font: 宋体 (中文)、Times New Roman (英文和数字)
+  size: 小四 (12pt)
+  line_spacing: 固定20磅 (fixed_20pt)
+  first_line_indent: 2字符
+  space_before: 0磅
+  space_after: 0磅
+  alignment: 两端对齐
+
+### 8. 表格格式
+table:
+  numbering_format: "表1"、"表2" 等 (全文统一编号) 或按章编号
+  # 注意：规范提供两种选择，需要在配置中明确选择一种
+  caption_position: 居表上方
+  caption_alignment: 居中
+  caption_font: 宋体
+  caption_size: 小四 (12pt)
+
+  content_font: 宋体
+  content_size: 小四或五号 (本规范统一为小四)
+
+  border_style: 三线表 (顶线、栏目线、底线)
+  # 三线表具体线宽需要在配置中指定，参考常规学术规范：上下1.5pt，中0.5pt
+
+### 9. 图片格式
+figure:
+  numbering_format: 全文统一编号或按章编号
+  # 注意：规范提供两种选择，需要在配置中明确选择一种
+  caption_position: 居图下方
+  caption_alignment: 居中
+  caption_font: 宋体
+  caption_size: 小四 (12pt)
+
+### 10. 公式格式
+formula:
+  position: 单独占行
+  alignment: 居中
+  line_spacing: 单倍行距 (1.0)
+
+  numbering:
+    format: （1）、（2） 等 (用括号括起)
+    position: 公式右边行末
+    font: 与段落文字格式相同 (宋体/Times New Roman)
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)
+    no_connection_line: true  # 编号与公式间不加任何连线
+
+  font_rules:
+    variable: 斜体 (italic)
+    constant: 正体 (normal)
+    special_function: 正体 (normal)
+    vector: 黑斜体 (bold italic)
+    tensor: 黑正体 (bold normal)
+
+### 11. 参考文献格式
+references:
+  title:
+    text: "参 考 文 献"
+    font: 黑体
+    size: 三号 (16pt)
+    line_spacing: 单倍行距 (1.0)
+    space_before: 24磅
+    space_after: 18磅
+    alignment: 居中
+
+  entry:
+    numbering_style: 顺序编码制 (1. 2. 3. ...)
+    font: 宋体 (中文)、Times New Roman (英文)
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)  # 规范未明确，根据正文格式补充
+
+  citation_formats:
+    book: "作者.书名[M].出版地：出版社，出版年."
+    book_with_pages: "作者.书名[M].出版地：出版社，出版年:起止页码."
+    journal: "作者.文章标题[J].刊名，年，卷（期）:起止页码."
+    thesis: "作者.论文题名[博士学位论文].保存地：保存单位，年份."
+
+### 12. 致谢格式
+acknowledgements:
+  title:
+    text: "致 谢"
+    font: 黑体
+    size: 三号 (16pt)
+    line_spacing: 单倍行距 (1.0)
+    space_before: 24磅
+    space_after: 18磅
+    alignment: 居中
+
+  content:
+    font: 宋体
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)
+    first_line_indent: 2字符  # 规范未明确，根据正文格式补充
+    alignment: 两端对齐  # 规范未明确，根据正文格式补充
+
+### 13. 附录格式
+appendix:
+  title:
+    text: "附 录"
+    font: 黑体
+    size: 三号 (16pt)
+    line_spacing: 单倍行距 (1.0)
+    space_before: 24磅
+    space_after: 18磅
+    alignment: 居中
+
+  content:
+    # 规范未明确，根据正文格式补充
+    font: 宋体
+    size: 小四 (12pt)
+    line_spacing: 固定20磅 (fixed_20pt)
+    first_line_indent: 2字符
+    alignment: 两端对齐
+
+### 14. 页码格式
+page_numbers:
+  # 注意：规范未明确页码格式（罗马数字/阿拉伯数字）
+  # 根据常规学术规范补充：
+  # - 摘要和目录：小写罗马数字 (i, ii, iii)
+  # - 正文及后续：阿拉伯数字 (1, 2, 3)
+  abstract_toc: 小写罗马数字 (i, ii, iii)
+  body_onwards: 阿拉伯数字 (1, 2, 3)
+  position: 页面底部居中  # 规范未明确，根据常规学术规范补充
+  font: Times New Roman  # 规范未明确，根据常规学术规范补充
+  size: 小五 (9pt)  # 规范未明确，根据常规学术规范补充
+
+### 15. 页眉格式
+header:
+  # 注意：规范未提及页眉
+  # 根据常规学术规范补充：
+  # - 正文页眉：论文题目或章节名
+  # - 其他章节页眉：对应章节名
+  abstract: null  # 摘要无页眉
+  toc: null       # 目录无页眉
+  body: 论文题目或章节名
+  references: "参考文献"
+  acknowledgements: "致谢"
+  appendix: "附录"
+  font: 宋体  # 规范未明确，根据常规学术规范补充
+  size: 小五 (9pt)  # 规范未明确，根据常规学术规范补充
+  alignment: 居中  # 规范未明确，根据常规学术规范补充
+
+---
+
+## 隐式需求（从 implementation_notes.md 补全）
+
+### 1. 目录系统功能
+toc_features:
+  clickable_links: true
+    # 目录条目可以点击，跳转到对应章节
+    # 实现：w:hyperlink + w:anchor 指向书签
+
+  auto_page_numbers: true
+    # 页码会自动更新（不是手工改数字）
+    # 实现：PAGEREF 字段
+
+  link_color: black
+    # 超链接是黑色字体（不是Word默认蓝色）
+    # 实现：w:color='000000'
+
+  use_word_toc_field: true
+    # 必须使用 Word TOC 域（TOC1/TOC2 样式）
+    # 禁止手写目录段落，否则 extract_format_simple.py 无法识别
+
+  dot_leaders: true
+    # 目录项与页码之间使用点线前导符
+    # 实现：w:tabs + w:tab 制表位
+
+### 2. 图表编号系统功能
+figure_table_features:
+  seq_fields: true
+    # 图表编号自动递增（插入/删除图片后，编号自动调整）
+    # 实现：SEQ 字段（Word的序列自动编号）
+    # 禁止硬编码编号，否则新增图表后，后续编号不会自动调整
+
+  chapter_based_numbering: true
+    # 按章节编号（如：图1-1, 图1-2, 图2-1）
+    # 注意：规范提供"全文统一编号"或"按章编号"两种选择
+    # 根据常规学术规范，建议采用按章编号
+
+### 3. 参考文献功能
+references_features:
+  citation_links: true
+    # 正文中的[1]可以点击，跳转到参考文献列表
+    # 实现：超链接到 _Reference_1
+
+  citation_color: black
+    # 引用编号是黑色（不是蓝色）
+    # 实现：w:color='000000'
+
+  bookmarks: true
+    # 文献条目：书签 _Reference_1
+    # 正文引用：超链接到 _Reference_1
+
+### 4. 公式功能
+formula_features:
+  omml_format: true
+    # 公式是真正的公式对象（可以右键"编辑公式"）
+    # 实现：OMML格式（Word的公式标准格式）
+    # 禁止使用纯文本，否则下标显示为"x_i"而非真下标
+
+  editable: true
+    # 可以用公式编辑器修改
+
+  auto_numbering: true
+    # 公式编号自动递增
+    # 实现：SEQ 字段
+
+### 5. 字体处理功能
+font_features:
+  separate_cjk_latin: true
+    # 中英文使用不同字体时，正确分离
+    # 实现：run.font.name (英文) + w:eastAsia (中文)
+
+  explicit_font_tags: true
+    # run 级样式必须显式写 <w:rFonts w:eastAsia> 与 <w:rFonts w:ascii>
+    # 只设置 run.font.name 不会在 XML 中留下字体信息
+
+  bold_italic_tags: true
+    # 加粗/斜体必须写 <w:b>、<w:i>
+    # 抽取脚本只认 XML，缺少这些标签就会判断为"未加粗"
+
+  heading_number_font: true
+    # 生成标题时，编号 run 必须同步写字体信息
+    # 否则抽取器会把整段识别成宋体
+
+### 6. 页眉设置功能
+header_features:
+  section_headers: true
+    # 正文及新增节一定要设置页眉
+    # 正文页眉=论文题目或配置内容
+    # 参考文献/致谢/附录页眉=对应章节名
+
+  unlink_from_previous: true
+    # 必须设置 is_linked_to_previous=False
+    # 否则页眉会与前一节相同
+
+### 7. 版面间距功能
+spacing_features:
+  title_content_spacing: true
+    # 大小标题与正文内容之间至少有 1 个空行（或等效的段后/段前距离）
+    # 保证版面可读性
+
+  multi_level_spacing: true
+    # 二级、三级标题同样需要段前/段后空白
+    # 不能只在一级标题留空
+
+  abstract_indent: true
+    # 中文/英文摘要正文若规范未写"顶格"，默认首行缩进 2 个字符
+
+  keyword_hanging_indent: true
+    # 关键词悬挂缩进按"字符数 × 全角宽度"估算
+    # 必要时在配置里直接写 left_indent
+
+  explicit_line_spacing: true
+    # 当规范写"固定 XX 磅行距"或"单倍行距"时
+    # 配置需写成 fixed_XXpt 或 line_spacing: 1.0
+    # 并在代码中显式设置 paragraph_format.line_spacing_rule
+    # 不要依赖 Word 默认值
+
+### 8. 边界情况处理
+edge_cases:
+  missing_image_placeholder: true
+    # 图片文件不存在时，插入占位符段落
+    # 题注仍然正常生成（使用SEQ字段）
+
+  reference_text_cleanup: true
+    # 参考文献文本清理（去除URL、统一标点等）
+
+  skip_empty_paragraphs: true
+    # 跳过空段落
+
+### 9. 强制自检项
+self_check:
+  toc_field_inserted: true
+    # 生成代码后须在日志输出：是否插入 TOC 域
+
+  bookmark_count: true
+    # 章节书签数量
+
+  abstract_content: true
+    # abstract/abstract_en 是否有内容（若输入存在）
+
+  omml_support: true
+    # 公式 OMML 支持是否启用
+
+  missing_image_handling: true
+    # 图片缺失时是否生成占位+SEQ 题注
+
+  heading_font_tags: true
+    # 标题 run 是否写 eastAsia/size
+
+  spacing_config: true
+    # 行距/段前后是否按配置写入
+
+---
+
+## 冲突分析
+
+### 1. 公式变量样式
+- **隐式建议**: 变量斜体（常规学术规范）
+- **显式要求**: 变量斜体
+- **结论**: **无冲突**，采用斜体
+
+### 2. 目录条目样式
+- **隐式建议**: 使用Word TOC域，目录条目可点击，页码自动更新
+- **显式要求**: 只规定字体、字号、行距、缩进规则
+- **结论**: **无冲突**，采用Word TOC域实现，并应用显式要求的样式
+
+### 3. 图表编号
+- **隐式建议**: 使用SEQ字段自动编号
+- **显式要求**: 编号格式可选"全文统一编号"或"按章编号"
+- **结论**: **无冲突**，使用SEQ字段，具体格式选择"按章编号"（常规学术规范）
+
+### 4. 参考文献引用
+- **隐式建议**: 正文引用可点击跳转，黑色字体
+- **显式要求**: 顺序编码制（1. 2. 3.）
+- **结论**: **无冲突**，实现可点击跳转，采用显式要求的编号格式
+
+### 5. 字体处理
+- **隐式建议**: 中英文分离（w:eastAsia）
+- **显式要求**: 中文用宋体，英文和数字用Times New Roman
+- **结论**: **无冲突**，必须显式设置中英文字体分离
+
+### 6. 行距设置
+- **隐式建议**: 显式设置line_spacing_rule，不依赖Word默认值
+- **显式要求**: 固定20磅行距、单倍行距
+- **结论**: **无冲突**，必须在代码中显式设置
+
+### 7. 摘要正文首行缩进
+- **隐式建议**: 规范未写"顶格"时，默认首行缩进2字符
+- **显式要求**: 规范未明确提及（只提到"行距：固定20磅"）
+- **结论**: **无冲突**，采用首行缩进2字符（常规学术规范）
+
+### 8. 页码格式
+- **隐式建议**: 摘要和目录用罗马数字，正文用阿拉伯数字
+- **显式要求**: 规范未明确提及
+- **结论**: **无冲突**，采用隐式建议（常规学术规范）
+
+### 9. 页眉设置
+- **隐式建议**: 正文及各章节设置相应页眉，is_linked_to_previous=False
+- **显式要求**: 规范未提及
+- **结论**: **无冲突**，采用隐式建议（常规学术规范）
+
+### 10. 标题段前段后间距
+- **隐式建议**: 大小标题与正文之间至少有1个空行或等效间距
+- **显式要求**: 摘要、目录、参考文献等大标题有明确的段前24磅、段后18磅；正文标题未明确
+- **结论**: **轻微冲突**，大标题采用显式要求（段前24磅、段后18磅），正文标题根据隐式建议补充合理间距（一级标题段前24磅、段后18磅；二级标题段前18磅、段后12磅；三级标题段前12磅、段后6磅）
+
+**总结**：显式需求与隐式需求基本无冲突，隐式需求主要是补充技术实现细节和格式规范未明确的部分。唯一的轻微冲突在于标题间距，采用显式要求优先原则，结合隐式建议补充未明确的部分。
+
+---
+
+## 实现建议
+
+### 1. 99%会用上的方法（可参考借鉴）
+**目录系统**（best_practices/目录系统_reference.py）：
+- `_add_bookmark_to_paragraph()` - 添加书签
+- `_create_standard_hyperlink()` - 创建黑色超链接
+- `_add_pageref_field()` - PAGEREF页码字段
+- `_add_tab_stop()` - 制表位（点线前导符）
+
+**图表系统**（best_practices/图表系统_reference.py）：
+- `_add_seq_field()` - 简单SEQ字段
+- `_add_chapter_based_seq_field()` - 按章节的SEQ字段
+- `_set_table_borders()` - 三线表边框设置
+
+**公式系统**（best_practices/公式系统_reference.py）：
+- `_build_omml_runs()` - 构建OMML格式
+- `_add_omml_text_run()` - 添加OMML文本
+- `_apply_math_justification()` - 公式对齐
+
+**字体处理**（best_practices/字体样式_reference.py）：
+- `set_mixed_font()` - 中英文混排
+
+**参考文献**（best_practices/参考文献系统_reference.py）：
+- `_add_internal_reference_link()` - 内部超链接（黑色）
+- `_add_text_with_citations()` - 处理正文引用
+
+### 2. 按需调整的方法（参考后修改）
+**图表生成**：
+- `_add_figure()` - 核心逻辑复用，调整：
+  - 编号格式："图{chapter}-{seq}"（按章编号）
+  - 题注位置：居图下方
+  - 字体：宋体，小四 (12pt)
+
+- `_add_table()` - 核心逻辑复用，调整：
+  - 边框样式：三线表
+  - 边框粗细：上下1.5pt，中0.5pt
+  - 题注位置：居表上方
+
+**公式生成**：
+- `_add_formula()` - 核心逻辑复用，调整：
+  - 编号位置：公式右边行末（同一行）
+  - 编号格式：（1）、（2）等
+  - 变量斜体、常量正体、矢量黑斜体、张量黑正体
+
+**参考文献**：
+- `_generate_references()` - 核心逻辑复用，调整：
+  - 编号格式：1. 2. 3.（顺序编码制）
+  - 条目样式：宋体/Times New Roman，小四
+
+### 3. 学校定制的方法（重新实现）
+**解析器**：
+- `parse_heading()` - 标题识别正则
+  - 一级标题："第一章"、"第二章"等
+  - 二级标题："第一节"、"第二节"等
+  - 三级标题："一、"、"二、"等
+  - 需要中文数字转换：一二三四五六七八九十
+
+- `_chinese_to_arabic()` - 中文数字转换
+  - 需要支持：一、二、三...十、十一、十二...二十等
+
+**目录生成**：
+- `_generate_toc()` - 目录格式
+  - 缩进规则：章左顶格加粗，节缩进2字符，段缩进4字符
+  - 使用Word TOC域，并应用显式要求的样式
+
+### 4. 强制自检清单
+生成代码后须在日志输出：
+- [ ] 是否插入 TOC 域
+- [ ] 章节书签数量
+- [ ] abstract/abstract_en 是否有内容（若输入存在）
+- [ ] 公式 OMML 支持是否启用
+- [ ] 图片缺失时是否生成占位+SEQ 题注
+- [ ] 标题 run 是否写 eastAsia/size
+- [ ] 行距/段前后是否按配置写入
+- [ ] 页眉是否正确设置并 unlink from previous
+
+### 5. 配置重点提示
+**必须明确的配置项**：
+1. **页边距**：规范未提及，需要使用合理默认值（建议：上下2.5cm，左右2.5cm）
+2. **图表编号格式**：规范提供两种选择，配置中明确选择"按章编号"
+3. **表格边框粗细**：三线表，上下1.5pt，中0.5pt
+4. **页码格式**：摘要和目录用罗马数字，正文用阿拉伯数字
+5. **页眉内容**：正文页眉内容需要明确（论文题目或章节名）
+6. **标题段前段后间距**：正文标题（一二三级）的段前段后间距需要补充合理默认值
+
+**关键技术点**：
+1. **行距设置**：固定20磅行距 = 20/72 英寸 ≈ 0.278英寸，需要显式设置line_spacing_rule
+2. **关键词悬挂缩进**：
+   - 中文关键词：4字符 ≈ 4 × 12pt ≈ 48pt ≈ 0.667英寸
+   - 英文关键词：6.5字符 ≈ 6.5 × 12pt ≈ 78pt ≈ 1.083英寸
+3. **中文数字转换**：需要支持"第一章"、"第一节"、"一、"等格式的解析
+4. **字体分离**：所有run必须显式设置w:eastAsia（中文）和w:ascii（英文）
+5. **加粗标签**：黑体虽然外观是粗体，但仍需要检查是否需要<w:b>标签（根据具体需求）
+
+### 6. 其他建议
+**边界情况处理**：
+- 图片文件不存在：插入红色占位符"[图片缺失: 请检查路径]"，题注仍正常生成
+- 空段落：跳过处理
+- 参考文献文本清理：去除URL、统一标点（中文→英文）
+
+**质量标准**：
+- Parser：400-600行（包含中文数字转换逻辑）
+- Formatter：1500-2000行（完整实现所有人类默认功能）
+- Styles：100-200行
+- 总计：2000-2800行
+
+**配置驱动原则**：
+- 所有样式从config.json读取
+- 不要硬编码字体、字号、颜色、格式
+- 使用style_manager或直接读取config
+
+---
+
+## 补充说明
+
+### 1. 规范未明确的部分（已根据常规学术规范补充）
+- 页边距：建议上下2.5cm，左右2.5cm
+- 正文标题段前段后间距：
+  - 一级标题：段前24磅，段后18磅
+  - 二级标题：段前18磅，段后12磅
+  - 三级标题：段前12磅，段后6磅
+- 标题对齐方式：
+  - 一级标题：居中
+  - 二级三级标题：左对齐
+- 标题行距：单倍行距
+- 摘要正文首行缩进：2字符
+- 页码格式：摘要和目录用小写罗马数字，正文及后续用阿拉伯数字
+- 页码位置：页面底部居中
+- 页码字体：Times New Roman，小五 (9pt)
+- 页眉格式：宋体，小五 (9pt)，居中
+- 参考文献条目行距：固定20磅（与正文一致）
+- 致谢、附录内容格式：与正文一致
+
+### 2. 规范提供选择的部分（已明确选择）
+- 图表编号格式：选择"按章编号"（如：图1-1, 表2-3）
+- 表格内容字号：选择"小四"（统一）
+
+### 3. 技术实现关键点
+1. **固定行距20磅**：
+   ```python
+   paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY
+   paragraph_format.line_spacing = Pt(20)
+   ```
+
+2. **单倍行距**：
+   ```python
+   paragraph_format.line_spacing_rule = WD_LINE_SPACING.SINGLE
+   # 或
+   paragraph_format.line_spacing = 1.0
+   ```
+
+3. **关键词悬挂缩进**：
+   ```python
+   # 中文关键词：悬挂缩进4字符
+   paragraph_format.left_indent = Pt(48)  # 4 × 12pt
+   paragraph_format.first_line_indent = Pt(-48)
+
+   # 英文关键词：悬挂缩进6.5字符
+   paragraph_format.left_indent = Pt(78)  # 6.5 × 12pt
+   paragraph_format.first_line_indent = Pt(-78)
+   ```
+
+4. **中文数字转换**：
+   ```python
+   def chinese_to_arabic(chinese_num):
+       """将中文数字转换为阿拉伯数字"""
+       chinese_digits = {'一': 1, '二': 2, '三': 3, '四': 4, '五': 5,
+                        '六': 6, '七': 7, '八': 8, '九': 9, '十': 10}
+       # 处理"一"到"十"
+       if chinese_num in chinese_digits:
+           return chinese_digits[chinese_num]
+       # 处理"十一"到"十九"
+       if chinese_num.startswith('十') and len(chinese_num) == 2:
+           return 10 + chinese_digits.get(chinese_num[1], 0)
+       # 处理"二十"、"三十"等
+       if chinese_num.endswith('十'):
+           return chinese_digits.get(chinese_num[0], 0) * 10
+       # 处理"二十一"、"二十二"等
+       if '十' in chinese_num and len(chinese_num) == 3:
+           tens = chinese_digits.get(chinese_num[0], 0) * 10
+           ones = chinese_digits.get(chinese_num[2], 0)
+           return tens + ones
+       return 0
+   ```
+
+5. **字体分离**：
+   ```python
+   run.font.name = 'Times New Roman'  # 英文和数字
+   run._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')  # 中文
+   ```
+
+### 4. 注意事项
+1. 黑体字体本身已经是粗体外观，但在配置中`bold: false`表示不额外加粗
+2. 三线表的具体线宽参考常规学术规范：上下1.5pt，中0.5pt
+3. 关键词悬挂缩进的计算基于字符数，需要估算全角宽度
+4. 所有标题的run必须显式设置字体信息（eastAsia + ascii + size），否则抽取器会识别错误
+5. 页眉必须设置is_linked_to_previous=False，确保各节页眉独立
+
+---
+
+## 总结
+
+本需求分析清单完整覆盖了中国科学技术大学本科毕业论文格式规范的所有显式要求，并补全了人类默认功能需求。对于规范未明确的部分，已根据常规学术规范和人类默认期望进行了合理补充。实现时应严格遵循配置驱动原则，确保所有样式从配置文件读取，并完整实现所有人类默认功能（目录可点击、图表自动编号、公式OMML格式、字体分离等）。
