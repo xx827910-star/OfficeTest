@@ -28,21 +28,22 @@ namespace DocxFormatExtractor
 
         static void Main(string[] args)
         {
-            if (args.Length > 0 && IsBatchArgument(args[0]))
-            {
-                string inputDir = args.Length > 1 ? args[1] : DefaultBatchInputDirectory;
-                string outputDir = args.Length > 2 ? args[2] : DefaultBatchOutputDirectory;
-                BatchDocxProcessor.Run(inputDir, outputDir);
-                return;
-            }
+            // if (args.Length > 0 && IsBatchArgument(args[0]))
+            // {
+            //     string inputDir = args.Length > 1 ? args[1] : DefaultBatchInputDirectory;
+            //     string outputDir = args.Length > 2 ? args[2] : DefaultBatchOutputDirectory;
+            //     BatchDocxProcessor.Run(inputDir, outputDir);
+            //     return;
+            // }
 
             try
             {
-                var result = ProcessDocument(
-                    DefaultDocPath,
-                    DefaultOutputDirectory,
-                    "both",
-                    DefaultOutputPrefix);
+                string docPath = args.Length > 0 ? args[0] : DefaultDocPath;
+                string outputDir = args.Length > 1 ? args[1] : DefaultOutputDirectory;
+                string outputFormat = args.Length > 2 ? args[2] : "both";
+                string outputPrefix = args.Length > 3 ? args[3] : DefaultOutputPrefix;
+
+                var result = ProcessDocument(docPath, outputDir, outputFormat, outputPrefix);
 
                 Console.WriteLine("单文件提取完成！");
                 if (!string.IsNullOrEmpty(result.TextOutputPath))

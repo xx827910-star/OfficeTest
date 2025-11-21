@@ -8,9 +8,8 @@
 ---
 
 ## 输入
-1. **格式规范**: `projects/{project_id}/input/filtered.md` （本仓库 e1/e3 对应的规范文件）
-2. **实际格式数据**: `projects/{project_id}/output/json_output/format_data_vXX.json`（由提取脚本生成，版本号与原始 vXX 对应）。
-
+1. **格式规范**: `OfficeTest/filtered.md`
+2. **实际格式数据**: `<json_output/format_data_xxxthesis.json>`
 ### JSON 结构速览
 - 脚本已做: 单位换算(cm/磅/字号)、段落分类、样式继承解析、目录/正文采样压缩。
 - 脚本未做: 任何"是否合规"的判断。

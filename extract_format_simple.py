@@ -1533,8 +1533,8 @@ def main():
 
     output_dir.mkdir(exist_ok=True)
 
-    # 查找所有 JSON 文件（支持 v14_format_output.json 和 v01_xxx_format_output.json 两种格式）
-    json_files = sorted(input_dir.glob('v*_format_output.json'))
+    # 查找所有 JSON 文件（支持 v14_format_output.json、v01_xxx_format_output.json 和其他格式）
+    json_files = sorted(input_dir.glob('*_format_output.json'))
 
     if not json_files:
         print(f"错误：在 {input_dir} 中没有找到任何 JSON 文件")
@@ -1545,13 +1545,14 @@ def main():
 
     # 处理每个文件
     for json_file in json_files:
-        # 提取版本号（例如 v01）
+        # 提取版本号或文件名前缀（例如 v01 或 e1thesis）
         match = re.match(r'(v\d+)_', json_file.name)
-        if not match:
-            print(f"警告：无法从文件名 {json_file.name} 中提取版本号，跳过")
-            continue
-
-        version = match.group(1)
+        if match:
+            version = match.group(1)
+        else:
+            # 如果不是 v 格式，使用文件名前缀（去掉 _format_output.json）
+            version = json_file.stem.replace('_format_output', '')
+        
         output_file = output_dir / f'format_data_{version}.json'
 
         print(f"处理 {json_file.name} -> {output_file}")
