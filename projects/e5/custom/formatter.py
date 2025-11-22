@@ -8,7 +8,6 @@ from docx.enum.section import WD_SECTION_START
 from docx.oxml.ns import qn
 from docx.oxml import OxmlElement, parse_xml
 from docx.table import _Cell
-from .styles import StyleManager
 import os
 import re
 
@@ -22,7 +21,7 @@ SPECIAL_SECTION_BOOKMARKS = {
 }
 
 
-class ThesisFormatter:
+class USTCFormatter:
     """论文文档生成器"""
 
     def __init__(self, style_manager):
@@ -40,7 +39,6 @@ class ThesisFormatter:
         self.reference_targets = {}
         self.references_data = []
         self.reference_backlinks = {}
-        self.style_manager.configure_document_styles(self.doc)
         self._setup_document()
 
     def _setup_document(self):
@@ -132,7 +130,7 @@ class ThesisFormatter:
         self._apply_section_layout(section)
         return section
     
-    def _create_special_section(self, header_title, page_number_config, header_cfg=None):
+    def _create_special_section(self, header_title, page_number_config):
         """
         创建用于附加章节（参考文献/致谢/附录）的节，设置页码与页眉
         """
@@ -141,8 +139,7 @@ class ThesisFormatter:
             self._apply_page_number_settings(section, page_number_config)
         else:
             self._ensure_continuous_page_numbering(section)
-        header_text = header_cfg.get('content') if header_cfg else header_title
-        self._set_header(header_text or header_title, section, header_cfg)
+        self._set_header(header_title, section)
         return section
 
     def _clear_block_paragraphs(self, block):
@@ -245,6 +242,7 @@ class ThesisFormatter:
         :param paragraph: 段落对象
         :param bookmark_name: 书签名称
         """
+        # 参考: best_practices/目录系统_reference.py 第96-137行
         bookmark_id = self._get_next_bookmark_id()
 
         # 创建书签开始标记
@@ -297,26 +295,6 @@ class ThesisFormatter:
         """兼容旧逻辑，当前直接返回标题文本"""
         return title_text or ''
 
-    def _format_heading_number(self, level, number_value):
-        numbering_cfg = self.style_manager.config.get('numbering', {})
-        templates = {
-            1: '{n}',
-            2: '{n1}.{n2}',
-            3: '{n1}.{n2}.{n3}'
-        }
-        key = {1: 'heading1', 2: 'heading2', 3: 'heading3'}.get(level)
-        template = numbering_cfg.get(key, {}).get('format', templates[level])
-        if level == 1:
-            return template.replace('{n}', str(number_value))
-        parts = str(number_value).split('.')
-        n1 = parts[0] if parts else '1'
-        n2 = parts[1] if len(parts) > 1 else '1'
-        n3 = parts[2] if len(parts) > 2 else '1'
-        formatted = template.replace('{n1}', n1).replace('{n2}', n2)
-        if '{n3}' in formatted:
-            formatted = formatted.replace('{n3}', n3)
-        return formatted
-
     def _get_last_chapter_number(self, chapters):
         """获取正文中最后一个章节号（若缺失则返回章节总数）"""
         last_number = 0
@@ -340,6 +318,7 @@ class ThesisFormatter:
         :param bookmark_name: 目标书签名称
         :param font_size: 字体大小（磅）
         """
+        # 参考: best_practices/目录系统_reference.py 第140-200行
         # 创建超链接元素
         hyperlink = OxmlElement('w:hyperlink')
         hyperlink.set(qn('w:anchor'), bookmark_name)
@@ -389,6 +368,7 @@ class ThesisFormatter:
         :param run: 运行对象
         :param bookmark_name: 书签名称
         """
+        # 参考: best_practices/目录系统_reference.py 第203-240行
         # 创建字段开始标记
         fldChar1 = OxmlElement('w:fldChar')
         fldChar1.set(qn('w:fldCharType'), 'begin')
@@ -415,6 +395,7 @@ class ThesisFormatter:
         :param alignment: 制表位对齐方式（left/center/right）
         :param leader: 前导符类型（如 'dot'）
         """
+        # 参考: best_practices/目录系统_reference.py 第243-280行
         pPr = paragraph._element.get_or_add_pPr()
         tabs = pPr.find(qn('w:tabs'))
         if tabs is None:
@@ -482,6 +463,19 @@ class ThesisFormatter:
             current_section_number += 1
             section_number_map[key] = current_section_number
 
+        special_sections_for_toc = []
+        if include_toc:
+            for key in ('references', 'acknowledgements', 'appendix'):
+                if key not in section_number_map:
+                    continue
+                special_sections_for_toc.append({
+                    'title': self._format_section_title(
+                        section_number_map[key],
+                        self._get_special_section_title(key)
+                    ),
+                    'bookmark': self._get_special_section_bookmark(key)
+                })
+
         base_section = self.doc.sections[0]
         body_section = None
         body_page_config = self.style_manager.get_page_number_config('body') or {}
@@ -520,7 +514,7 @@ class ThesisFormatter:
                     toc_section,
                     self.style_manager.get_page_number_config('toc')
                 )
-            self._generate_toc()
+            self._generate_toc(chapters, special_sections_for_toc)
             body_section = self._add_configured_section()
             self._apply_page_number_settings(
                 body_section,
@@ -548,12 +542,7 @@ class ThesisFormatter:
                 section_number_map.get('references'),
                 self._get_special_section_title('references')
             ) or '参考文献'
-            references_style = self.style_manager.get_references_style()
-            self._create_special_section(
-                references_header,
-                self.style_manager.get_page_number_config('references'),
-                references_style.get('header')
-            )
+            self._create_special_section(references_header, None)
             self._generate_references(references, section_number_map.get('references'))
 
         if has_ack:
@@ -561,12 +550,7 @@ class ThesisFormatter:
                 section_number_map.get('acknowledgements'),
                 self._get_special_section_title('acknowledgements')
             ) or '致谢'
-            ack_style = self.style_manager.get_acknowledgement_style()
-            self._create_special_section(
-                ack_header,
-                self.style_manager.get_page_number_config('acknowledgements'),
-                ack_style.get('header')
-            )
+            self._create_special_section(ack_header, None)
             self._generate_acknowledgements(acknowledgements, section_number_map.get('acknowledgements'))
 
         if has_appendix:
@@ -574,12 +558,7 @@ class ThesisFormatter:
                 section_number_map.get('appendix'),
                 self._get_special_section_title('appendix')
             ) or '附录'
-            appendix_style = self.style_manager.get_appendix_style()
-            self._create_special_section(
-                appendix_header,
-                self.style_manager.get_page_number_config('appendix'),
-                appendix_style.get('header')
-            )
+            self._create_special_section(appendix_header, None)
             self._generate_appendix(appendix_entries, section_number_map.get('appendix'))
 
         # 保存文档
@@ -587,15 +566,25 @@ class ThesisFormatter:
         print(f"新文档已生成: {output_path}")
 
     def _generate_abstract(self, abstract_data):
-        """生成中文摘要。"""
-        title_cfg = self.style_manager.get_abstract_title_style()
-        title_para = self.doc.add_paragraph()
-        title_text = title_cfg.get('text', '摘 要')
-        title_run = title_para.add_run(title_text)
-        self.style_manager.apply_run_style(title_run, title_cfg)
-        self.style_manager.apply_paragraph_style(title_para, title_cfg)
+        """
+        生成摘要部分
+        :param abstract_data: 摘要数据
+        """
+        fonts = self.style_manager.get_fonts()
+        fallback_cn = fonts.get('chinese', '宋体')
+        fallback_en = fonts.get('english', 'Times New Roman')
 
-        content_cfg = self.style_manager.get_abstract_content_style()
+        title_style = self.style_manager.get_abstract_title_style()
+        title_text = title_style.get('text', '摘  要')
+        title_para = self.doc.add_paragraph()
+        title_run = title_para.add_run(title_text)
+        self.style_manager.apply_run_style(title_run, title_style)
+        self._apply_title_paragraph_format(title_para, title_style)
+
+        self.doc.add_paragraph()
+
+        content_style = self.style_manager.get_abstract_content_style()
+        content_cn, content_en = self._extract_font_pair(content_style, fallback_cn, fallback_en)
         for para_text in abstract_data.get('content', []):
             if not para_text:
                 continue
@@ -604,113 +593,250 @@ class ThesisFormatter:
             self.style_manager.set_mixed_font(
                 run,
                 para_text,
-                chinese_font=content_cfg.get('font_chinese', '宋体'),
-                english_font=content_cfg.get('font_english', 'Times New Roman'),
-                size=content_cfg.get('size', 12)
+                chinese_font=content_cn,
+                english_font=content_en,
+                size=content_style.get('size', 12)
             )
-            self.style_manager.apply_paragraph_style(para, content_cfg)
+            self.style_manager.apply_paragraph_style(para, content_style)
+
+        self.doc.add_paragraph()
 
         keywords = abstract_data.get('keywords', [])
         if keywords:
-            kw_cfg = self.style_manager.get_abstract_keywords_style()
-            if kw_cfg.get('insert_blank_line_before'):
+            kw_style = self.style_manager.get_abstract_keywords_style()
+            if kw_style.get('insert_blank_line_before'):
                 self.doc.add_paragraph()
             kw_para = self.doc.add_paragraph()
-            label_text = kw_cfg.get('label', '关键词：')
+
+            label_text = kw_style.get('label', '关键词：')
             label_run = kw_para.add_run(label_text)
-            self.style_manager.set_mixed_font(
-                label_run,
-                label_text,
-                chinese_font=kw_cfg.get('label_font', kw_cfg.get('content_font', '宋体')),
-                english_font=kw_cfg.get('label_font', kw_cfg.get('content_font', 'Times New Roman')),
-                size=kw_cfg.get('label_size', kw_cfg.get('content_size', 12)),
-                bold=kw_cfg.get('label_bold', True)
-            )
-            content_text = kw_cfg.get('separator', '；').join(keywords)
-            body_run = kw_para.add_run()
-            self.style_manager.set_mixed_font(
-                body_run,
-                content_text,
-                chinese_font=kw_cfg.get('content_font_chinese', kw_cfg.get('content_font', '宋体')),
-                english_font=kw_cfg.get('content_font_english', kw_cfg.get('content_font', 'Times New Roman')),
-                size=kw_cfg.get('content_size', 12)
-            )
-            self.style_manager.apply_paragraph_style(kw_para, kw_cfg)
+            label_font = kw_style.get('label_font', fallback_cn)
+            label_run.font.name = label_font
+            label_run._element.rPr.rFonts.set(qn('w:eastAsia'), label_font)
+            label_run.font.size = Pt(kw_style.get('label_size', kw_style.get('content_size', 12)))
+            label_run.font.bold = kw_style.get('label_bold', True)
 
-    def _generate_abstract_en(self, abstract_data):
-        """生成英文摘要。"""
-        cfg = self.style_manager.config.get('abstract_en', {})
-        title_cfg = cfg.get('title', {})
-        content_cfg = cfg.get('content', {})
-        kw_cfg = cfg.get('keywords', {})
-
-        title_text = title_cfg.get('text', 'ABSTRACT')
-        title_para = self.doc.add_paragraph()
-        title_run = title_para.add_run(title_text)
-        self.style_manager.apply_run_style(title_run, title_cfg)
-        self.style_manager.apply_paragraph_style(title_para, title_cfg)
-
-        for para_text in abstract_data.get('content', []):
-            if not para_text:
-                continue
-            para = self.doc.add_paragraph()
-            run = para.add_run()
-            self.style_manager.set_mixed_font(
-                run,
-                para_text,
-                chinese_font=content_cfg.get('font', 'Times New Roman'),
-                english_font=content_cfg.get('font', 'Times New Roman'),
-                size=content_cfg.get('size', 12)
+            kw_cn_font, kw_en_font = self._extract_font_pair(
+                kw_style,
+                fallback_cn,
+                fallback_en,
+                base_key='content_font'
             )
-            self.style_manager.apply_paragraph_style(para, content_cfg)
-
-        keywords = abstract_data.get('keywords', [])
-        if keywords:
-            if kw_cfg.get('capitalize_first_letter'):
-                keywords = [kw.strip().capitalize() for kw in keywords if kw.strip()]
-            if kw_cfg.get('insert_blank_line_before'):
-                self.doc.add_paragraph()
-            kw_para = self.doc.add_paragraph()
-            label_text = kw_cfg.get('label', 'Key Words:')
-            label_run = kw_para.add_run(label_text)
-            self.style_manager.set_mixed_font(
-                label_run,
-                label_text,
-                chinese_font=kw_cfg.get('label_font', 'Times New Roman'),
-                english_font=kw_cfg.get('label_font', 'Times New Roman'),
-                size=kw_cfg.get('label_size', kw_cfg.get('content_size', 12)),
-                bold=kw_cfg.get('label_bold', True)
-            )
-            kw_para.add_run(' ')
-            keywords_text = kw_cfg.get('separator', '; ').join(keywords)
+            keywords_text = kw_style.get('separator', '；').join(keywords)
             content_run = kw_para.add_run()
             self.style_manager.set_mixed_font(
                 content_run,
                 keywords_text,
-                chinese_font=kw_cfg.get('content_font', 'Times New Roman'),
-                english_font=kw_cfg.get('content_font', 'Times New Roman'),
+                chinese_font=kw_cn_font,
+                english_font=kw_en_font,
+                size=kw_style.get('content_size', 12)
+            )
+
+            para_style = {
+                'alignment': kw_style.get('alignment'),
+                'space_before': kw_style.get('space_before', 0),
+                'space_after': kw_style.get('space_after', 0),
+                'hanging_indent_chars': kw_style.get('hanging_indent_chars'),
+                'first_line_indent': kw_style.get('first_line_indent'),
+                'line_spacing_rule': kw_style.get('line_spacing_rule'),
+                'line_spacing_pt': kw_style.get('line_spacing_pt'),
+                'size': kw_style.get('content_size', 12)
+            }
+            clean_style = {k: v for k, v in para_style.items() if v is not None}
+            self.style_manager.apply_paragraph_style(kw_para, clean_style)
+
+    def _generate_abstract_en(self, abstract_data):
+        """
+        生成英文摘要部分
+        :param abstract_data: 英文摘要数据
+        """
+        fonts = self.style_manager.get_fonts()
+        fallback_cn = fonts.get('chinese', '宋体')
+        fallback_en = fonts.get('english', 'Times New Roman')
+        abstract_en_cfg = getattr(self.style_manager, 'config', {}).get('abstract_en', {})
+
+        title_cfg = abstract_en_cfg.get('title', {})
+        title_para = self.doc.add_paragraph()
+        title_run = title_para.add_run(title_cfg.get('text', 'ABSTRACT'))
+        self.style_manager.apply_run_style(title_run, title_cfg or {'font': 'Times New Roman', 'size': 16, 'bold': True})
+        self._apply_title_paragraph_format(title_para, title_cfg or {})
+
+        self.doc.add_paragraph()
+
+        content_cfg = abstract_en_cfg.get('content', {})
+        content_cn, content_en = self._extract_font_pair(content_cfg, fallback_cn, fallback_en)
+        for para_text in abstract_data.get('content', []):
+            if not para_text:
+                continue
+            para = self.doc.add_paragraph()
+            run = para.add_run()
+            self.style_manager.set_mixed_font(
+                run,
+                para_text,
+                chinese_font=content_cn,
+                english_font=content_en,
+                size=content_cfg.get('size', 12)
+            )
+            self.style_manager.apply_paragraph_style(para, content_cfg)
+
+        self.doc.add_paragraph()
+
+        keywords = abstract_data.get('keywords', [])
+        if keywords:
+            kw_cfg = abstract_en_cfg.get('keywords', {})
+            if kw_cfg.get('insert_blank_line_before'):
+                self.doc.add_paragraph()
+            kw_para = self.doc.add_paragraph()
+
+            label_text = kw_cfg.get('label', 'Key Words:')
+            label_run = kw_para.add_run(label_text + ' ')
+            label_font = kw_cfg.get('label_font', fallback_en)
+            label_run.font.name = label_font
+            label_run._element.rPr.rFonts.set(qn('w:eastAsia'), fallback_cn)
+            label_run.font.size = Pt(kw_cfg.get('label_size', kw_cfg.get('content_size', 12)))
+            label_run.font.bold = kw_cfg.get('label_bold', True)
+
+            kw_cn_font, kw_en_font = self._extract_font_pair(
+                kw_cfg,
+                fallback_cn,
+                fallback_en,
+                base_key='content_font'
+            )
+            processed_keywords = keywords
+            if kw_cfg.get('capitalize_first_letter'):
+                processed_keywords = [k[:1].upper() + k[1:] if k else k for k in keywords]
+            keywords_text = kw_cfg.get('separator', '; ').join(processed_keywords)
+            content_run = kw_para.add_run()
+            self.style_manager.set_mixed_font(
+                content_run,
+                keywords_text,
+                chinese_font=kw_cn_font,
+                english_font=kw_en_font,
                 size=kw_cfg.get('content_size', 12)
             )
-            self.style_manager.apply_paragraph_style(kw_para, kw_cfg)
 
-    def _generate_toc(self):
-        """插入基于 Word 内置 TOC 域的目录。"""
-        toc_cfg = self.style_manager.get_toc_style()
-        title_cfg = toc_cfg.get('title', {})
-        title_para = self.doc.add_paragraph()
-        title_text = title_cfg.get('text', '目 录')
-        title_run = title_para.add_run(title_text)
-        self.style_manager.apply_run_style(title_run, title_cfg)
-        self.style_manager.apply_paragraph_style(title_para, title_cfg)
+            para_style = {
+                'alignment': kw_cfg.get('alignment'),
+                'space_before': kw_cfg.get('space_before', 0),
+                'space_after': kw_cfg.get('space_after', 0),
+                'hanging_indent_chars': kw_cfg.get('hanging_indent_chars'),
+                'first_line_indent': kw_cfg.get('first_line_indent'),
+                'line_spacing_rule': kw_cfg.get('line_spacing_rule'),
+                'line_spacing_pt': kw_cfg.get('line_spacing_pt'),
+                'size': kw_cfg.get('content_size', 12)
+            }
+            clean_style = {k: v for k, v in para_style.items() if v is not None}
+            self.style_manager.apply_paragraph_style(kw_para, clean_style)
 
-        field_para = self.doc.add_paragraph()
-        fld = OxmlElement('w:fldSimple')
-        fld.set(qn('w:instr'), 'TOC \\o "1-3" \\h \\z \\u')
-        run = OxmlElement('w:r')
-        text_elem = OxmlElement('w:t')
-        run.append(text_elem)
-        fld.append(run)
-        field_para._p.append(fld)
+    def _generate_toc(self, chapters, special_sections=None):
+        """
+        生成可点击跳转的目录（带自动页码）
+        :param chapters: 章节列表
+        :param special_sections: 追加的特殊章节条目（参考文献/致谢/附录）
+        """
+        # 参考: best_practices/目录系统_reference.py 第283-385行
+        special_sections = special_sections or []
+        # 添加"目录"标题
+        toc_title = self.doc.add_paragraph()
+        toc_run = toc_title.add_run('目  录')
+        toc_run.font.name = '宋体'
+        toc_run._element.rPr.rFonts.set(qn('w:eastAsia'), '宋体')
+        toc_run.font.size = Pt(16)
+        toc_run.font.bold = True
+        toc_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        toc_title.paragraph_format.space_before = Pt(12)
+        toc_title.paragraph_format.space_after = Pt(0)
+
+        # 添加空行
+        self.doc.add_paragraph()
+
+        # 生成目录条目
+        for chapter in chapters:
+            chapter_num = chapter.get('number', 1)
+            chapter_title = chapter.get('title', '')
+            bookmark_name = f'_Chapter_{chapter_num}'
+
+            # 创建一级目录条目（顶格，五号字体）
+            toc_p = self.doc.add_paragraph()
+
+            # 添加右对齐制表位（带点线前导符）
+            self._add_tab_stop(toc_p, position_cm=16.0, alignment='right', leader='dot')
+
+            # 添加超链接文本
+            entry_text = f"第{chapter_num}章 {chapter_title}"
+            self._create_standard_hyperlink(toc_p, entry_text, bookmark_name)
+
+            # 添加制表符（会自动显示点线前导符）
+            tab_run = toc_p.add_run('\t')
+
+            # 添加自动页码字段
+            page_run = toc_p.add_run()
+            page_run.font.name = 'Times New Roman'
+            page_run.font.size = Pt(10.5)  # 五号
+            self._add_pageref_field(page_run, bookmark_name)
+
+            # 添加二三级目录
+            for item in chapter.get('content', []):
+                if item['type'] == 'heading2':
+                    h2_bookmark = f'_Heading_{item["number"].replace(".", "_")}'
+                    h2_p = self.doc.add_paragraph()
+
+                    # 添加缩进（缩进1字符 = 10.5pt，五号字大小）
+                    h2_p.paragraph_format.left_indent = Pt(10.5)
+
+                    # 添加右对齐制表位（带点线前导符）
+                    self._add_tab_stop(h2_p, position_cm=16.0, alignment='right', leader='dot')
+
+                    # 超链接
+                    h2_text = f'{item["number"]} {item["text"]}'
+                    self._create_standard_hyperlink(h2_p, h2_text, h2_bookmark)
+
+                    # 添加制表符
+                    h2_tab_run = h2_p.add_run('\t')
+
+                    # 页码
+                    h2_page_run = h2_p.add_run()
+                    h2_page_run.font.name = 'Times New Roman'
+                    h2_page_run.font.size = Pt(10.5)  # 五号
+                    self._add_pageref_field(h2_page_run, h2_bookmark)
+
+                elif item['type'] == 'heading3':
+                    h3_bookmark = f'_Heading_{item["number"].replace(".", "_")}'
+                    h3_p = self.doc.add_paragraph()
+
+                    # 添加缩进（缩进2字符 = 21pt）
+                    h3_p.paragraph_format.left_indent = Pt(21)
+
+                    # 添加右对齐制表位（带点线前导符）
+                    self._add_tab_stop(h3_p, position_cm=16.0, alignment='right', leader='dot')
+
+                    # 超链接
+                    h3_text = f'{item["number"]} {item["text"]}'
+                    self._create_standard_hyperlink(h3_p, h3_text, h3_bookmark)
+
+                    # 添加制表符
+                    h3_tab_run = h3_p.add_run('\t')
+
+                    # 页码
+                    h3_page_run = h3_p.add_run()
+                    h3_page_run.font.name = 'Times New Roman'
+                    h3_page_run.font.size = Pt(10.5)  # 五号
+                    self._add_pageref_field(h3_page_run, h3_bookmark)
+
+        for section in special_sections:
+            title = section.get('title')
+            bookmark_name = section.get('bookmark')
+            if not title or not bookmark_name:
+                continue
+
+            section_para = self.doc.add_paragraph()
+            self._add_tab_stop(section_para, position_cm=16.0, alignment='right', leader='dot')
+            self._create_standard_hyperlink(section_para, title, bookmark_name)
+            section_para.add_run('\t')
+            page_run = section_para.add_run()
+            page_run.font.name = 'Times New Roman'
+            page_run.font.size = Pt(10.5)
+            self._add_pageref_field(page_run, bookmark_name)
 
     def _generate_body(self, title, chapters, section):
         """
@@ -745,7 +871,6 @@ class ThesisFormatter:
         title_text = self._resolve_title_text(title_cfg, '参考文献')
         display_title = self._format_section_title(section_number, title_text)
         title_para = self.doc.add_paragraph()
-        title_para.style = self.doc.styles['Heading 1']
         title_run = title_para.add_run(display_title)
         if title_cfg:
             self.style_manager.apply_run_style(title_run, title_cfg)
@@ -767,10 +892,10 @@ class ThesisFormatter:
             self._add_bookmark_to_paragraph(title_para, bookmark_name)
 
         # 条目
-        entry_font = entry_cfg.get('font', '宋体')
+        entry_cn, entry_en = self._extract_font_pair(entry_cfg, fonts.get('chinese', '宋体'), english_font)
         entry_size = entry_cfg.get('size', 10.5)
         left_bracket, right_bracket = number_cfg.get('brackets', ['[', ']'])
-        number_font = number_cfg.get('font', entry_font)
+        number_font = number_cfg.get('font', entry_en)
         number_bold = number_cfg.get('bold', False)
 
         for idx, ref in enumerate(references, 1):
@@ -781,7 +906,7 @@ class ThesisFormatter:
             number_run.font.name = number_font
             number_run.font.size = Pt(entry_size)
             number_run.font.bold = number_bold
-            number_run._element.rPr.rFonts.set(qn('w:eastAsia'), entry_font)
+            number_run._element.rPr.rFonts.set(qn('w:eastAsia'), entry_cn)
 
             text = self._sanitize_reference_text(ref.get('text', ''))
             ref['text'] = text
@@ -793,8 +918,8 @@ class ThesisFormatter:
                         para,
                         detail_text,
                         backlink_name,
-                        entry_font,
-                        english_font,
+                        entry_cn,
+                        entry_en,
                         entry_size
                     )
                 else:
@@ -802,8 +927,8 @@ class ThesisFormatter:
                     self.style_manager.set_mixed_font(
                         detail_run,
                         detail_text,
-                        chinese_font=entry_font,
-                        english_font=english_font,
+                        chinese_font=entry_cn,
+                        english_font=entry_en,
                         size=entry_size
                     )
 
@@ -813,6 +938,7 @@ class ThesisFormatter:
 
     def _sanitize_reference_text(self, text):
         """移除 URL、统一标点并控制换行"""
+        # 参考: best_practices/参考文献系统_reference.py 第213-230行
         if not text:
             return ''
 
@@ -943,7 +1069,6 @@ class ThesisFormatter:
         title_text = self._resolve_title_text(title_cfg, default_title)
         display_title = self._format_section_title(section_number, title_text)
         title_para = self.doc.add_paragraph()
-        title_para.style = self.doc.styles['Heading 1']
         title_run = title_para.add_run(display_title)
         if title_cfg:
             self.style_manager.apply_run_style(title_run, title_cfg)
@@ -954,7 +1079,8 @@ class ThesisFormatter:
 
         fonts = self.style_manager.get_fonts()
         english_font = fonts.get('english', 'Times New Roman')
-        content_font = content_cfg.get('font', '宋体')
+        chinese_font = fonts.get('chinese', '宋体')
+        content_cn, content_en = self._extract_font_pair(content_cfg, chinese_font, english_font)
         content_size = content_cfg.get('size', 12)
 
         for para_text in paragraphs:
@@ -965,8 +1091,8 @@ class ThesisFormatter:
             self.style_manager.set_mixed_font(
                 run,
                 para_text,
-                chinese_font=content_font,
-                english_font=english_font,
+                chinese_font=content_cn,
+                english_font=content_en,
                 size=content_size
             )
             self.style_manager.apply_paragraph_style(para, content_cfg or {})
@@ -995,29 +1121,25 @@ class ThesisFormatter:
         # 一级标题
         h1_style = self.style_manager.get_heading_style(1)
         h1_para = self.doc.add_paragraph()
-        h1_para.style = self.doc.styles['Heading 1']
 
+        # 章节号（Times New Roman）
         chapter_num = chapter.get('number', chapter_idx + 1)
-        number_text = self._format_heading_number(1, chapter_num)
-
-        num_run = h1_para.add_run(f'{number_text} ')
+        num_run = h1_para.add_run(f'第{chapter_num}章 ')
         num_run.font.name = h1_style.get('number_font', 'Times New Roman')
         num_run.font.size = Pt(h1_style['size'])
         num_run.font.bold = h1_style.get('bold', False)
 
+        # 章节标题（宋体）
         title_run = h1_para.add_run(chapter['title'])
         title_run.font.name = h1_style['font']
         title_run._element.rPr.rFonts.set(qn('w:eastAsia'), h1_style['font'])
         title_run.font.size = Pt(h1_style['size'])
         title_run.font.bold = h1_style.get('bold', False)
 
-        alignment_map = {
-            'left': WD_ALIGN_PARAGRAPH.LEFT,
-            'center': WD_ALIGN_PARAGRAPH.CENTER,
-            'right': WD_ALIGN_PARAGRAPH.RIGHT
-        }
-        h1_para.alignment = alignment_map.get(h1_style.get('alignment', 'left'), WD_ALIGN_PARAGRAPH.LEFT)
-        self.style_manager.apply_paragraph_style(h1_para, h1_style)
+        # 应用段落样式
+        h1_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        if 'space_before' in h1_style:
+            h1_para.paragraph_format.space_before = Pt(h1_style['space_before'])
 
         # 🔑 关键：为一级标题添加书签
         bookmark_name = f'_Chapter_{chapter_num}'
@@ -1047,13 +1169,15 @@ class ThesisFormatter:
         para = self.doc.add_paragraph()
 
         fonts = self.style_manager.get_fonts()
+        chinese_font = fonts.get('chinese', '宋体')
         english_font = fonts.get('english', 'Times New Roman')
+        body_cn, body_en = self._extract_font_pair(para_style, chinese_font, english_font)
 
         self._add_text_with_citations(
             para,
             text,
-            chinese_font=para_style.get('font_chinese', para_style.get('font', '宋体')),
-            english_font=para_style.get('font_english', english_font),
+            chinese_font=body_cn,
+            english_font=body_en,
             font_size=para_style.get('size', 12),
             bold=para_style.get('bold', False)
         )
@@ -1069,21 +1193,23 @@ class ThesisFormatter:
         """
         h2_style = self.style_manager.get_heading_style(2)
         para = self.doc.add_paragraph()
-        para.style = self.doc.styles['Heading 2']
 
-        formatted_number = self._format_heading_number(2, number)
-        num_run = para.add_run(f'{formatted_number} ')
+        # 编号（Times New Roman）
+        num_run = para.add_run(f'{number} ')
         num_run.font.name = h2_style.get('number_font', 'Times New Roman')
         num_run.font.size = Pt(h2_style['size'])
         num_run.font.bold = h2_style.get('bold', False)
 
+        # 标题文本（宋体）
         text_run = para.add_run(text)
         text_run.font.name = h2_style['font']
         text_run._element.rPr.rFonts.set(qn('w:eastAsia'), h2_style['font'])
         text_run.font.size = Pt(h2_style['size'])
         text_run.font.bold = h2_style.get('bold', False)
 
-        self.style_manager.apply_paragraph_style(para, h2_style)
+        # 应用段落样式
+        if h2_style.get('alignment') == 'left':
+            para.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
         # 🔑 关键：为二级标题添加书签
         bookmark_name = f'_Heading_{number.replace(".", "_")}'
@@ -1097,21 +1223,23 @@ class ThesisFormatter:
         """
         h3_style = self.style_manager.get_heading_style(3)
         para = self.doc.add_paragraph()
-        para.style = self.doc.styles['Heading 3']
 
-        formatted_number = self._format_heading_number(3, number)
-        num_run = para.add_run(f'{formatted_number} ')
+        # 编号（Times New Roman）
+        num_run = para.add_run(f'{number} ')
         num_run.font.name = h3_style.get('number_font', 'Times New Roman')
         num_run.font.size = Pt(h3_style['size'])
         num_run.font.bold = h3_style.get('bold', False)
 
+        # 标题文本（宋体）
         text_run = para.add_run(text)
         text_run.font.name = h3_style['font']
         text_run._element.rPr.rFonts.set(qn('w:eastAsia'), h3_style['font'])
         text_run.font.size = Pt(h3_style['size'])
         text_run.font.bold = h3_style.get('bold', False)
 
-        self.style_manager.apply_paragraph_style(para, h3_style)
+        # 应用段落样式
+        if h3_style.get('alignment') == 'left':
+            para.alignment = WD_ALIGN_PARAGRAPH.LEFT
 
         # 🔑 关键：为三级标题添加书签
         bookmark_name = f'_Heading_{number.replace(".", "_")}'
@@ -1121,6 +1249,7 @@ class ThesisFormatter:
         """
         在段落中写入正文文本并处理参考文献引用
         """
+        # 参考: best_practices/参考文献系统_reference.py 第194-210行
         if not text:
             return
 
@@ -1179,6 +1308,7 @@ class ThesisFormatter:
 
     def _add_internal_reference_link(self, paragraph, text, bookmark_name, chinese_font, english_font, font_size, bold=False, bookmark_name_for_location=None):
         """创建保持黑色字体的内部超链接（用于参考文献引用）"""
+        # 参考: best_practices/参考文献系统_reference.py 第94-149行
         hyperlink = OxmlElement('w:hyperlink')
         hyperlink.set(qn('w:anchor'), bookmark_name)
         hyperlink.set(qn('w:history'), '1')
@@ -1238,194 +1368,245 @@ class ThesisFormatter:
         :param prefix_text: 前缀文本（如 '图' 或 '表'）
         :return: paragraph 用于链式调用
         """
+        # 参考: best_practices/图表系统_reference.py 第43-82行
         if prefix_text:
             paragraph.add_run(prefix_text)
-
-        run = paragraph.add_run()
-        r = run._r
-
-        # 字段开始标记
-        fldChar_begin = OxmlElement('w:fldChar')
-        fldChar_begin.set(qn('w:fldCharType'), 'begin')
-        r.append(fldChar_begin)
-
-        # 字段指令：SEQ Figure/Table \* ARABIC
-        instrText = OxmlElement('w:instrText')
-        instrText.set(qn('xml:space'), 'preserve')
-        instrText.text = f' SEQ {seq_type} \\* ARABIC '
-        r.append(instrText)
-
-        # 字段结束标记
-        fldChar_end = OxmlElement('w:fldChar')
-        fldChar_end.set(qn('w:fldCharType'), 'end')
-        r.append(fldChar_end)
-
+        self._insert_seq_field(paragraph, seq_type, chapter_based=False)
         return paragraph
 
-    def _add_chapter_based_seq_field(self, paragraph, seq_type, chapter_num, prefix_text=''):
+    def _add_chapter_based_seq_field(self, paragraph, seq_type, chapter_num, prefix_text='', format_template=None, chapter_based=True):
         """
         添加基于章节的SEQ字段题注（如：图1-1, 表2-3）
         :param paragraph: 要添加字段的段落
         :param seq_type: 序列类型 'Figure' 或 'Table'
         :param chapter_num: 章节号
         :param prefix_text: 前缀文本（如 '图' 或 '表'）
+        :param format_template: 配置驱动的编号格式，如"图{chapter}.{seq}"
+        :param chapter_based: 是否需要按章节重置
         :return: paragraph 用于链式调用
         """
+        # 参考: best_practices/图表系统_reference.py 第85-129行
+        if format_template:
+            return self._render_seq_template(
+                paragraph,
+                format_template,
+                seq_type,
+                chapter_num,
+                chapter_based=chapter_based
+            )
+
         if prefix_text:
             paragraph.add_run(prefix_text)
 
-        # 添加章节号
-        paragraph.add_run(str(chapter_num))
-        paragraph.add_run('.')
+        if chapter_num is not None:
+            paragraph.add_run(str(chapter_num))
+            paragraph.add_run('-')
 
-        # 添加SEQ字段
+        self._insert_seq_field(paragraph, seq_type, chapter_num, chapter_based=True)
+        return paragraph
+
+    def _render_seq_template(self, paragraph, format_template, seq_type, chapter_num=None, chapter_based=True):
+        """根据配置模板渲染编号字符串，支持 {chapter} 和 {seq} 占位符"""
+        tokens = re.split(r'(\{chapter\}|\{seq\}|\{index\})', format_template)
+        for token in tokens:
+            if not token:
+                continue
+            if token == '{chapter}':
+                if chapter_num is not None:
+                    paragraph.add_run(str(chapter_num))
+            elif token in ('{seq}', '{index}'):
+                self._insert_seq_field(paragraph, seq_type, chapter_num, chapter_based=chapter_based)
+            else:
+                paragraph.add_run(token)
+        return paragraph
+
+    def _insert_seq_field(self, paragraph, seq_type, chapter_num=None, chapter_based=False):
+        """底层工具：将SEQ字段插入段落"""
         run = paragraph.add_run()
         r = run._r
 
-        # 字段开始标记
         fldChar_begin = OxmlElement('w:fldChar')
         fldChar_begin.set(qn('w:fldCharType'), 'begin')
         r.append(fldChar_begin)
 
-        # 字段指令：SEQ Figure/Table \* ARABIC \r 1（每章重置）
         instrText = OxmlElement('w:instrText')
         instrText.set(qn('xml:space'), 'preserve')
-        instrText.text = f' SEQ {seq_type}_{chapter_num} \\* ARABIC '
+        seq_name = seq_type if not chapter_based or chapter_num is None else f'{seq_type}_{chapter_num}'
+        instrText.text = f' SEQ {seq_name} \\* ARABIC '
         r.append(instrText)
 
-        # 字段结束标记
         fldChar_end = OxmlElement('w:fldChar')
         fldChar_end.set(qn('w:fldCharType'), 'end')
         r.append(fldChar_end)
 
-        return paragraph
+        return run
 
-    def _render_number_with_seq(self, paragraph, template, seq_type, chapter_num, label_text='', chapter_based=True):
-        template = (template or '{label}{chapter}.{index}').replace('{seq}', '{index}')
-        replacements = {'label': label_text, 'chapter': chapter_num}
-        rendered = template
-        for key, value in replacements.items():
-            placeholder = f'{{{key}}}'
-            if placeholder in rendered:
-                rendered = rendered.replace(placeholder, str(value))
-        if '{index}' not in rendered:
-            rendered = f'{rendered}{{index}}'
-        before, after = rendered.split('{index}', 1)
-        if before:
-            paragraph.add_run(before)
-        self._insert_seq_field(paragraph, seq_type, chapter_num, chapter_based)
-        if after:
-            paragraph.add_run(after)
+    def _resolve_chapter_number(self, raw_number, default='1'):
+        """从编号字符串中提取章节号，例如 '2-3' -> 2"""
+        if raw_number is None:
+            return default
+        text = str(raw_number).strip()
+        if not text:
+            return default
+        if text.isdigit():
+            return text
+        parts = re.split(r'[.\-]', text)
+        for part in parts:
+            if part.isdigit():
+                return part
+        return default
 
-    def _insert_seq_field(self, paragraph, seq_type, chapter_num=None, chapter_based=True):
-        if chapter_based and chapter_num:
-            self._add_chapter_based_seq_field(paragraph, seq_type, chapter_num)
-        else:
-            self._add_seq_field(paragraph, seq_type)
+    def _extract_font_pair(self, style_cfg, fallback_cn='宋体', fallback_en='Times New Roman', base_key='font'):
+        """根据配置提取中文/英文字体对"""
+        chinese_font = style_cfg.get(f'{base_key}_chinese')
+        english_font = style_cfg.get(f'{base_key}_english')
+        if chinese_font or english_font:
+            return chinese_font or fallback_cn, english_font or fallback_en
+
+        chinese_font = style_cfg.get('font_chinese')
+        english_font = style_cfg.get('font_english')
+        if chinese_font or english_font:
+            return chinese_font or fallback_cn, english_font or fallback_en
+
+        fallback_font = style_cfg.get('font')
+        if fallback_font:
+            return fallback_font, fallback_font
+        return fallback_cn, fallback_en
 
     def _add_figure(self, figure_data):
-        """渲染图片及题注，包含缺失占位处理。"""
+        """
+        添加图片（缺图时使用红色占位符，题注依然生成）
+        :param figure_data: 图片数据
+        """
+        # 参考: best_practices/图表系统_reference.py 第132-209行
         fig_style = self.style_manager.get_figure_style()
         caption_cfg = fig_style.get('caption', {})
-        chapter_num = figure_data.get('chapter', '1')
         spacing_cfg = fig_style.get('spacing', {})
 
-        image_inserted = False
+        self.doc.add_paragraph()  # 与上文保持空行
+
+        img_para = self.doc.add_paragraph()
+        img_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+
         image_path = figure_data.get('path')
-        if image_path and os.path.exists(image_path):
-            img_para = self.doc.add_paragraph()
-            img_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        width_in = fig_style.get('width_in', 5)
+        missing_image = not image_path or not os.path.exists(image_path)
+
+        if missing_image:
+            placeholder = img_para.add_run('[图片缺失: 请检查路径]')
+            placeholder.font.color.rgb = RGBColor(255, 0, 0)
+            placeholder.font.size = Pt(fig_style.get('content_size', 12))
+        else:
             try:
                 run = img_para.add_run()
-                width = fig_style.get('width_in', 5)
-                run.add_picture(image_path, width=Inches(width))
-                image_inserted = True
+                run.add_picture(image_path, width=Inches(width_in))
             except Exception as exc:
-                placeholder = self.doc.add_paragraph()
-                placeholder.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                error_run = placeholder.add_run(f'[图片加载失败: {exc}]')
-                error_run.font.color.rgb = RGBColor(0xE6, 0x19, 0x19)
-
-        if not image_inserted and fig_style.get('placeholder_for_missing', True):
-            placeholder_para = self.doc.add_paragraph()
-            placeholder_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            text = figure_data.get('caption') or f'图{figure_data.get("number", "")}'
-            placeholder_run = placeholder_para.add_run(f'[图片缺失: {text}]')
-            placeholder_run.font.color.rgb = RGBColor(0xE6, 0x19, 0x19)
+                error_run = img_para.add_run(f'[图片加载失败: {exc}]')
+                error_run.font.color.rgb = RGBColor(255, 0, 0)
+                error_run.font.size = Pt(fig_style.get('content_size', 12))
 
         caption_para = self.doc.add_paragraph()
         caption_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        if spacing_cfg.get('before'):
-            caption_para.paragraph_format.space_before = Pt(spacing_cfg['before'])
-        label_text = caption_cfg.get('label', '图')
-        self._render_number_with_seq(
+        caption_para.paragraph_format.space_before = Pt(caption_cfg.get('space_before', 0))
+        caption_para.paragraph_format.space_after = Pt(caption_cfg.get('space_after', 0))
+
+        number_template = caption_cfg.get('number_format') or fig_style.get('numbering_format') or '图{chapter}.{seq}'
+        chapter_num = self._resolve_chapter_number(figure_data.get('number'))
+        chapter_based = fig_style.get('chapter_based', True)
+        self._add_chapter_based_seq_field(
             caption_para,
-            caption_cfg.get('number_format'),
             'Figure',
             chapter_num,
-            label_text,
-            fig_style.get('chapter_based', True)
+            prefix_text=caption_cfg.get('label_prefix', ''),
+            format_template=number_template,
+            chapter_based=chapter_based
         )
+
         separator = caption_cfg.get('label_separator', ' ')
         if separator:
             caption_para.add_run(separator)
-        caption_run = caption_para.add_run(figure_data.get('caption', ''))
-        self.style_manager.apply_run_style(caption_run, caption_cfg)
-        self.style_manager.apply_paragraph_style(caption_para, caption_cfg)
+
+        caption_text = figure_data.get('caption', '')
+        if caption_text:
+            caption_run = caption_para.add_run(caption_text)
+            caption_run.font.name = caption_cfg.get('font', '宋体')
+            caption_run._element.rPr.rFonts.set(qn('w:eastAsia'), caption_cfg.get('font', '宋体'))
+            caption_run.font.size = Pt(caption_cfg.get('size', 12))
+
         for run in caption_para.runs:
-            self.style_manager.apply_run_style(run, caption_cfg)
+            run.font.name = caption_cfg.get('font', '宋体')
+            run._element.rPr.rFonts.set(qn('w:eastAsia'), caption_cfg.get('font', '宋体'))
+            run.font.size = Pt(caption_cfg.get('size', 12))
 
         if figure_data.get('source'):
+            source_para = self.doc.add_paragraph()
+            source_para.alignment = WD_ALIGN_PARAGRAPH.LEFT if fig_style.get('source', {}).get('position') == 'bottom_left' else WD_ALIGN_PARAGRAPH.CENTER
             source_cfg = fig_style.get('source', {})
-            src_para = self.doc.add_paragraph()
-            src_run = src_para.add_run(f"来源：{figure_data['source']}")
-            self.style_manager.apply_run_style(src_run, source_cfg)
-            self.style_manager.apply_paragraph_style(src_para, source_cfg)
+            source_run = source_para.add_run()
+            self.style_manager.set_mixed_font(
+                source_run,
+                f"来源：{figure_data['source']}",
+                chinese_font=source_cfg.get('font', '宋体'),
+                english_font=source_cfg.get('font', '宋体'),
+                size=source_cfg.get('size', 9),
+                bold=False
+            )
 
-        if spacing_cfg.get('after'):
-            caption_para.paragraph_format.space_after = Pt(spacing_cfg['after'])
+        self.doc.add_paragraph()  # 与下文保持空行
 
     def _add_table(self, table_data):
-        """渲染三线表，支持章节编号与配置驱动样式。"""
+        """
+        添加三线表
+        :param table_data: 表格数据
+        """
         tbl_style = self.style_manager.get_table_style()
         caption_cfg = tbl_style.get('caption', {})
-        chapter_num = table_data.get('chapter', '1')
+
+        self.doc.add_paragraph()
+
         caption_para = self.doc.add_paragraph()
         caption_para.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        self._render_number_with_seq(
+        caption_para.paragraph_format.space_before = Pt(caption_cfg.get('space_before', 0))
+        caption_para.paragraph_format.space_after = Pt(caption_cfg.get('space_after', 0))
+        caption_para.paragraph_format.keep_with_next = True
+
+        chapter_num = self._resolve_chapter_number(table_data.get('number'))
+        number_template = caption_cfg.get('number_format') or tbl_style.get('numbering_format') or '表{chapter}.{seq}'
+        self._add_chapter_based_seq_field(
             caption_para,
-            caption_cfg.get('number_format'),
             'Table',
             chapter_num,
-            caption_cfg.get('label', '表'),
-            tbl_style.get('chapter_based', True)
+            prefix_text=caption_cfg.get('label_prefix', ''),
+            format_template=number_template,
+            chapter_based=tbl_style.get('chapter_based', True)
         )
         separator = caption_cfg.get('label_separator', ' ')
         if separator:
             caption_para.add_run(separator)
-        caption_run = caption_para.add_run(table_data.get('caption', ''))
-        self.style_manager.apply_run_style(caption_run, caption_cfg)
-        self.style_manager.apply_paragraph_style(caption_para, caption_cfg)
-        caption_para.paragraph_format.keep_with_next = True
+
+        title_text = table_data.get('caption', '')
+        if title_text:
+            title_run = caption_para.add_run(title_text)
+            title_run.font.name = caption_cfg.get('font', '宋体')
+            title_run._element.rPr.rFonts.set(qn('w:eastAsia'), caption_cfg.get('font', '宋体'))
+            title_run.font.size = Pt(caption_cfg.get('size', 12))
+
         for run in caption_para.runs:
-            self.style_manager.apply_run_style(run, caption_cfg)
+            run.font.name = caption_cfg.get('font', '宋体')
+            run._element.rPr.rFonts.set(qn('w:eastAsia'), caption_cfg.get('font', '宋体'))
+            run.font.size = Pt(caption_cfg.get('size', 12))
+            if run.text and run.text.strip() and caption_cfg.get('bold', False):
+                run.font.bold = True
 
         rows = table_data.get('rows', [])
         if not rows:
             return
 
-        num_cols = max(len(row) for row in rows)
+        num_cols = max(len(row) for row in rows) if rows else 1
         table = self.doc.add_table(rows=len(rows), cols=num_cols)
+
         if tbl_style.get('allow_row_break', True):
             self._allow_table_row_break(table)
-
-        alignment_map = {
-            'left': WD_ALIGN_PARAGRAPH.LEFT,
-            'center': WD_ALIGN_PARAGRAPH.CENTER,
-            'right': WD_ALIGN_PARAGRAPH.RIGHT,
-            'justify': WD_ALIGN_PARAGRAPH.JUSTIFY
-        }
-        cell_alignment = alignment_map.get(tbl_style.get('content_alignment', 'center'), WD_ALIGN_PARAGRAPH.CENTER)
 
         for row_idx, row_data in enumerate(rows):
             for col_idx in range(num_cols):
@@ -1433,32 +1614,40 @@ class ThesisFormatter:
                 cell = table.rows[row_idx].cells[col_idx]
                 cell.text = cell_text
                 for paragraph in cell.paragraphs:
-                    paragraph.alignment = cell_alignment
+                    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
                     for run in paragraph.runs:
-                        self.style_manager.set_mixed_font(
-                            run,
-                            run.text,
-                            chinese_font=tbl_style.get('content_font', '宋体'),
-                            english_font=tbl_style.get('content_font', '宋体'),
-                            size=tbl_style.get('content_size', 12),
-                            bold=(row_idx == 0)
-                        )
+                        run.font.name = tbl_style.get('content_font', '宋体')
+                        run._element.rPr.rFonts.set(qn('w:eastAsia'), tbl_style.get('content_font', '宋体'))
+                        run.font.size = Pt(tbl_style.get('content_size', 12))
+                        if row_idx == 0:
+                            run.font.bold = True
 
         if tbl_style.get('header_repeat', False):
             self._repeat_table_header(table)
+
         self._set_table_borders(table, tbl_style)
 
         if table_data.get('source'):
-            source_cfg = tbl_style.get('source', {})
             source_para = self.doc.add_paragraph()
-            src_run = source_para.add_run(f"来源：{table_data['source']}")
-            self.style_manager.apply_run_style(src_run, source_cfg)
-            self.style_manager.apply_paragraph_style(source_para, source_cfg)
+            source_para.alignment = WD_ALIGN_PARAGRAPH.LEFT if tbl_style.get('source', {}).get('position') == 'bottom_left' else WD_ALIGN_PARAGRAPH.CENTER
+            source_cfg = tbl_style.get('source', {})
+            source_run = source_para.add_run()
+            self.style_manager.set_mixed_font(
+                source_run,
+                f"来源：{table_data['source']}",
+                chinese_font=source_cfg.get('font', '宋体'),
+                english_font=source_cfg.get('font', '宋体'),
+                size=source_cfg.get('size', 9),
+                bold=False
+            )
+
+        self.doc.add_paragraph()
 
     def _set_table_borders(self, table, style_config):
         """
         设置三线表边框：上下 1.5pt，中线 0.5pt，去除竖线
         """
+        # 参考: best_practices/图表系统_reference.py 第257-343行
         from docx.oxml import parse_xml
         from docx.oxml.ns import nsdecls
 
@@ -1481,13 +1670,12 @@ class ThesisFormatter:
         bottom_sz = self._border_size_value(bottom_border)
         middle_sz = self._border_size_value(middle_border)
 
-        inside_v = 'single' if style_config.get('vertical_border', False) else 'nil'
         borders_xml = f'''
             <w:tblBorders {nsdecls('w')}>
                 <w:top w:val="single" w:sz="{top_sz}" w:space="0" w:color="000000"/>
                 <w:bottom w:val="single" w:sz="{bottom_sz}" w:space="0" w:color="000000"/>
                 <w:insideH w:val="single" w:sz="{middle_sz}" w:space="0" w:color="000000"/>
-                <w:insideV w:val="{inside_v}" w:sz="{middle_sz}" w:space="0" w:color="000000"/>
+                <w:insideV w:val="nil"/>
             </w:tblBorders>
         '''
         tblPr.append(parse_xml(borders_xml))
@@ -1523,9 +1711,9 @@ class ThesisFormatter:
                         edge.set(qn('w:space'), '0')
                     tcBorders.append(edge)
 
-                show_vertical = style_config.get('vertical_border', False)
-                _set_edge('left', middle_sz if show_vertical else None)
-                _set_edge('right', middle_sz if show_vertical else None)
+                # 三线表无竖线
+                _set_edge('left', None)
+                _set_edge('right', None)
 
                 if is_header:
                     _set_edge('top', top_sz)
@@ -1544,6 +1732,7 @@ class ThesisFormatter:
 
     def _allow_table_row_break(self, table):
         """允许表格行跨页断行"""
+        # 参考: best_practices/图表系统_reference.py 第215-235行
         for row in table.rows:
             tr = row._tr
             trPr = tr.trPr
@@ -1654,32 +1843,23 @@ class ThesisFormatter:
         添加公式：使用OMML格式，公式居中，编号右对齐（同一行）
         :param formula_data: 公式数据
         """
+        # 参考: best_practices/公式系统_reference.py 第144-207行
         formula_style = self.style_manager.get_formula_style()
         formula_content = formula_data.get('content', '')
         formula_lines = [line.strip() for line in formula_content.split('\n') if line.strip()]
         if not formula_lines:
             return
 
-        number_template = formula_style.get('number_format', '({chapter}.{index})')
-        chapter_num = formula_data.get('chapter', '1')
-
         # 添加空行（公式与上文之间）
         spacer = self.doc.add_paragraph()
         spacer.paragraph_format.keep_with_next = True
 
         # 逐行处理公式
-        alignment_map = {
-            'left': WD_ALIGN_PARAGRAPH.LEFT,
-            'center': WD_ALIGN_PARAGRAPH.CENTER,
-            'right': WD_ALIGN_PARAGRAPH.RIGHT
-        }
-
         for line_idx, line in enumerate(formula_lines):
             # 创建段落并强制 Word 识别为居中
             p = self.doc.add_paragraph()
             p.paragraph_format.keep_together = True
-            p.alignment = alignment_map.get(formula_style.get('alignment', 'center'), WD_ALIGN_PARAGRAPH.CENTER)
-            self.style_manager.apply_paragraph_style(p, formula_style)
+            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
 
             # 如果是最后一行，添加编号
             is_last_line = (line_idx == len(formula_lines) - 1)
@@ -1724,24 +1904,24 @@ class ThesisFormatter:
                 run.font.size = Pt(formula_style['size'])
 
             if is_last_line:
-                # 添加制表符到右侧位置
                 p.add_run('\t')
-                existing_runs = len(p.runs)
-                self._render_number_with_seq(
+                numbering_start = len(p.runs)
+                number_template = formula_style.get('number_format', '({chapter}.{seq})')
+                chapter_num = self._resolve_chapter_number(formula_data.get('number'))
+                self._render_seq_template(
                     p,
                     number_template,
                     'Equation',
                     chapter_num,
-                    '',
-                    formula_style.get('chapter_based', True)
+                    chapter_based=True
                 )
-                number_style = {
-                    'font_chinese': formula_style.get('number_font_chinese', formula_style.get('font', 'Times New Roman')),
-                    'font_english': formula_style.get('number_font_english', formula_style.get('font', 'Times New Roman')),
-                    'size': formula_style.get('number_size', formula_style.get('size', 12))
-                }
-                for run in p.runs[existing_runs:]:
-                    self.style_manager.apply_run_style(run, number_style)
+                number_font_cn = formula_style.get('number_font_chinese', '宋体')
+                number_font_en = formula_style.get('number_font_english', formula_style.get('font', 'Times New Roman'))
+                number_size = Pt(formula_style.get('number_size', formula_style.get('size', 12)))
+                for run in p.runs[numbering_start:]:
+                    run.font.name = number_font_en
+                    run._element.rPr.rFonts.set(qn('w:eastAsia'), number_font_cn)
+                    run.font.size = number_size
 
             # 保持段落在一起
             if line_idx < len(formula_lines) - 1:
@@ -1752,6 +1932,7 @@ class ThesisFormatter:
 
     def _apply_math_justification(self, oMathPara, alignment):
         """在oMathPara上写入对齐信息，确保Word识别为真正居中"""
+        # 参考: best_practices/公式系统_reference.py 第34-54行
         oMathParaPr = oMathPara.find(qn('m:oMathParaPr'))
         if oMathParaPr is None:
             oMathParaPr = OxmlElement('m:oMathParaPr')
@@ -1774,6 +1955,7 @@ class ThesisFormatter:
         """
         构建OMML格式的run元素
         """
+        # 参考: best_practices/公式系统_reference.py 第89-141行
         font_name = formula_style.get('font', 'Times New Roman')
         font_size = str(int(formula_style.get('size', 10.5) * 2))  # 转换为半磅
         functions = {'sin', 'cos', 'tan', 'floor', 'log', 'ln', 'exp', 'max', 'min', 'ReLU', 'Concat'}
@@ -1829,6 +2011,7 @@ class ThesisFormatter:
 
     def _add_omml_text_run(self, parent, text, font_name, font_size, italic=False):
         """添加一个OMML文本run"""
+        # 参考: best_practices/公式系统_reference.py 第57-86行
         r = OxmlElement('m:r')
 
         # 添加run属性
@@ -1860,13 +2043,13 @@ class ThesisFormatter:
 
         parent.append(r)
 
-    def _set_header(self, title, section, header_config=None):
+    def _set_header(self, title, section):
         """
         设置指定节的页眉
         :param title: 页眉文本（论文标题）
         :param section: 需要应用页眉的节
         """
-        header_config = header_config or self.style_manager.config['body'].get('header')
+        header_config = self.style_manager.config['body'].get('header')
         if not header_config:
             return
 
@@ -1882,8 +2065,7 @@ class ThesisFormatter:
         }
         header_para.alignment = alignment_map.get(header_config.get('alignment', 'center'), WD_ALIGN_PARAGRAPH.CENTER)
 
-        header_text = header_config.get('content', title)
-        header_run = header_para.add_run(header_text)
+        header_run = header_para.add_run(title)
         font_name = header_config.get('font', '宋体')
         header_run.font.name = font_name
         header_run._element.rPr.rFonts.set(qn('w:eastAsia'), font_name)

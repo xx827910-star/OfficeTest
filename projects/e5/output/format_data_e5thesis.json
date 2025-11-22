@@ -31,41 +31,225 @@
         "index": 0,
         "title_page": false,
         "page_number_format": "NumberFormatValues { }",
-        "page_number_start": "1",
+        "page_number_start": "",
         "header_references": [
           {
             "Type": "HeaderFooterValues { }",
-            "RelationshipId": "rId20"
+            "RelationshipId": "rId14"
           }
         ],
-        "footer_references": [
-          {
-            "Type": "HeaderFooterValues { }",
-            "RelationshipId": "rId19"
-          }
-        ]
+        "footer_references": []
       }
     ],
+    "abstract_cn": {
+      "title": {
+        "text": "摘 要",
+        "font": "黑体",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": "24磅"
+      },
+      "content": {
+        "count": 3,
+        "items": [
+          {
+            "index": 2,
+            "text": "2019年政府工作报告指出，自改革开放40周年以来，中国成为了仅次于美国的最大经济体，国民经济持续向好，人民收入实现了稳定增长。同时，中国农村经济也实现了快速发展。我国发展农村经济金融的规模在不断扩大...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 3,
+            "text": "农村经济发展需要财政支持，仅依靠政府的财政资金无法满足农村经济建设的需要，因此，农村金融发展创造了农村经济新的增长点，对农村经济的可持续发展提出了新的挑战。当前，农村金融业的发展也存在很多社会问题，为...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          },
+          {
+            "index": 4,
+            "text": "本文回顾了过去十年中国金融发展和农村经济增长的历程。运用理论体系研究两者之间的相互作用，分析农村金融发展状况，选择相关指标和数据进行实证分析。研究结果表明，中国农村金融发展可以带动农村经济发展，同时也...",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          }
+        ]
+      },
+      "keywords": {
+        "text": "关键词：农村金融；国民经济；影响研究",
+        "separator": "；",
+        "keyword_count": 3,
+        "label_bold": true,
+        "first_line_indent": "",
+        "first_line_indent_pt": ""
+      }
+    },
+    "abstract_en": {
+      "title": {
+        "text": "ABSTRACT",
+        "font": "Times New Roman",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": "24磅"
+      },
+      "content": {
+        "count": 1,
+        "items": [
+          {
+            "index": 11,
+            "text": "According to the 2019 government work report, since the 40th anniversary of reform and opening up, C...",
+            "font": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "alignment": "两端对齐"
+          }
+        ]
+      },
+      "keywords": {
+        "text": "Key Words: Rural finance;National economy;Impact study",
+        "separator": ";",
+        "keyword_count": 3,
+        "label_bold": true,
+        "first_line_indent": "",
+        "first_line_indent_pt": ""
+      }
+    },
+    "toc": {
+      "title": {
+        "text": "目  录",
+        "font": "宋体",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": "12磅"
+      },
+      "items_count": 44,
+      "profiles": [
+        {
+          "profile_id": "toc_profile_1",
+          "toc_level": 1,
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "left_indent": "",
+          "tab_stops": [
+            {
+              "position": "16.0 cm",
+              "alignment": "TabStopValues { }",
+              "leader": "TabStopLeaderCharValues { }"
+            }
+          ],
+          "count": 7,
+          "indexes": [
+            18,
+            39,
+            61
+          ],
+          "sample_text": "第1章 绪论PAGEREF _Chapter_1 \\h"
+        },
+        {
+          "profile_id": "toc_profile_2",
+          "toc_level": 2,
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "left_indent": "1.0字符",
+          "tab_stops": [
+            {
+              "position": "16.0 cm",
+              "alignment": "TabStopValues { }",
+              "leader": "TabStopLeaderCharValues { }"
+            }
+          ],
+          "count": 14,
+          "indexes": [
+            19,
+            36,
+            57
+          ],
+          "sample_text": "1.1 研究背景和意义PAGEREF _Heading_1_1 \\h"
+        },
+        {
+          "profile_id": "toc_profile_3",
+          "toc_level": 3,
+          "font": "宋体",
+          "size": "五号(10.5pt)",
+          "bold": false,
+          "alignment": "未提供",
+          "left_indent": "2.0字符",
+          "tab_stops": [
+            {
+              "position": "16.0 cm",
+              "alignment": "TabStopValues { }",
+              "leader": "TabStopLeaderCharValues { }"
+            }
+          ],
+          "count": 23,
+          "indexes": [
+            21,
+            33,
+            41,
+            51,
+            59
+          ],
+          "sample_text": "1.2.1 国内研究现状PAGEREF _Heading_1_2_1 \\h"
+        }
+      ],
+      "anomalies": [
+        {
+          "profile_id": "toc_profile_1",
+          "count": 7,
+          "differences": {
+            "toc_level": 1,
+            "left_indent": ""
+          },
+          "indexes": [
+            18,
+            39,
+            61
+          ]
+        },
+        {
+          "profile_id": "toc_profile_2",
+          "count": 14,
+          "differences": {
+            "toc_level": 2,
+            "left_indent": "1.0字符"
+          },
+          "indexes": [
+            19,
+            36,
+            57
+          ]
+        }
+      ]
+    },
     "main": {
       "h1": {
-        "count": 6,
+        "count": 5,
         "profiles": [
           {
             "profile_id": "h1_profile_1",
-            "count": 6,
+            "count": 5,
             "indexes": [
-              15,
-              40,
-              57,
-              91,
-              150,
-              170
+              63,
+              88,
+              105,
+              155,
+              238
             ],
             "sample_text": "第1章 绪论",
-            "font": "黑体",
+            "font": "宋体",
             "size": "三号(16.0pt)",
             "bold": true,
-            "alignment": "左对齐",
+            "alignment": "居中",
             "spacing_before": "24磅"
           }
         ],
@@ -78,23 +262,23 @@
             "profile_id": "h2_profile_1",
             "count": 14,
             "indexes": [
-              16,
-              21,
-              35,
-              41,
-              48,
-              58,
-              70,
-              98,
-              107,
-              109,
-              146,
-              152,
-              160,
-              165
+              64,
+              69,
+              83,
+              89,
+              96,
+              106,
+              122,
+              164,
+              173,
+              175,
+              234,
+              240,
+              248,
+              253
             ],
             "sample_text": "1.1 研究背景和意义",
-            "font": "黑体",
+            "font": "宋体",
             "size": "小三(15.0pt)",
             "bold": true,
             "alignment": "左对齐"
@@ -109,32 +293,32 @@
             "profile_id": "h3_profile_1",
             "count": 23,
             "indexes": [
-              22,
-              30,
-              42,
-              45,
-              49,
-              53,
-              59,
-              63,
-              66,
-              72,
-              82,
-              99,
-              105,
-              110,
-              115,
-              137,
-              153,
-              155,
-              157,
-              161,
-              163,
-              166,
-              168
+              70,
+              78,
+              90,
+              93,
+              97,
+              101,
+              107,
+              113,
+              116,
+              124,
+              140,
+              165,
+              171,
+              176,
+              183,
+              219,
+              241,
+              243,
+              245,
+              249,
+              251,
+              254,
+              256
             ],
             "sample_text": "1.2.1 国内研究现状",
-            "font": "黑体",
+            "font": "宋体",
             "size": "四号(14.0pt)",
             "bold": true,
             "alignment": "左对齐"
@@ -143,101 +327,59 @@
         "deviations": []
       },
       "body": {
-        "count": 118,
+        "count": 87,
         "profiles": [
           {
             "profile_id": "body_profile_1",
-            "count": 4,
+            "count": 78,
             "indexes": [
-              0,
-              12,
-              174,
-              197
-            ],
-            "sample_text": "摘 要",
-            "font": "黑体",
-            "size": "三号(16.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "1.0倍",
-            "alignment": "居中"
-          },
-          {
-            "profile_id": "body_profile_2",
-            "count": 87,
-            "indexes": [
-              1,
-              24,
-              33,
-              44,
-              56,
-              73,
-              96,
-              108,
-              131,
+              65,
+              74,
+              82,
+              94,
+              104,
+              123,
               154,
-              171,
-              204
+              169,
+              184,
+              235,
+              247,
+              260
             ],
-            "sample_text": "2019年政府工作报告指出，自改革开放40周年以来，中国成为了仅次于美国的最大经济体，国民经济持续向好，人民收入实现了稳定增长。同时，中国农村经济也实现了快速发展。我国发展农村经济金融的规模在不断扩大",
+            "sample_text": "我国是一个农业大国，做好三农工作是关乎国民经济和人民生活息息相关的大事。2004年至今，中央政府连续17年发布了1号文件，都强调中国农业、农村和农民是“重中之重”。农村金融的发展必须与时代改革和创新保",
             "font": "宋体",
             "size": "小四(12.0pt)",
             "first_line_indent": "2字符",
             "line_spacing": "20磅",
             "alignment": "两端对齐"
+          },
+          {
+            "profile_id": "body_profile_2",
+            "count": 8,
+            "indexes": [
+              128,
+              150,
+              189,
+              198,
+              215,
+              226
+            ],
+            "sample_text": "[图片缺失: 请检查路径]",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "18磅",
+            "alignment": "居中"
           },
           {
             "profile_id": "body_profile_3",
             "count": 1,
             "indexes": [
-              7
+              262
             ],
-            "sample_text": "ABSTRACT",
-            "font": "Times New Roman",
+            "sample_text": "参 考 文 献",
+            "font": "黑体",
             "size": "三号(16.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "1.0倍",
-            "alignment": "居中"
-          },
-          {
-            "profile_id": "body_profile_4",
-            "count": 1,
-            "indexes": [
-              8
-            ],
-            "sample_text": "According to the 2019 government work report, since the 40th anniversary of reform and opening up, C",
-            "font": "Times New Roman",
-            "size": "小四(12.0pt)",
-            "first_line_indent": "2字符",
-            "line_spacing": "20磅",
-            "alignment": "两端对齐"
-          },
-          {
-            "profile_id": "body_profile_5",
-            "count": 1,
-            "indexes": [
-              10
-            ],
-            "sample_text": "Key Words: Rural finance;National economy;Impact study",
-            "font": "Times New Roman",
-            "size": "小四(12.0pt)",
-            "first_line_indent": "",
-            "line_spacing": "20磅",
-            "alignment": "左对齐"
-          },
-          {
-            "profile_id": "body_profile_6",
-            "count": 24,
-            "indexes": [
-              62,
-              85,
-              112,
-              124,
-              134,
-              144
-            ],
-            "sample_text": "表3.3. 我国农村金融机构数量统计",
-            "font": "宋体",
-            "size": "小四(12.0pt)",
             "first_line_indent": "",
             "line_spacing": "18磅",
             "alignment": "居中"
@@ -245,83 +387,31 @@
         ],
         "deviations": [
           {
-            "profile_id": "body_profile_1",
+            "profile_id": "body_profile_2",
             "indexes": [
-              0,
-              12,
-              174,
-              197
+              128,
+              150,
+              158,
+              189,
+              198,
+              204,
+              215,
+              226
             ],
             "differences": {
-              "font": "黑体",
-              "size": "三号(16.0pt)",
               "first_line_indent": "",
-              "line_spacing": "1.0倍",
+              "line_spacing": "18磅",
               "alignment": "居中"
             }
           },
           {
             "profile_id": "body_profile_3",
             "indexes": [
-              7
+              262
             ],
             "differences": {
-              "font": "Times New Roman",
+              "font": "黑体",
               "size": "三号(16.0pt)",
-              "first_line_indent": "",
-              "line_spacing": "1.0倍",
-              "alignment": "居中"
-            }
-          },
-          {
-            "profile_id": "body_profile_4",
-            "indexes": [
-              8
-            ],
-            "differences": {
-              "font": "Times New Roman"
-            }
-          },
-          {
-            "profile_id": "body_profile_5",
-            "indexes": [
-              10
-            ],
-            "differences": {
-              "font": "Times New Roman",
-              "first_line_indent": "",
-              "alignment": "左对齐"
-            }
-          },
-          {
-            "profile_id": "body_profile_6",
-            "indexes": [
-              62,
-              68,
-              76,
-              78,
-              79,
-              85,
-              86,
-              88,
-              94,
-              112,
-              117,
-              119,
-              122,
-              123,
-              124,
-              127,
-              128,
-              133,
-              134,
-              135,
-              139,
-              141,
-              142,
-              144
-            ],
-            "differences": {
               "first_line_indent": "",
               "line_spacing": "18磅",
               "alignment": "居中"
@@ -330,17 +420,693 @@
         ]
       }
     },
+    "figures": {
+      "count": 8,
+      "items": [
+        {
+          "index": 129,
+          "text": "图1. SEQ Figure_1 \\* ARABIC  图一：我国2009-2018年农业总产值所占比重",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 130,
+            "text": "来源：备注：Word绘图",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 151,
+          "text": "图2. SEQ Figure_2 \\* ARABIC  图二：我国2013-2019年城乡居民收支对比状况",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 152,
+            "text": "来源：备注：Word绘图",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 159,
+          "text": "图3. SEQ Figure_3 \\* ARABIC  图三：我国农村贷款与农业生产总值情况走势图",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 160,
+            "text": "来源：备注：Word绘图",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 190,
+          "text": "图4. SEQ Figure_4 \\* ARABIC  图四：FIR与农村生产总值增长率线性回归模型",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 191,
+            "text": "来源：缺图片",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 199,
+          "text": "图5. SEQ Figure_5 \\* ARABIC  图五：FIR线性模型非标准化系数",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 200,
+            "text": "来源：缺图片",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 205,
+          "text": "图6. SEQ Figure_6 \\* ARABIC  图六：标准化残差直方图 以及P-P图",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 206,
+            "text": "来源：备注：Word绘图",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 216,
+          "text": "图7. SEQ Figure_7 \\* ARABIC  图七：RLD线性回归结果",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 217,
+            "text": "来源：缺图片",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        },
+        {
+          "index": 227,
+          "text": "图8. SEQ Figure_8 \\* ARABIC  图八：FIR与RGDP与农村生产总值增长率相关性检验",
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": false,
+          "blank_after": false,
+          "source": {
+            "index": 228,
+            "text": "来源：缺图片",
+            "font": "宋体",
+            "font_english": "宋体",
+            "size": "小五(9.0pt)",
+            "bold": false,
+            "alignment": "左对齐",
+            "first_line_indent": "",
+            "first_line_indent_pt": "",
+            "line_spacing": "18磅",
+            "spacing_before": "0磅",
+            "spacing_after": "0磅"
+          }
+        }
+      ]
+    },
+    "tables": {
+      "count": 12,
+      "defaults": {
+        "caption": {
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "居中",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "6磅",
+          "spacing_after": "6磅",
+          "blank_before": true,
+          "blank_after": true
+        },
+        "source": {
+          "font": "宋体",
+          "font_english": "宋体",
+          "size": "小五(9.0pt)",
+          "bold": false,
+          "alignment": "左对齐",
+          "first_line_indent": "",
+          "first_line_indent_pt": "",
+          "line_spacing": "18磅",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
+        }
+      },
+      "entries": [
+        {
+          "index": 111,
+          "text": "表1. SEQ Table_1 \\* ARABIC  表一：我国农村金融机构数量统计",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 119,
+          "text": "表2. SEQ Table_2 \\* ARABIC  表二：我国农村金融机构消费贷款余额及农村存贷款统计",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 133,
+          "text": "表3. SEQ Table_3 \\* ARABIC  表三：我国国内生产总值、农业总产值及其占比",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 136,
+          "text": "表4. SEQ Table_4 \\* ARABIC  表四：我国粮食产量及农产品出口额",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 144,
+          "text": "表5. SEQ Table_5 \\* ARABIC  表五：城镇居民和农村居民可支配收入及增长情况",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 147,
+          "text": "表6. SEQ Table_6 \\* ARABIC  表六：城镇居民和农村居民人均消费支出及增长情况",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 179,
+          "text": "表7. SEQ Table_7 \\* ARABIC  表七：方差分解结果",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 186,
+          "text": "表7. SEQ Table_7 \\* ARABIC  Model Summaryb",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 195,
+          "text": "表8. SEQ Table_8 \\* ARABIC  Coefficientsa",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 212,
+          "text": "表9. SEQ Table_9 \\* ARABIC  Coefficientsa",
+          "caption_diff": {},
+          "source": {
+            "missing": true
+          }
+        },
+        {
+          "index": 222,
+          "text": "表10. SEQ Table_10 \\* ARABIC",
+          "caption_diff": {
+            "blank_after": false
+          },
+          "source": {
+            "index": 223,
+            "text": "来源：FIR",
+            "diff": {}
+          }
+        },
+        {
+          "index": 231,
+          "text": "表11. SEQ Table_11 \\* ARABIC",
+          "caption_diff": {
+            "blank_after": false
+          },
+          "source": {
+            "index": 232,
+            "text": "来源：RLD",
+            "diff": {}
+          }
+        }
+      ],
+      "stats": {
+        "with_source": 2,
+        "without_source": 10
+      },
+      "structure": [
+        {
+          "index": 0,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 1,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 2,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 3,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 4,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 5,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 6,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 7,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 8,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 9,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 10,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        },
+        {
+          "index": 11,
+          "style_id": "",
+          "alignment": "未提供",
+          "top_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "bottom_border": {
+            "style": "BorderValues { }",
+            "size": "1.50pt"
+          },
+          "inside_horizontal": {
+            "style": "BorderValues { }",
+            "size": "0.50pt"
+          },
+          "inside_vertical": {
+            "style": "BorderValues { }",
+            "size": ""
+          },
+          "has_inside_vertical": false,
+          "has_vertical_outer": false,
+          "has_inside_horizontal": true
+        }
+      ]
+    },
     "headers_footers": {
       "header_count": 3,
-      "footer_count": 5,
+      "footer_count": 3,
       "headers": [
         {
           "index": 0,
-          "text": "",
+          "text": "论文主标题",
           "paragraphs": [
             {
               "index": 0,
-              "text": "",
+              "text": "论文主标题",
               "font": "宋体",
               "font_english": "宋体",
               "size": "小五(9.0pt)",
@@ -455,46 +1221,61 @@
               "spacing_after": "0磅"
             }
           ]
+        }
+      ]
+    },
+    "acknowledgement": {
+      "title": {
+        "text": "致 谢",
+        "font": "黑体",
+        "size": "三号(16.0pt)",
+        "bold": true,
+        "alignment": "居中",
+        "spacing_before": "24磅"
+      },
+      "content_count": 7,
+      "content_samples": [
+        {
+          "index": 286,
+          "text": "行文至此，致谢的开始就是四年本科学习、生活的结束，时间总是短暂而仓促。入学之时恍如昨日，转眼却已到了和美丽的信息学院分别的时刻，回望四年的匆匆时光，百感交集，时间还是把我们带到人生中的下一个阶段。在这一路上的努力和奋斗、为青春拼搏的岁月将成为我一生所珍视的纪念，而我也要向所有曾陪伴、关心、照顾过我的人道一句感谢，让我能够在这一路上勇往直前，与君共识，三生有幸！",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "20磅",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
         },
         {
-          "index": 3,
-          "text": "PAGE",
-          "paragraphs": [
-            {
-              "index": 0,
-              "text": "PAGE",
-              "font": "Times New Roman",
-              "font_english": "Times New Roman",
-              "size": "小五(9.0pt)",
-              "bold": false,
-              "alignment": "居中",
-              "first_line_indent": "",
-              "first_line_indent_pt": "",
-              "line_spacing": "18磅",
-              "spacing_before": "0磅",
-              "spacing_after": "0磅"
-            }
-          ]
+          "index": 287,
+          "text": "桃李不言，下自成蹊。首先要感谢一直陪伴着我学习成长的老师们，公共课老师、专业课老师、选修课老师.以及一直在为我们默默付出的其他各部门的老师们，感谢学习生涯中的教导和帮助，此外能成为经济与管理学院的一名学生我倍感荣幸，感谢xxx老师对我的指导，从考研备考分析专业课本，毕业论文的课题选择、论文开题、论文撰写到最后定稿答辩一路上的耐心指导，并且教会了我如何在分析的研究过程中思考，同样也要感谢路璐老师、米丽敏老师对我的教导、帮助和鼓励，感谢在我感到无助的时候给与我得关怀和力量，这些足以让我铭记一生。饮其流者怀其源，学其成着念吾师，衷心祝愿恩师们身体健康，一切顺利。",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "20磅",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
         },
         {
-          "index": 4,
-          "text": "PAGE",
-          "paragraphs": [
-            {
-              "index": 0,
-              "text": "PAGE",
-              "font": "Times New Roman",
-              "font_english": "Times New Roman",
-              "size": "小五(9.0pt)",
-              "bold": false,
-              "alignment": "居中",
-              "first_line_indent": "",
-              "first_line_indent_pt": "",
-              "line_spacing": "18磅",
-              "spacing_before": "0磅",
-              "spacing_after": "0磅"
-            }
-          ]
+          "index": 288,
+          "text": "另外我要感谢这四年大学期间陪我度过的朋友们和同学们，一起进步的路上带给我很多欢笑、温暖和感动，尤其是感谢李慧、宋国栋同学在学习和生活上的帮助和鼓励，感谢这四年来的照顾和陪伴，让我在这四年时光中留下满满的的美好回忆，最美是相遇，最难是重逢，别后莫相忘，期待未来与更好的你们相遇！",
+          "font": "宋体",
+          "font_english": "Times New Roman",
+          "size": "小四(12.0pt)",
+          "bold": false,
+          "alignment": "两端对齐",
+          "first_line_indent": "2字符",
+          "first_line_indent_pt": "24.0pt",
+          "line_spacing": "20磅",
+          "spacing_before": "0磅",
+          "spacing_after": "0磅"
         }
       ]
     }

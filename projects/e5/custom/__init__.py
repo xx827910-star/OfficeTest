@@ -1,7 +1,10 @@
-"""Custom formatter package for project e5."""
+"""USTC (e5) custom formatter package."""
+from .parser import USTCContentParser
+from .styles import USTCStyleManager
+from .formatter import USTCFormatter
 
-from .parser import ThesisParser
-from .styles import StyleManager
-from .formatter import ThesisFormatter
-
-__all__ = ["ThesisParser", "StyleManager", "ThesisFormatter"]
+__all__ = [
+    'USTCContentParser',
+    'USTCStyleManager',
+    'USTCFormatter',
+]
