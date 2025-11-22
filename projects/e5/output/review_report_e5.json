@@ -1,0 +1,256 @@
+{
+  "inspection_summary": {
+    "total_items_checked": 92,
+    "total_issues": 17,
+    "by_severity": {
+      "critical": 8,
+      "medium": 9,
+      "low": 0
+    },
+    "by_category": {
+      "页面设置": {
+        "checked": 5,
+        "issues": 4
+      },
+      "中文摘要": {
+        "checked": 10,
+        "issues": 2
+      },
+      "英文摘要": {
+        "checked": 8,
+        "issues": 2
+      },
+      "目录": {
+        "checked": 12,
+        "issues": 6
+      },
+      "正文格式": {
+        "checked": 20,
+        "issues": 4
+      },
+      "图片": {
+        "checked": 8,
+        "issues": 0
+      },
+      "表格": {
+        "checked": 10,
+        "issues": 0
+      },
+      "公式": {
+        "checked": 0,
+        "issues": 1
+      },
+      "参考文献": {
+        "checked": 5,
+        "issues": 1
+      },
+      "页眉页脚": {
+        "checked": 6,
+        "issues": 0
+      },
+      "致谢": {
+        "checked": 8,
+        "issues": 0
+      },
+      "附录": {
+        "checked": 0,
+        "issues": 1
+      }
+    }
+  },
+  "failed_rules": [
+    {
+      "category": "目录-标题",
+      "rule": "字体应为黑体",
+      "actual": "宋体",
+      "locations": [
+        "目录页标题"
+      ],
+      "severity": "critical",
+      "suggestion": "将目录标题字体改为黑体"
+    },
+    {
+      "category": "目录-条目",
+      "rule": "字号应为小四",
+      "actual": "五号",
+      "locations": [
+        "所有目录条目（共44项）"
+      ],
+      "severity": "critical",
+      "suggestion": "将目录条目字号从五号改为小四"
+    },
+    {
+      "category": "正文-一级标题",
+      "rule": "字体应为黑体",
+      "actual": "宋体",
+      "locations": [
+        "第1章 绪论（段落索引63）",
+        "第2章（段落索引88）",
+        "第3章（段落索引105）",
+        "第4章（段落索引155）",
+        "第5章（段落索引238）"
+      ],
+      "severity": "critical",
+      "suggestion": "将所有一级标题字体改为黑体，共5处需要修改"
+    },
+    {
+      "category": "正文-二级标题",
+      "rule": "字体应为黑体",
+      "actual": "宋体",
+      "locations": [
+        "所有二级标题（共14处）",
+        "示例：1.1 研究背景和意义（段落索引64）"
+      ],
+      "severity": "critical",
+      "suggestion": "将所有二级标题字体改为黑体，共14处需要修改"
+    },
+    {
+      "category": "正文-三级标题",
+      "rule": "字体应为黑体",
+      "actual": "宋体",
+      "locations": [
+        "所有三级标题（共23处）",
+        "示例：1.2.1 国内研究现状（段落索引70）"
+      ],
+      "severity": "critical",
+      "suggestion": "将所有三级标题字体改为黑体，共23处需要修改"
+    },
+    {
+      "category": "公式",
+      "rule": "应包含公式格式数据",
+      "actual": "缺失公式板块数据",
+      "locations": [
+        "整个文档"
+      ],
+      "severity": "critical",
+      "suggestion": "JSON数据中缺失公式格式信息，需要补充sections.formulas数据以验证公式排版、编号规则和字体规范"
+    },
+    {
+      "category": "参考文献-条目",
+      "rule": "应包含参考文献条目格式数据",
+      "actual": "缺失条目详细格式",
+      "locations": [
+        "参考文献部分"
+      ],
+      "severity": "critical",
+      "suggestion": "JSON数据中仅有参考文献标题，缺失条目的字体、字号、行距等详细格式信息"
+    },
+    {
+      "category": "附录",
+      "rule": "应包含附录板块数据",
+      "actual": "缺失附录板块",
+      "locations": [
+        "整个文档"
+      ],
+      "severity": "critical",
+      "suggestion": "JSON数据中缺失附录板块信息，需要补充sections.appendix数据以验证附录格式"
+    },
+    {
+      "category": "页面设置-页边距",
+      "rule": "上下边距应为2.54cm，左右边距应为3.17cm",
+      "actual": "上下边距2.5cm，左右边距3.2cm",
+      "locations": [
+        "全文页面设置"
+      ],
+      "severity": "medium",
+      "suggestion": "调整页边距：上下边距从2.5cm改为2.54cm，左右边距从3.2cm改为3.17cm"
+    },
+    {
+      "category": "中文摘要-内容",
+      "rule": "摘要内容不应有首行缩进",
+      "actual": "首行缩进2字符",
+      "locations": [
+        "中文摘要内容段落（段落索引2-4）"
+      ],
+      "severity": "medium",
+      "suggestion": "取消中文摘要内容的首行缩进（当前为2字符）"
+    },
+    {
+      "category": "中文摘要-关键词",
+      "rule": "应设置悬挂缩进4个字符",
+      "actual": "无悬挂缩进",
+      "locations": [
+        "中文关键词段落"
+      ],
+      "severity": "medium",
+      "suggestion": "为中文关键词设置4个字符的悬挂缩进"
+    },
+    {
+      "category": "英文摘要-内容",
+      "rule": "摘要内容不应有首行缩进",
+      "actual": "首行缩进2字符",
+      "locations": [
+        "英文摘要内容段落（段落索引11）"
+      ],
+      "severity": "medium",
+      "suggestion": "取消英文摘要内容的首行缩进（当前为2字符）"
+    },
+    {
+      "category": "英文摘要-关键词",
+      "rule": "应设置悬挂缩进6.5个字符",
+      "actual": "无悬挂缩进",
+      "locations": [
+        "英文关键词段落"
+      ],
+      "severity": "medium",
+      "suggestion": "为英文关键词设置6.5个字符的悬挂缩进"
+    },
+    {
+      "category": "目录-标题",
+      "rule": "段前间距应为24磅",
+      "actual": "12磅",
+      "locations": [
+        "目录页标题"
+      ],
+      "severity": "medium",
+      "suggestion": "将目录标题段前间距从12磅改为24磅"
+    },
+    {
+      "category": "目录-章标题",
+      "rule": "章标题应加粗",
+      "actual": "未加粗",
+      "locations": [
+        "所有一级目录项（共7项）"
+      ],
+      "severity": "medium",
+      "suggestion": "将目录中的章标题设置为加粗"
+    },
+    {
+      "category": "目录-节标题",
+      "rule": "节标题应缩进2字符",
+      "actual": "缩进1字符",
+      "locations": [
+        "所有二级目录项（共14项）"
+      ],
+      "severity": "medium",
+      "suggestion": "将节标题的左缩进从1字符改为2字符"
+    },
+    {
+      "category": "目录-段标题",
+      "rule": "段标题应缩进4字符",
+      "actual": "缩进2字符",
+      "locations": [
+        "所有三级目录项（共23项）"
+      ],
+      "severity": "medium",
+      "suggestion": "将段标题的左缩进从2字符改为4字符"
+    },
+    {
+      "category": "正文-一级标题",
+      "rule": "对齐方式应为左对齐",
+      "actual": "居中",
+      "locations": [
+        "所有一级标题（共5处）"
+      ],
+      "severity": "medium",
+      "suggestion": "将一级标题对齐方式从居中改为左对齐"
+    }
+  ],
+  "recommendations": [
+    "严重问题(8个)：标题字体错误是最严重的问题，所有层级标题（目录、一级、二级、三级）均应使用黑体而非宋体，共涉及42处标题需要修改；目录条目字号应为小四而非五号；缺失公式、参考文献条目和附录的格式数据",
+    "中等问题(9个)：目录格式需要全面调整（标题段前间距、章标题加粗、各级缩进）；中英文摘要内容不应有首行缩进；中英文关键词需要设置悬挂缩进；一级标题应左对齐而非居中；页边距存在细微偏差",
+    "格式完全正确的板块：正文段落、图片标题、表格标题、页眉页脚、致谢内容均完全符合规范要求",
+    "数据完整性问题：JSON数据缺失公式板块、参考文献条目详情和附录板块，建议补充完整数据以进行全面检查",
+    "整体评价：共检查92项，发现17个问题（问题率18.5%），主要集中在标题字体和目录格式。最严重的是所有标题使用了宋体而非黑体（涉及42处），必须优先修正。修正所有critical和medium问题后，论文格式可达到良好水平"
+  ]
+}
