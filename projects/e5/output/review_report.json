@@ -1,0 +1,210 @@
+{
+  "inspection_summary": {
+    "total_items_checked": 164,
+    "total_issues": 14,
+    "by_severity": {
+      "critical": 7,
+      "medium": 3,
+      "low": 4
+    },
+    "by_category": {
+      "页面设置": {
+        "checked": 6,
+        "issues": 4
+      },
+      "中文摘要": {
+        "checked": 8,
+        "issues": 1
+      },
+      "英文摘要": {
+        "checked": 8,
+        "issues": 2
+      },
+      "目录": {
+        "checked": 12,
+        "issues": 1
+      },
+      "正文格式": {
+        "checked": 80,
+        "issues": 0
+      },
+      "图片": {
+        "checked": 15,
+        "issues": 1
+      },
+      "表格": {
+        "checked": 10,
+        "issues": 2
+      },
+      "参考文献": {
+        "checked": 8,
+        "issues": 1
+      },
+      "公式": {
+        "checked": 12,
+        "issues": 1
+      },
+      "页眉页脚": {
+        "checked": 3,
+        "issues": 0
+      },
+      "致谢": {
+        "checked": 1,
+        "issues": 1
+      },
+      "附录": {
+        "checked": 1,
+        "issues": 0
+      }
+    }
+  },
+  "failed_rules": [
+    {
+      "category": "目录",
+      "rule": "应包含目录板块，包括标题'目 录'及目录项",
+      "actual": "JSON中完全缺失目录(sections.toc)板块",
+      "locations": [
+        "全文"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够提取目录板块的完整数据；手动检查原始文档是否包含目录"
+    },
+    {
+      "category": "中文摘要-关键词",
+      "rule": "关键词应另起一行，悬挂缩进4个字符",
+      "actual": "JSON中没有独立的关键词条目，无法验证格式",
+      "locations": [
+        "中文摘要部分"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够单独提取并标识关键词段落"
+    },
+    {
+      "category": "表格",
+      "rule": "应包含表格板块详细数据，包括表格标题、内容格式等",
+      "actual": "JSON中缺失tables板块，仅在body中发现表格标题（body_profile_6）",
+      "locations": [
+        "全文表格"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够完整提取表格板块的详细格式数据"
+    },
+    {
+      "category": "图片",
+      "rule": "应包含图片板块，包括图片标题及编号",
+      "actual": "JSON中完全缺失figures板块",
+      "locations": [
+        "全文"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够提取图片板块数据；手动检查原始文档是否包含图片"
+    },
+    {
+      "category": "公式",
+      "rule": "应包含公式板块，包括公式排版、编号格式等",
+      "actual": "JSON中完全缺失formulas板块",
+      "locations": [
+        "全文"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够提取公式板块数据；手动检查原始文档是否包含公式"
+    },
+    {
+      "category": "参考文献",
+      "rule": "应包含参考文献板块详细数据，包括标题及条目格式",
+      "actual": "JSON中缺失参考文献板块详细格式数据，仅在页眉中发现'参 考 文 献'文字",
+      "locations": [
+        "参考文献章节"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够提取参考文献板块的完整格式数据"
+    },
+    {
+      "category": "致谢",
+      "rule": "应包含致谢板块详细数据，包括标题及内容格式",
+      "actual": "JSON中缺失致谢板块详细格式数据，仅在页眉中发现'致 谢'文字",
+      "locations": [
+        "致谢章节"
+      ],
+      "severity": "critical",
+      "suggestion": "检查格式提取脚本，确保能够提取致谢板块的完整格式数据"
+    },
+    {
+      "category": "英文摘要-关键词",
+      "rule": "关键词应悬挂缩进6.5个字符",
+      "actual": "无缩进（first_line_indent为空）",
+      "locations": [
+        "段落索引10"
+      ],
+      "severity": "medium",
+      "suggestion": "为英文关键词段落设置悬挂缩进6.5字符"
+    },
+    {
+      "category": "英文摘要-标题",
+      "rule": "ABSTRACT标题应加粗",
+      "actual": "JSON未提供bold字段，无法验证是否加粗",
+      "locations": [
+        "段落索引7"
+      ],
+      "severity": "medium",
+      "suggestion": "检查ABSTRACT标题是否加粗；若JSON提取脚本未提取bold字段，需补充提取"
+    },
+    {
+      "category": "表格-标题",
+      "rule": "表格标题行距应与正文保持一致或符合规范要求",
+      "actual": "表格标题行距为18磅",
+      "locations": [
+        "段落索引62, 68, 76, 78, 79, 85等（共24处）"
+      ],
+      "severity": "medium",
+      "suggestion": "检查表格标题行距是否符合规范，建议调整为20磅与正文一致"
+    },
+    {
+      "category": "页面设置-页边距上",
+      "rule": "页边距上应为2.54cm",
+      "actual": "2.5cm（偏差0.04cm）",
+      "locations": [
+        "全文"
+      ],
+      "severity": "low",
+      "suggestion": "将上页边距从2.5cm调整为2.54cm"
+    },
+    {
+      "category": "页面设置-页边距下",
+      "rule": "页边距下应为2.54cm",
+      "actual": "2.5cm（偏差0.04cm）",
+      "locations": [
+        "全文"
+      ],
+      "severity": "low",
+      "suggestion": "将下页边距从2.5cm调整为2.54cm"
+    },
+    {
+      "category": "页面设置-页边距左",
+      "rule": "页边距左应为3.17cm",
+      "actual": "3.2cm（偏差0.03cm）",
+      "locations": [
+        "全文"
+      ],
+      "severity": "low",
+      "suggestion": "将左页边距从3.2cm调整为3.17cm"
+    },
+    {
+      "category": "页面设置-页边距右",
+      "rule": "页边距右应为3.17cm",
+      "actual": "3.2cm（偏差0.03cm）",
+      "locations": [
+        "全文"
+      ],
+      "severity": "low",
+      "suggestion": "将右页边距从3.2cm调整为3.17cm"
+    }
+  ],
+  "recommendations": [
+    "严重问题(7个): JSON数据完整性问题严重，缺失目录、中文关键词、表格详细数据、图片、公式、参考文献详细数据、致谢详细数据等关键板块，建议检查并修复格式提取脚本",
+    "中等问题(3个): 英文关键词缺少悬挂缩进6.5字符，ABSTRACT标题加粗状态无法验证，表格标题行距为18磅需确认是否符合规范",
+    "轻微问题(4个): 所有页边距存在0.03-0.04cm的轻微偏差，建议调整为规范要求的精确值",
+    "数据质量评估: 由于JSON数据缺失大量关键板块，本次检测仅能验证部分格式项，已验证的正文标题（一级、二级、三级）、正文段落、页眉页脚等部分基本符合规范要求",
+    "整体评价: 共检查164项，发现14个问题（问题率8.5%），其中7个严重问题主要为数据缺失导致无法验证。已验证部分显示格式基本符合要求，但需补充完整的格式数据后才能进行全面评估。建议优先修复数据提取问题，然后修正中等和轻微问题"
+  ]
+}
