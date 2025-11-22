@@ -1,0 +1,502 @@
+{
+  "page_setup": {
+    "margin_top": "2.5 cm",
+    "margin_bottom": "2.5 cm",
+    "margin_left": "3.2 cm",
+    "margin_right": "3.2 cm",
+    "page_width": "21.0 cm",
+    "page_height": "29.7 cm"
+  },
+  "defaults": {
+    "paragraph": {
+      "alignment": "未提供",
+      "line_spacing": "18磅",
+      "spacing_before": "0磅",
+      "spacing_after": "0磅",
+      "first_line_indent": "",
+      "first_line_indent_pt": ""
+    },
+    "run": {
+      "font_chinese": "宋体",
+      "font_english": "Times New Roman",
+      "size": "小四(12.0pt)",
+      "bold": false,
+      "italic": false,
+      "color": ""
+    }
+  },
+  "sections": {
+    "section_settings": [
+      {
+        "index": 0,
+        "title_page": false,
+        "page_number_format": "NumberFormatValues { }",
+        "page_number_start": "1",
+        "header_references": [
+          {
+            "Type": "HeaderFooterValues { }",
+            "RelationshipId": "rId20"
+          }
+        ],
+        "footer_references": [
+          {
+            "Type": "HeaderFooterValues { }",
+            "RelationshipId": "rId19"
+          }
+        ]
+      }
+    ],
+    "main": {
+      "h1": {
+        "count": 6,
+        "profiles": [
+          {
+            "profile_id": "h1_profile_1",
+            "count": 6,
+            "indexes": [
+              15,
+              40,
+              57,
+              91,
+              150,
+              170
+            ],
+            "sample_text": "第1章 绪论",
+            "font": "黑体",
+            "size": "三号(16.0pt)",
+            "bold": true,
+            "alignment": "左对齐",
+            "spacing_before": "24磅"
+          }
+        ],
+        "deviations": []
+      },
+      "h2": {
+        "count": 14,
+        "profiles": [
+          {
+            "profile_id": "h2_profile_1",
+            "count": 14,
+            "indexes": [
+              16,
+              21,
+              35,
+              41,
+              48,
+              58,
+              70,
+              98,
+              107,
+              109,
+              146,
+              152,
+              160,
+              165
+            ],
+            "sample_text": "1.1 研究背景和意义",
+            "font": "黑体",
+            "size": "小三(15.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          }
+        ],
+        "deviations": []
+      },
+      "h3": {
+        "count": 23,
+        "profiles": [
+          {
+            "profile_id": "h3_profile_1",
+            "count": 23,
+            "indexes": [
+              22,
+              30,
+              42,
+              45,
+              49,
+              53,
+              59,
+              63,
+              66,
+              72,
+              82,
+              99,
+              105,
+              110,
+              115,
+              137,
+              153,
+              155,
+              157,
+              161,
+              163,
+              166,
+              168
+            ],
+            "sample_text": "1.2.1 国内研究现状",
+            "font": "黑体",
+            "size": "四号(14.0pt)",
+            "bold": true,
+            "alignment": "左对齐"
+          }
+        ],
+        "deviations": []
+      },
+      "body": {
+        "count": 118,
+        "profiles": [
+          {
+            "profile_id": "body_profile_1",
+            "count": 4,
+            "indexes": [
+              0,
+              12,
+              174,
+              197
+            ],
+            "sample_text": "摘 要",
+            "font": "黑体",
+            "size": "三号(16.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.0倍",
+            "alignment": "居中"
+          },
+          {
+            "profile_id": "body_profile_2",
+            "count": 87,
+            "indexes": [
+              1,
+              24,
+              33,
+              44,
+              56,
+              73,
+              96,
+              108,
+              131,
+              154,
+              171,
+              204
+            ],
+            "sample_text": "2019年政府工作报告指出，自改革开放40周年以来，中国成为了仅次于美国的最大经济体，国民经济持续向好，人民收入实现了稳定增长。同时，中国农村经济也实现了快速发展。我国发展农村经济金融的规模在不断扩大",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "20磅",
+            "alignment": "两端对齐"
+          },
+          {
+            "profile_id": "body_profile_3",
+            "count": 1,
+            "indexes": [
+              7
+            ],
+            "sample_text": "ABSTRACT",
+            "font": "Times New Roman",
+            "size": "三号(16.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "1.0倍",
+            "alignment": "居中"
+          },
+          {
+            "profile_id": "body_profile_4",
+            "count": 1,
+            "indexes": [
+              8
+            ],
+            "sample_text": "According to the 2019 government work report, since the 40th anniversary of reform and opening up, C",
+            "font": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "2字符",
+            "line_spacing": "20磅",
+            "alignment": "两端对齐"
+          },
+          {
+            "profile_id": "body_profile_5",
+            "count": 1,
+            "indexes": [
+              10
+            ],
+            "sample_text": "Key Words: Rural finance;National economy;Impact study",
+            "font": "Times New Roman",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "20磅",
+            "alignment": "左对齐"
+          },
+          {
+            "profile_id": "body_profile_6",
+            "count": 24,
+            "indexes": [
+              62,
+              85,
+              112,
+              124,
+              134,
+              144
+            ],
+            "sample_text": "表3.3. 我国农村金融机构数量统计",
+            "font": "宋体",
+            "size": "小四(12.0pt)",
+            "first_line_indent": "",
+            "line_spacing": "18磅",
+            "alignment": "居中"
+          }
+        ],
+        "deviations": [
+          {
+            "profile_id": "body_profile_1",
+            "indexes": [
+              0,
+              12,
+              174,
+              197
+            ],
+            "differences": {
+              "font": "黑体",
+              "size": "三号(16.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.0倍",
+              "alignment": "居中"
+            }
+          },
+          {
+            "profile_id": "body_profile_3",
+            "indexes": [
+              7
+            ],
+            "differences": {
+              "font": "Times New Roman",
+              "size": "三号(16.0pt)",
+              "first_line_indent": "",
+              "line_spacing": "1.0倍",
+              "alignment": "居中"
+            }
+          },
+          {
+            "profile_id": "body_profile_4",
+            "indexes": [
+              8
+            ],
+            "differences": {
+              "font": "Times New Roman"
+            }
+          },
+          {
+            "profile_id": "body_profile_5",
+            "indexes": [
+              10
+            ],
+            "differences": {
+              "font": "Times New Roman",
+              "first_line_indent": "",
+              "alignment": "左对齐"
+            }
+          },
+          {
+            "profile_id": "body_profile_6",
+            "indexes": [
+              62,
+              68,
+              76,
+              78,
+              79,
+              85,
+              86,
+              88,
+              94,
+              112,
+              117,
+              119,
+              122,
+              123,
+              124,
+              127,
+              128,
+              133,
+              134,
+              135,
+              139,
+              141,
+              142,
+              144
+            ],
+            "differences": {
+              "first_line_indent": "",
+              "line_spacing": "18磅",
+              "alignment": "居中"
+            }
+          }
+        ]
+      }
+    },
+    "headers_footers": {
+      "header_count": 3,
+      "footer_count": 5,
+      "headers": [
+        {
+          "index": 0,
+          "text": "",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "",
+              "font": "宋体",
+              "font_english": "宋体",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "text": "参 考 文 献",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "参 考 文 献",
+              "font": "宋体",
+              "font_english": "宋体",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "text": "致 谢",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "致 谢",
+              "font": "宋体",
+              "font_english": "宋体",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        }
+      ],
+      "footers": [
+        {
+          "index": 0,
+          "text": "PAGE \\* roman",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE \\* roman",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "text": "PAGE \\* roman",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE \\* roman",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "text": "PAGE",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "text": "PAGE",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "text": "PAGE",
+          "paragraphs": [
+            {
+              "index": 0,
+              "text": "PAGE",
+              "font": "Times New Roman",
+              "font_english": "Times New Roman",
+              "size": "小五(9.0pt)",
+              "bold": false,
+              "alignment": "居中",
+              "first_line_indent": "",
+              "first_line_indent_pt": "",
+              "line_spacing": "18磅",
+              "spacing_before": "0磅",
+              "spacing_after": "0磅"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
